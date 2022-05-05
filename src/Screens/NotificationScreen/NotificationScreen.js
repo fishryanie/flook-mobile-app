@@ -1,13 +1,13 @@
-import {addDays} from 'date-fns';
-import React, {useState} from 'react';
-import {Button, SafeAreaView, StyleSheet} from 'react-native';
+import { addDays } from 'date-fns';
+import React, { useState } from 'react';
+import { Button, SafeAreaView, StyleSheet } from 'react-native';
 
 import FlatListShowTime from '../ShowTimeScreen/components/ListSystemCinema';
 
 export default function NotificationScreen() {
   return (
     <SafeAreaView style={styles.container}>
-      {/* <FlatListShowTime/> */}
+      <FlatListShowTime />
     </SafeAreaView>
   );
 };

@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { onOffSearchAction } from "../Redux/Action/AppAction";
 import { AntDesign, Feather } from "react-native-vector-icons";
-import { onOffSearchSelector } from "../Redux/Selector/AppSelector";
+import Selector from "../Shop/Selector";
+import Action from "../Shop/Action";
 import { StyleSheet, Text, View, Modal, KeyboardAvoidingView, FlatList, TouchableOpacity, TextInput, Keyboard } from "react-native";
 
-export default function SearchComponent(props){
-  const { data , titleSearch } = props
-  const [ onFocus, setOnForcus ] = useState(false)
-  const [ search, setSearch ] = useState("");
-  const [ filteredDataSource, setFilteredDataSource ] = useState(data);
-  const [ masterDataSource, setMasterDataSource ] = useState(data);
-  const isModalVisible = onOffSearchSelector()
+export default function SearchComponent(props) {
+  const { data, titleSearch } = props
+  const [onFocus, setOnForcus] = useState(false)
+  const [search, setSearch] = useState("");
+  const [filteredDataSource, setFilteredDataSource] = useState(data);
+  const [masterDataSource, setMasterDataSource] = useState(data);
+  const isModalVisible = Selector.app.onOffSearchSelector()
+  console.log("isModalVisible", isModalVisible)
+
   const dispatch = useDispatch()
   const onPressCloseModel = () => {
-    dispatch(onOffSearchAction())
+    dispatch(Action.app.onOffSearchAction())
   }
   const searchFilterFunction = (text) => {
     if (text) {
@@ -39,7 +41,7 @@ export default function SearchComponent(props){
     searchFilterFunction("");
     Keyboard.dismiss();
   };
-  
+
   const renderItems = (val1) => {
     const {
       item: { tenPhim },
@@ -61,10 +63,10 @@ export default function SearchComponent(props){
         >
           <View style={styles.modalContentContainer}>
             <View style={styles.viewTittle}>
-              <AntDesign onPress={onPressCloseModel} style={{flex: 1}} name="close" size={20} color="white" />
+              <AntDesign onPress={onPressCloseModel} style={{ flex: 1 }} name="close" size={20} color="white" />
               <Text style={styles.textTittle}>{titleSearch}</Text>
-              <Text style={{flex: 1}}></Text>
-           
+              <Text style={{ flex: 1 }}></Text>
+
             </View>
             <View style={styles.viewInputContainer}>
               <View
@@ -193,7 +195,7 @@ const styles = StyleSheet.create({
   viewTittle: {
     backgroundColor: "#4A147F",
     flexDirection: "row",
-    alignItems:'center',
+    alignItems: 'center',
     padding: "3%",
     width: "100%",
     minHeight: 40,
@@ -209,8 +211,8 @@ const styles = StyleSheet.create({
   },
 
   textTittle: {
-    flex:3,
-    textAlign:'center',
+    flex: 3,
+    textAlign: 'center',
     color: "white",
     fontSize: 15,
   },

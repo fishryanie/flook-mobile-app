@@ -9,15 +9,16 @@ import CommentSeeMoreScreen from "../Screens/CommentSeeMoreScreen/CommentSeeMore
 
 const MainStack = createNativeStackNavigator()
 export default function MainStackNavigator() {
+  // console.log("MainStackNavigator")
   return (
     <MainStack.Navigator initialRouteName={ScreenName.mainTabNavigator} screenOptions={{ headerShown: false }}>
-      <MainStack.Screen name={ScreenName.mainTabNavigator} component={MainTabNavigator}/>
-      <MainStack.Screen name={ScreenName.movieDetailScreen} component={MovieDetailScreen}/>
-      <MainStack.Screen name={ScreenName.movieSeeMoreScreen} component={MovieSeeMoreScreen}/>
-      <MainStack.Screen name={ScreenName.commentSeeMoreScreen} component={CommentSeeMoreScreen}/>
+      <MainStack.Screen name={ScreenName.mainTabNavigator} component={MainTabNavigator} />
+      <MainStack.Screen name={ScreenName.movieDetailScreen} component={MovieDetailScreen} />
+      <MainStack.Screen name={ScreenName.movieSeeMoreScreen} component={MovieSeeMoreScreen} />
+      <MainStack.Screen name={ScreenName.commentSeeMoreScreen} component={CommentSeeMoreScreen} />
 
 
-      
+
     </MainStack.Navigator>
   );
 }

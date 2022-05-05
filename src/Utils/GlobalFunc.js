@@ -1,5 +1,5 @@
 import axios from 'axios'
-import AppConfigs  from '../Configs/AppConfigs';
+import AppConfigs from '../Configs/AppConfigs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { PixelRatio, Platform } from 'react-native';
 
@@ -19,7 +19,7 @@ export const scaleSizeHeight = size => {
   return (AppConfigs.FULL_HEIGHT * size) / AppConfigs.DEFAULT_HEIGHT;
 };
 
-export const getPersistAuth = async function() {
+export const getPersistAuth = async function () {
   try {
     const jsonValue = await AsyncStorage.getItem('@PERSIST_AUTH');
     if (jsonValue !== null) {
@@ -44,17 +44,18 @@ export const removePersistAuth = async () => {
     await AsyncStorage.removeItem('@PERSIST_AUTH');
     return true;
   }
-  catch(exception) {
+  catch (exception) {
     return false;
   }
 }
 
 
 export const requestAPI = async (request, header = {}) => {
+
   let method = request.method || 'GET';
   let baseURL = request.api;
   let headers = Object.assign(
-    {Accept: 'application/json', 'Content-Type': 'application/json'},
+    { Accept: 'application/json', 'Content-Type': 'application/json' },
     header,
   );
   if (request.token) {
@@ -76,30 +77,29 @@ export const requestAPI = async (request, header = {}) => {
   ) {
     configs['data'] = JSON.stringify(request.body);
   }
-  
+
   try {
     // console.log('config', configs);
     let response = await axios(configs);
     // console.log('response utils', response);
     const data = response.data;
+    const message = response.data.message
     const codeNumber = response.status ? response.status : 0;
-    if(request.type === 'LOGIN_APP' && response.status === 200){
-      
+    if (request.type === 'LOGIN_APP' && response.status === 200) {
+
     }
     if (codeNumber === 401) {
       throw 'UNAUTHORIZED_OR_TOKEN_EXPIRED';
     }
     if (Array.isArray(data)) {
-      return {
-        data,
-        statusCode: codeNumber,
-      };
+      return { data, message, statusCode: codeNumber, };
     }
     return {
       ...data,
+      message,
       statusCode: codeNumber,
     };
-  }catch (error){
+  } catch (error) {
     console.log(error)
   }
 };
