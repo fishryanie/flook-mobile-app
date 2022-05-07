@@ -1,5 +1,5 @@
 import axios from 'axios'
-import AppConfigs from '../Configs/AppConfigs';
+import AppConfigs from '../Configs/App';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { PixelRatio, Platform } from 'react-native';
 

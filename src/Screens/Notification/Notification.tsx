@@ -2,7 +2,7 @@ import { addDays } from 'date-fns';
 import React, { useState } from 'react';
 import { Button, SafeAreaView, StyleSheet } from 'react-native';
 
-import FlatListShowTime from '../ShowTimeScreen/components/ListSystemCinema';
+import FlatListShowTime from '../ShowTime/components/ListSystemCinema';
 
 export default function NotificationScreen() {
   return (

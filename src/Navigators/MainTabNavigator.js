@@ -1,11 +1,11 @@
 import React, { useRef, useEffect } from "react";
 import Drawer from "./Drawer";
 import TabStack from "./TabStack";
-import HomeScreen from '../Screens/HomeScreen/HomeScreen'
-import RatingScreen from '../Screens/RatingScreen/RatingScreen'
-import ClassifyScreen from '../Screens/ClassifyScreen/ClassifyScreen'
-import NotifiScreen from '../Screens/NotificationScreen/NotificationScreen'
-import ForumScreen from '../Screens/ForumScreen/ForumScreen'
+import HomeScreen from '../Screens/Home/Home'
+import RatingScreen from '../Screens/Rating/Rating'
+import ClassifyScreen from '../Screens/Classify/Classify'
+import NotifiScreen from '../Screens/Notification/Notification'
+import ForumScreen from '../Screens/Forum/Forum'
 import { width, height } from "../Constants/DimensionsConstants";
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet, Animated } from 'react-native';
@@ -27,7 +27,7 @@ const arrayScreenName = [
 
 export default function MainTabNavigator(props) {
 
-  const showMenu = Selector.app.onOffDrawerSelector()
+  const showMenu = Selector.app.onOffDrawer()
   // console.log("showMenu", showMenu)
   const MainTab = createBottomTabNavigator();
   const offsetValue = useRef(new Animated.Value(0)).current;

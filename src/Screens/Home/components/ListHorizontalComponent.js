@@ -1,5 +1,5 @@
 import React from 'react'
-import appConfigs from '../../../Configs/AppConfigs';
+import appConfigs from '../../../Configs/App';
 import { MaterialCommunityIcons } from 'react-native-vector-icons';
 import { width, height } from '../../../Constants/DimensionsConstants';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList, Image, Alert, SafeAreaView } from 'react-native'

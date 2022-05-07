@@ -8,7 +8,7 @@ export const BTN_COLOR = {
   color : ['#22273B', 'purple','#aa52a1','#aa52a1']
 }
 
-export default function MyButton(props) {
+export default function MyButton(props:any) {
   return (
     <TouchableOpacity style ={styles.container} onPress={props.click}>
       <LinearGradient 

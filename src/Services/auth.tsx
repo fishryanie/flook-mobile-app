@@ -1,5 +1,5 @@
 import { requestAPI } from "../Utils/GlobalFunc";
-import { API_AUTH } from "../Configs/ApiConfigs";
+import { API_AUTH } from "../Configs/Api";
 
 
 interface login {

@@ -11,12 +11,12 @@ export default function SearchComponent(props) {
   const [search, setSearch] = useState("");
   const [filteredDataSource, setFilteredDataSource] = useState(data);
   const [masterDataSource, setMasterDataSource] = useState(data);
-  const isModalVisible = Selector.app.onOffSearchSelector()
+  const isModalVisible = Selector.app.onOffSearch()
   console.log("isModalVisible", isModalVisible)
 
   const dispatch = useDispatch()
   const onPressCloseModel = () => {
-    dispatch(Action.app.onOffSearchAction())
+    dispatch(Action.app.onOffSearch())
   }
   const searchFilterFunction = (text) => {
     if (text) {

@@ -99,8 +99,8 @@ const COLORS = {
   ORANGE_06: '#FF8D23',
   ORANGE_07: '#FF7A00',
 
-  WHITE_OPACITY: o => `rgba(255,255,255, ${o})`,
-  BLACK_OPACITY: o => `rgba(0,0,0, ${o})`,
+  WHITE_OPACITY: (o:any) => `rgba(255,255,255, ${o})`,
+  BLACK_OPACITY: (o:any) => `rgba(0,0,0, ${o})`,
 };
 
 export default COLORS;

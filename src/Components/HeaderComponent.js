@@ -17,16 +17,16 @@ export default function HeaderComponent(props) {
   const dispatch = useDispatch()
 
   const onPressPic = () => {
-    dispatch(Action.app.onOffDrawerAction())
+    dispatch(Action.app.onOffDrawer())
   }
   const onPressCart = () => {
-    // dispatch(onOffCartAction())
+    // dispatch(onOffCart())
   }
   const onPressSearch = () => {
-    dispatch(Action.app.onOffSearchAction())
+    dispatch(Action.app.onOffSearch())
   }
   const onPressNotify = () => {
-    // dispatch(onOffNotificationAction())
+    // dispatch(onOffNotification())
   }
 
   useEffect(() => {

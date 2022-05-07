@@ -1,4 +1,4 @@
-import { API_MANGA, API_AUTHOR, API_GENRE, API_CHAPTER} from '../Configs/ApiConfigs'
+import { API_MANGA, API_AUTHOR, API_GENRE, API_CHAPTER} from '../Configs/Api'
 import { requestAPI } from '../Utils/GlobalFunc';
 
 //===================================|| Genre ||===============================//

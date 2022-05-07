@@ -1,6 +1,6 @@
 import React from 'react'
-import SignInScreen from '../Screens/SignInScreen/SignIn'
-import SignUpScreen from '../Screens/SignUpScreen/SignUpScreen'
+import SignInScreen from '../Screens/SignIn/SignIn'
+import SignUpScreen from '../Screens/SignUp/SignUp'
 import { ScreenName } from '../Constants/ScreenNameConstants';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 

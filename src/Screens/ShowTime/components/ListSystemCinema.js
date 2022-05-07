@@ -59,7 +59,7 @@ function RenderShowtimes({ item, index }){
 }
 
 
-function RenderTheaterCluster({item,index}){
+function RenderTheaterCluster({item ,index}){
 	const { NameTheaterCluster } = styles
 	return (
 		<View key={index} style={{paddingVertical:15}}>

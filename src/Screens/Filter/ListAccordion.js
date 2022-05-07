@@ -1,19 +1,14 @@
 import React, { Component, useEffect, useState, useMemo } from 'react';
 import { View, FlatList, StyleSheet, Text, TouchableOpacity, ScrollView, SafeAreaView } from "react-native";
-import { CheckBoxBase } from '@react-native-community/checkbox';
 import { Checkbox, List } from 'react-native-paper';
-import { BackgroundImage } from 'react-native-elements/dist/config';
 import { useDispatch } from 'react-redux';
-
 import Action from '../../Shop/Action';
 import Selector from '../../Shop/Selector';
-import CheckBoxIcon from 'react-native-elements/dist/checkbox/CheckBoxIcon';
-import { CheckBox } from 'react-native-elements';
-import ListFilterData from './ListFilterData';
+import ListFilterData from '../../Constants/ListFilterData';
+
 const ListAccordion = () => {
   const dispatch = useDispatch()
   let filterObj
-
   const listAuthor = Selector.book.DataAllAuthor()
   const listGenre = Selector.book.DataAllGenre()
   const [author, setAuthor] = useState([])
@@ -30,14 +25,14 @@ const ListAccordion = () => {
 
   useEffect(() => {
     let authorArr = listAuthor.map((item) => {
-      return { ...item, isSelected: false }
+      return { ...item, isSelected: true }
     })
-    authorArr.splice(0, 0, { _id: "1", name: "All" })
+    authorArr.splice(0, 0, { _id: "1", name: "All", isSelected: true })
     setAuthor(authorArr);
     let genreArr = listGenre.map((item) => {
-      return { ...item, isSelected: false }
+      return { ...item, isSelected: true }
     })
-    genreArr.splice(0, 0, { _id: "1", name: "All" })
+    genreArr.splice(0, 0, { _id: "1", name: "All", isSelected: true })
     setGenre(genreArr);
   }, [listAuthor, listGenre])
 
