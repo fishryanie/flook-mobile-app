@@ -7,12 +7,12 @@ import AuthStackNavigator from './AuthStackNavigator';
 
 const AppStack = createNativeStackNavigator();
 export default function AppNavigator() {
- 
+
   return (
     <NavigationContainer>
-      <AppStack.Navigator initialRouteName={ScreenName.authStackNavigator} screenOptions={{headerShown: false}}>
-        <AppStack.Screen name={ScreenName.authStackNavigator} component={AuthStackNavigator}/>
-        <AppStack.Screen name={ScreenName.mainStackNavigator} component={MainStackNavigator}/>
+      <AppStack.Navigator initialRouteName={ScreenName.authStackNavigator} screenOptions={{ headerShown: false }}>
+        <AppStack.Screen name={ScreenName.authStackNavigator} component={AuthStackNavigator} />
+        <AppStack.Screen name={ScreenName.mainStackNavigator} component={MainStackNavigator} />
       </AppStack.Navigator>
     </NavigationContainer>
   )

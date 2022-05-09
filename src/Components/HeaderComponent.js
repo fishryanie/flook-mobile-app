@@ -6,40 +6,40 @@ import { useDispatch } from 'react-redux';
 import { height, width } from '../Constants/DimensionsConstants';
 import { View, Text, StyleSheet } from 'react-native'
 import { getPersistAuth } from '../Utils/GlobalFunc';
-import { onOffSearchAction, onOffCartAction, onOffDrawerAction, onOffNotificationAction } from '../Redux/Action/AppAction';
+import Action from '../Shop/Action';
 
 export default function HeaderComponent(props) {
-  const [profile, setProfile ] = useState(null)
+  const [profile, setProfile] = useState(null)
   const newDate = moment(new Date).format('LL')
   const titleText = `Hello ${profile?.displayName?.split(' ').reverse()[0] || ''} !`
   const avatarDefault = 'https://cdn-icons-png.flaticon.com/512/149/149071.png'
   const avatar = profile?.avatar ? profile?.avatar : avatarDefault
   const dispatch = useDispatch()
 
-  const onPressPic = () => { 
-    dispatch(onOffDrawerAction())
+  const onPressPic = () => {
+    dispatch(Action.app.onOffDrawer())
   }
   const onPressCart = () => {
-    dispatch(onOffCartAction())
+    // dispatch(onOffCart())
   }
   const onPressSearch = () => {
-    dispatch(onOffSearchAction())
+    dispatch(Action.app.onOffSearch())
   }
   const onPressNotify = () => {
-    dispatch(onOffNotificationAction())
+    // dispatch(onOffNotification())
   }
 
   useEffect(() => {
     getPersistAuth().then(result => setProfile(result))
-  },[])
+  }, [])
 
   return (
     <View style={styles.header}>
       <Text style={styles.largeTitle}>
         <ProfileHeader
-          style={{width: width}}
+          style={{ width: width }}
           titleText={titleText}
-          profileImageSource={{uri: avatar}}
+          profileImageSource={{ uri: avatar }}
           disableLeftAlignedButton={true}
           onFirstIconPress={onPressSearch}
           onSecondIconPress={onPressCart}
@@ -47,9 +47,9 @@ export default function HeaderComponent(props) {
           onProfilePicPress={onPressPic}
         />
         {newDate}
-        <SearchComponent 
-          data={props.dataSearch}
-          titleSearch={props.titleSearch}
+        <SearchComponent
+          data={props?.dataSearch}
+          titleSearch={props?.titleSearch}
         />
       </Text>
     </View>
@@ -57,19 +57,19 @@ export default function HeaderComponent(props) {
 }
 
 const styles = StyleSheet.create({
-  header:{
+  header: {
     width: width,
-    paddingTop: height/15,
-    paddingBottom:height/50,
-    paddingHorizontal: width/40,
-    backgroundColor:'#fff',
+    paddingTop: height / 15,
+    paddingBottom: height / 50,
+    paddingHorizontal: width / 40,
+    backgroundColor: '#fff',
   },
-  largeTitle:{
+  largeTitle: {
     width: width,
-    fontSize:25,
-    color:'gray',
-    paddingHorizontal: width/40,
-    fontWeight:'bold'
+    fontSize: 25,
+    color: 'gray',
+    paddingHorizontal: width / 40,
+    fontWeight: 'bold'
   }
 })
 
