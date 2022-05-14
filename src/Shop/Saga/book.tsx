@@ -23,10 +23,10 @@ function* FindGenre(){
 }
 
 function* FindAuthor(){
-  // console.log("find Author");
+  console.log("find Author");
   try {
     const response: responseGenerator = yield Services.book.findAuthor();
-    // console.log('response', response)
+    console.log('response', response)
     if(response?.statusCode === 200){
       yield put(Action.book.findAuthorSuccess(response?.data))
     }else {

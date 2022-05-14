@@ -52,7 +52,7 @@ export default function Drawer({ navigation }) {
   return (
     <View style={{ justifyContent: 'flex-start', padding: 20 }}>
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop: 35, marginBottom: 15 }}>
-        <Icon name='close' color='#fff' size={25} onPress={() => { dispatch(Action.app.onOffDrawerAction(true)) }} />
+        <Icon name='close' color='#fff' size={25} onPress={() => { dispatch(Action.app.onOffDrawer(true)) }} />
         <Icon name='pencil-outline' color='#fff' size={25} />
       </View>
       <View style={{ display: 'flex', flexDirection: 'row' }}>

@@ -5,6 +5,7 @@ import MainTabNavigator from "./MainTabNavigator";
 import MovieDetailScreen from "../Screens/MovieDetail/MovieDetail";
 
 import CommentSeeMoreScreen from "../Screens/CommentSeeMore/CommentSeeMore";
+import ListAccordion from "../Screens/Filter/ListAccordion";
 
 
 const MainStack = createNativeStackNavigator()
@@ -16,6 +17,7 @@ export default function MainStackNavigator() {
       <MainStack.Screen name={ScreenName.movieDetailScreen} component={MovieDetailScreen} />
 
       <MainStack.Screen name={ScreenName.commentSeeMoreScreen} component={CommentSeeMoreScreen} />
+      <MainStack.Screen name={ScreenName.filterScreen} component={ListAccordion} />
 
 
 

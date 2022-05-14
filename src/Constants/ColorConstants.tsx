@@ -98,6 +98,8 @@ const COLORS = {
   ORANGE_05: '#FFA757',
   ORANGE_06: '#FF8D23',
   ORANGE_07: '#FF7A00',
+  // Grey
+  GREY_01:"#787773",
 
   WHITE_OPACITY: (o:any) => `rgba(255,255,255, ${o})`,
   BLACK_OPACITY: (o:any) => `rgba(0,0,0, ${o})`,

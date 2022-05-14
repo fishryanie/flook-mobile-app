@@ -24,6 +24,7 @@ const findMangaByIdSuccess = (data:any) => ({type: actionTypes.findMangaByIdSucc
 
 
 
+
 //===================================|| Chapter ||================================//
 const findChapterById = (id:any) => ({type: actionTypes.findChapterById, payload: id})
 const findChapterByIdFailure = (data:any) => ({type: actionTypes.findChapterByIdFailure, payload: data});
@@ -43,4 +44,5 @@ export default {
   findMangaById, findMangaByIdFailure, findMangaByIdSuccess,
   findChapterById, findChapterByIdFailure, findChapterByIdSuccess,
   findChapterByMangaId, findChapterByMangaIdFailure, findChapterByMangaIdSuccess,
+ 
 }

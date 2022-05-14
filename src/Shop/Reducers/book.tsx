@@ -49,6 +49,7 @@ const initialState: initialState = {
     case actionTypes.findChapterByIdSuccess: {
       return {...state, oneChapter: action.payload}
     }
+  
     default: return {...state}
   }
 }

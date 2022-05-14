@@ -3,12 +3,14 @@ import moment from 'moment';
 import SearchComponent from './SearchComponent';
 import ProfileHeader from "react-native-profile-header";
 import { useDispatch } from 'react-redux';
-import { height, width } from '../Constants/DimensionsConstants';
+import { height, width, insets } from '../Constants/DimensionsConstants';
 import { View, Text, StyleSheet } from 'react-native'
 import { getPersistAuth } from '../Utils/GlobalFunc';
 import Action from '../Shop/Action';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function HeaderComponent(props) {
+  const insets = useSafeAreaInsets()
   const [profile, setProfile] = useState(null)
   const newDate = moment(new Date).format('LL')
   const titleText = `Hello ${profile?.displayName?.split(' ').reverse()[0] || ''} !`
@@ -34,7 +36,7 @@ export default function HeaderComponent(props) {
   }, [])
 
   return (
-    <View style={styles.header}>
+    <View style={[styles.header, { marginTop: insets.top }]}>
       <Text style={styles.largeTitle}>
         <ProfileHeader
           style={{ width: width }}
@@ -46,7 +48,7 @@ export default function HeaderComponent(props) {
           onThirdIconPress={onPressNotify}
           onProfilePicPress={onPressPic}
         />
-        {newDate}
+        {/* {newDate} */}
         <SearchComponent
           data={props?.dataSearch}
           titleSearch={props?.titleSearch}
@@ -59,9 +61,8 @@ export default function HeaderComponent(props) {
 const styles = StyleSheet.create({
   header: {
     width: width,
-    paddingTop: height / 15,
-    paddingBottom: height / 50,
-    paddingHorizontal: width / 40,
+    paddingTop: height / 100,
+    paddingBottom: height / 100,
     backgroundColor: '#fff',
   },
   largeTitle: {
