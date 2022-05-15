@@ -9,6 +9,7 @@ import HorizontalListBook from '../../Components/FlatList/HorizontalListBook';
 import GirdList from '../../Components/FlatList/GirdList'
 import DeXuatManga from '../../../Data_Mobile/DeXuatManga.json'
 import DataTruyenChat from '../../../Data_Mobile/DataTruyenChat.json'
+import { StoryGenreData } from '../../Constants/StoryGenreData';
 
 export default function HomeScreen({ navigation }) {
 
@@ -59,8 +60,8 @@ export default function HomeScreen({ navigation }) {
         <View>
           <GirdList
             data={DeXuatManga}
-            heightImage={"80%"}
-            heightItem={200} />
+            viewItem={styles.viewItem}
+            Img={styles.Img} />
         </View>
 
         <View style={styles.viewText}>
@@ -82,12 +83,24 @@ export default function HomeScreen({ navigation }) {
         </View>
         <HorizontalListBook
           heightFlatlist={110}
-          widthItem={170}
+          widthItem={150}
           heightItem={110}
           widthImg={"100%"}
           heightImg={"78%"}
           heightViewText={"22%"}
           widthViewText={"100%"} />
+
+        <View style={styles.viewText}>
+          <Text>{"Thể loại"}</Text>
+          <Text style={{ color: COLORS.GREY_01, fontSize: 10 }}>{"Thêm >"}</Text>
+        </View>
+        <GirdList
+          data={StoryGenreData}
+          numColumns={4}
+          viewItem={styles.viewItemGenre}
+          Img={styles.ImgGenre}
+          TextTitle={styles.textTitle}
+        />
 
         <View style={styles.viewText}>
           <Text>{"Truyện chat"}</Text>
@@ -96,9 +109,8 @@ export default function HomeScreen({ navigation }) {
         <GirdList
           data={DataTruyenChat}
           numColumns={3}
-
-          heightImage={"80%"}
-          heightItem={200}
+          viewItem={styles.viewItem}
+          Img={styles.Img}
         />
 
       </ScrollView>
@@ -115,6 +127,29 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: "2%"
+  },
+  viewItem: {
+    height: 200,
+    paddingHorizontal: "2%",
+    paddingVertical: "2%",
+    // backgroundColor: "blue"
+  },
+  Img:
+    { width: "100%", height: "80%", resizeMode: "cover", borderRadius: 10 },
+
+  viewItemGenre: {
+    height: 110,
+    paddingHorizontal: "2%",
+    paddingVertical: "2%",
+    // backgroundColor: "blue"
+  },
+  ImgGenre:
+    { width: "100%", height: "80%", resizeMode: "cover", borderRadius: 50, },
+  textTitle: {
+    width: "100%",
+    fontSize: 10,
+    textAlign: 'center',
+    // backgroundColor: "blue"
   }
 })
 

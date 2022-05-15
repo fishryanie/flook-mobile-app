@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import TopFilterBar from '../../Components/TopFilterBar'
 import GirdList from '../../Components/FlatList/GirdList'
@@ -25,11 +25,23 @@ const Manga = (props) => {
       <TopFilterBar
         onOpenGirdOrList={handleOpenGirdOrList}
         onOpenFilter={handleOpenFilter} />
-      {openGridorList ? <GirdList heightImage={"80%"}
-        heightItem={200} /> : <VerticalList />}
+      {openGridorList ? <GirdList viewItem={styles.viewItem}
+        Img={styles.Img} /> : <VerticalList />}
 
     </View>
   )
 }
+const styles = StyleSheet.create({
+
+  viewItem: {
+    height: 200,
+    paddingHorizontal: "2%",
+    paddingVertical: "2%",
+    // backgroundColor: "blue"
+  },
+  Img:
+    { width: "100%", height: "80%", resizeMode: "cover", borderRadius: 10 }
+
+})
 
 export default Manga

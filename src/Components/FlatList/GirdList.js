@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, FlatList, Image } from 'react-native'
 import React from 'react'
 import DATA_MANGA from '../../../Data_Mobile/Manga.json'
 
-export default function GirdList({ data = DATA_MANGA, numColumns = 2, heightItem, heightImage }) {
+export default function GirdList({ data = DATA_MANGA, numColumns = 2, Img, viewItem, TextTitle }) {
   // console.log(Manga)
   const renderItem = (value) => {
     const {
@@ -10,14 +10,28 @@ export default function GirdList({ data = DATA_MANGA, numColumns = 2, heightItem
     } = value
     // console.log(value)
 
-    const viewWidth = numColumns === 2 ? { width: "50%", } : { width: "33.3%" }
 
+
+    const viewWidth1 = () => {
+
+      if (numColumns === 2) {
+        return { width: "50%" }
+      }
+      if (numColumns === 3) {
+        return { width: "33.333%" }
+      }
+      if (numColumns === 4) {
+        return { width: "25%" }
+      }
+
+    }
     return (
-      <View style={[styles.viewItem(heightItem), viewWidth]} >
-        <Image source={{ uri: image }} style={styles.Img(heightImage)} ></Image>
-        <Text style={{ width: "100%", height: "10%" }}>{title.length < 50 ? title : `${title.slice(0, 50)}...`}</Text>
+      <View style={[viewItem, viewWidth1()]} >
+        <Image source={{ uri: image }} style={Img} ></Image>
+        <Text style={TextTitle}>{title.length < 30 ? title : `${title.slice(0, 30)}...`}</Text>
+
         {/* {rating ? <Text style={{ height: "10%" }}>{rating}</Text> : <></>} */}
-        {genre ? <Text style={{ height: "10%" }}>{genre}</Text> : <></>}
+        {/* {genre ? <Text style={{ height: "10%" }}>{genre}</Text> : <></>} */}
         {/* {view ? <Text style={{  height: "10%" }}>{view}</Text> : <></>} */}
       </View>
     )
@@ -49,15 +63,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: "2%",
     flex: 0.98
   },
-  viewItem: hieght => ({
-    height: hieght,
+  viewItem: {
+    height: 200,
     paddingHorizontal: "2%",
     paddingVertical: "2%",
     // backgroundColor: "blue"
-  }),
-  Img: height => (
-    { width: "100%", height: height, resizeMode: "cover", borderRadius: 10 }
-  )
+  },
+  Img:
+    { width: "100%", height: "80%", resizeMode: "cover", borderRadius: 10 }
+
 
 
 
