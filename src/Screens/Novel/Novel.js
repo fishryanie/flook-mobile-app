@@ -13,7 +13,8 @@ const Novel = (props) => {
   const getFilterList = (data) => {
     setFilterList(data)
   }
-  console.log("filterList", filterList)
+  console.log("id", props.id)
+
   const handleOpenFilter = () => {
     props.navigation.navigate("filterScreen", { onFilterList: getFilterList, screen: "novel" })
   }

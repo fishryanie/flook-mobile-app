@@ -5,6 +5,7 @@ import GirdList from '../../Components/FlatList/GirdList'
 import VerticalList from '../../Components/FlatList/VerticalList'
 
 const Manga = (props) => {
+  console.log("id Manga", props.id)
   const [openGridorList, setOpenGirdOrList] = useState(true)
   const [filterList, setFilterList] = useState({})
 
