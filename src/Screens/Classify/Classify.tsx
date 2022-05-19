@@ -9,7 +9,15 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import ChatStory from '../../Screens/ChatStory/ChatStory';
 import Manga from '../../Screens/Manga/Manga';
 import Novel from '../../Screens/Novel/Novel';
-const listTopTab = [{ _id: "ahdkfahkfd", title: "Tiểu Thuyết Mới Ra Mắt", component: Novel }, { _id: "ahdkfahkfd", title: "Tiểu Thuyết", component: Novel }, { _id: "piuyfahkfd", title: "Manga", component: Manga }, { _id: "hkjyfahkfd", title: "Truyện Chat", component: ChatStory },]
+
+// many item
+const listTopTab = [{ _id: "ahdkfahkfd", title: "Tiểu Thuyết Mới Ra Mắt", component: Novel }, { _id: "ahdkfahkfd", title: "Tiểu Thuyết", component: Novel }, { _id: "piuyfahkfd", title: "Manga", component: Manga },{ _id: "piuyfahkfd", title: "Truyen chat1", component: Manga }]
+
+// 3 item
+const listTopTab1 = [{ _id: "ahdkfahkfd", title: "Tiểu Thuyet", component: Novel }, { _id: "ahdkfahkfd", title: "Manga", component: Novel},  { _id: "piuyfahkfd", title: "Truyen chat", component: Manga  },]
+
+// 2 item
+const listTopTab2 = [{ _id: "ahdkfahkfd", title: "Tiểu Thuyet", component: Novel }, { _id: "ahdkfahkfd", title: "Manga", component: Novel},]
 
 export default function ClassifyScreen() {
   return (
@@ -18,9 +26,14 @@ export default function ClassifyScreen() {
       {/* <HeaderComponent />
       <TopBarNavigator /> */}
      <TopTapNavigator
-     listTopTab={listTopTab}
-     ChildrenIcon1={<Ionicons name='pencil' size={22} style={{}}/>}
-     ChildrenIcon2={<AntDesign name='menu-fold' size={22} style={{}}/>}
+     listTopTab={listTopTab2}
+    //  Có icon
+    //  ChildrenIcon1={<Ionicons name='pencil' size={22} style={{}}/>}
+    // ChildrenIcon2={<AntDesign name='menu-fold' size={22} style={{}}/>}
+
+    // không có icon
+     ChildrenIcon1={null}
+     ChildrenIcon2={null}
      />
 
     </SafeAreaView>

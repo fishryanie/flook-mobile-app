@@ -1,45 +1,57 @@
-
-import ChatStory from '../../Screens/ChatStory/ChatStory';
-import Manga from '../../Screens/Manga/Manga';
-import Novel from '../../Screens/Novel/Novel';
-
-
+import { Dimensions } from 'react-native'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { ScrollView } from 'react-native-gesture-handler';
-import { View } from 'native-base';
+
 
 const Tab = createMaterialTopTabNavigator();
 
-const TopTap = ({ listTopTab }) => {
+const TopTap = ({ listTopTab, isChildren }) => {
+  const window = Dimensions.get("window");
+  const screen = Dimensions.get("screen");
+  console.log("window", window)
+  console.log("screen", screen)
+  const tabBarItemStyleWidth = () => {
+    let width = 'auto'
 
+    if (!isChildren) {
+      width = screen.width * 0.33
+    }
+    if (!isChildren && listTopTab.length <= 2) {
+      width = screen.width * 0.5
+    }
+
+    return width
+  }
   return (
 
 
     <Tab.Navigator
       initialRouteName="Manga"
       screenOptions={{
-
-        tabBarScrollEnabled: true,
+        tabBarScrollEnabled: isChildren,
         tabBarInactiveTintColor: "black",
         tabBarActiveTintColor: "red",
-        tabBarIndicatorStyle: { width: 0, },
+        tabBarIndicatorStyle: isChildren ? { width: 0 } : { backgroundColor: "red", },
         tabBarLabelStyle: { fontSize: 10, },
         tabBarStyle: {
-          width: "75%", height: "5%", elevation: 0,
-          shadowOpacity: 0, justifyContent: "center", zIndex: 0
+          width: isChildren ? screen.width * 0.75 : screen.width,
+          height: screen.height * 0.05, elevation: 0,
+          shadowOpacity: 0,
+          zIndex: 0,
         },
         tabBarItemStyle: {
-          width: 'auto',
+          width: tabBarItemStyleWidth()
         },
-        tabBarPressColor: "transparent"
+        tabBarPressColor: isChildren ? "transparent" : null
       }}
     >
-      {listTopTab.map((item) => {
-        return <Tab.Screen
-          name={item.title}
-          children={() => <item.component id={item._id} />}
-        />
-      })}
+      {
+        listTopTab.map((item) => {
+          return <Tab.Screen
+            name={item.title}
+            children={() => <item.component id={item._id} />}
+          />
+        })
+      }
 
       {/* <Tab.Screen
         name="Novel"
@@ -51,7 +63,7 @@ const TopTap = ({ listTopTab }) => {
         component={ChatStory}
         options={{ tabBarLabel: 'Chat Story' }}
       /> */}
-    </Tab.Navigator>
+    </Tab.Navigator >
 
 
   );

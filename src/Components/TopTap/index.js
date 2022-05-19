@@ -1,22 +1,32 @@
 import { View, Text, StyleSheet, Pressable, TouchableOpacity } from 'react-native'
 import TopTap from './TopTab'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 const index = ({ listTopTab, ChildrenIcon1, ChildrenIcon2 }) => {
   const insets = useSafeAreaInsets()
+  const [isChildren, setIsChildren] = useState()
+  useEffect(() => {
+    checkIsChildren()
+  }, [ChildrenIcon1, ChildrenIcon1])
+  const checkIsChildren = () => {
+    ChildrenIcon1 && ChildrenIcon1 ? setIsChildren(true) : setIsChildren(false)
+  }
+  console.log("isChildren", isChildren)
   return (
     <View style={[styles.viewContainer, { marginTop: insets.top }]}>
-      <TopTap listTopTab={listTopTab} />
+      <TopTap listTopTab={listTopTab} isChildren={isChildren} />
+      {ChildrenIcon1 && ChildrenIcon2 ?
+        <View style={styles.viewTouchable}>
+          <TouchableOpacity onPress={() => { console.log("click") }}>
+            {ChildrenIcon1}
+          </TouchableOpacity>
+          <TouchableOpacity>
+            {ChildrenIcon2}
+          </TouchableOpacity>
+        </View> : <></>
+      }
 
-      <View style={styles.viewTouchable}>
-        <TouchableOpacity onPress={() => { console.log("click") }}>
-          {ChildrenIcon1}
-        </TouchableOpacity>
-        <TouchableOpacity>
-          {ChildrenIcon2}
-        </TouchableOpacity>
-      </View>
     </View>
   )
 }
