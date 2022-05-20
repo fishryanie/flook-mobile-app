@@ -1,14 +1,10 @@
 import { Dimensions } from 'react-native'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-
 const Tab = createMaterialTopTabNavigator();
 
 const TopTap = ({ listTopTab, isChildren }) => {
-  const window = Dimensions.get("window");
   const screen = Dimensions.get("screen");
-  console.log("window", window)
-  console.log("screen", screen)
   const tabBarItemStyleWidth = () => {
     let width = 'auto'
 
@@ -22,8 +18,6 @@ const TopTap = ({ listTopTab, isChildren }) => {
     return width
   }
   return (
-
-
     <Tab.Navigator
       initialRouteName="Manga"
       screenOptions={{
@@ -45,27 +39,14 @@ const TopTap = ({ listTopTab, isChildren }) => {
       }}
     >
       {
-        listTopTab.map((item) => {
-          return <Tab.Screen
+        listTopTab.map((item, index) => {
+          return <Tab.Screen key={index}
             name={item.title}
             children={() => <item.component id={item._id} />}
           />
         })
       }
-
-      {/* <Tab.Screen
-        name="Novel"
-        component={Novel}
-        options={{ tabBarLabel: 'Novel' }}
-      />
-      <Tab.Screen
-        name="ChatStory"
-        component={ChatStory}
-        options={{ tabBarLabel: 'Chat Story' }}
-      /> */}
-    </Tab.Navigator >
-
-
+    </Tab.Navigator>
   );
 }
 export default TopTap
