@@ -3,7 +3,7 @@ import AppNavigator from './src/Navigators/AppNavigator'
 import { View } from 'react-native';
 
 import { Provider } from 'react-redux';
-import { store, persistor } from './src/Shop/index';
+import { store, persistor } from './src/Store/index';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 
