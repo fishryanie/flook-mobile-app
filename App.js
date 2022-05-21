@@ -1,24 +1,18 @@
 import React from 'react'
 import AppNavigator from './src/Navigators/AppNavigator'
 import { View } from 'react-native';
+import Manga from './src/Screen/Manga'
+import Novel from './src/Screen/Novel'
 
-import { Provider } from 'react-redux';
-import { store, persistor } from './src/Shop/index';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { PersistGate } from 'redux-persist/lib/integration/react';
+import TopTab from './src/Components/TopTap'
+const listTopTab2 = [{ _id: "ahdkfahkfd", title: "Chi Tiết", component: Manga }, { _id: "ahdkfahkfd", title: "Chapter", component: Novel },]
 
 
 export default function App() {
   return (
-    <Provider store={store}>
-      <PersistGate // loading={<LoadingView />} 
-        persistor={persistor}>
-        <SafeAreaProvider>
-          <AppNavigator />
-
-        </SafeAreaProvider>
-      </PersistGate>
-    </Provider>
+    <TopTab listTopTab={listTopTab2}
+      ChildrenIcon1={null}
+      ChildrenIcon2={null} />
   );
 }
 
