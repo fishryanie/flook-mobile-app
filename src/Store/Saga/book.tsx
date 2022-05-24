@@ -1,8 +1,8 @@
 import { put, all, takeLatest } from "redux-saga/effects";
 import { responseGenerator } from './index'
-import actionTypes from "../Action/constants";
+import actionTypes from "../Actions/constants";
 import Services from "../../Services"
-import Action from "../Action"
+import Action from "../Actions"
 
 function* FindGenre(){
   console.log("find Genre");

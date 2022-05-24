@@ -3,7 +3,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import styled, { createGlobalStyle } from 'styled-components'
 import { ScreenName } from '../Constants/ScreenNameConstants';
 import { useDispatch } from 'react-redux';
-import Action from '../Shop/Action';
+import Action from '../Store/Actions';
 import { Image, Text, View, TouchableOpacity } from 'react-native';
 import { getPersistAuth, removePersistAuth } from '../Utils/GlobalFunc';
 

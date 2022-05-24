@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { height, width, insets } from '../Constants/DimensionsConstants';
 import { View, Text, StyleSheet } from 'react-native'
 import { getPersistAuth } from '../Utils/GlobalFunc';
-import Action from '../Shop/Action';
+import Action from '../Store/Actions';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function HeaderComponent(props) {

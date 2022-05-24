@@ -10,7 +10,7 @@ const index = ({ listTopTab, ChildrenIcon1, ChildrenIcon2 }) => {
   const checkIsChildren = () => {
     ChildrenIcon1 && ChildrenIcon1 ? setIsChildren(true) : setIsChildren(false)
   }
-  console.log("isChildren", isChildren)
+  // console.log("isChildren", isChildren)
   return (
     <View style={[styles.viewContainer,]}>
       <TopTap listTopTab={listTopTab} isChildren={isChildren} />

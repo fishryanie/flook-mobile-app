@@ -11,7 +11,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet, Animated } from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ScreenName } from "../Constants/ScreenNameConstants";
-import Selector from '../Shop/Selector'
+import Selector from '../Store/Selectors'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 

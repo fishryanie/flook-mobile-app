@@ -9,7 +9,7 @@ const listTopTab2 = [{ _id: "ahdkfahkfd", title: "Chi Tiết", component: Detail
 const Test2 = () => {
   return (
 
-    <ScrollView style={{ flex: 1, flexGrow: 1, backgroundColor: "red", zIndex: 1 }}>
+    <ScrollView style={{ flex: 0.5, backgroundColor: "red" }}>
       <TopTab listTopTab={listTopTab2}
         ChildrenIcon1={null}
         ChildrenIcon2={null}

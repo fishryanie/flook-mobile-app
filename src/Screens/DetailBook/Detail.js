@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import React from 'react'
+import HomeScreen from '../Home/Home';
 const Detail = () => {
   console.log("Detail")
 
@@ -22,44 +23,9 @@ const Detail = () => {
     <View style={{ zIndex: 10, backgroundColor: "blue" }}>
       {/* {
         getListItems(20)
-      } */}
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-      <Text>{"aaaaaaaaaaaaaaaaaaaaaaa"}</Text>
-
+      } */}<ScrollView>
+        <HomeScreen />
+      </ScrollView>
     </View>
   )
 }

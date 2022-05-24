@@ -1,4 +1,4 @@
-import actionTypes from "../Action/constants";
+import actionTypes from "../Actions/constants";
 
 interface initialState{
   listGenre: Array<string>;

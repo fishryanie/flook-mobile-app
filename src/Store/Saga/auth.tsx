@@ -1,10 +1,10 @@
 import { all, put, delay, takeLatest } from "redux-saga/effects";
 // import { notify } from '../../Utils/GlobalFunc'
 import { responseGenerator } from './index'
-import actionTypes from '../Action/constants';
+import actionTypes from '../Actions/constants';
 // import Cookie from '../../hooks/Cookie';
 import Services from '../../Services'
-import Action from '../Action'
+import Action from '../Actions'
 
 
 

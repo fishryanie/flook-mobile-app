@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AntDesign, Feather } from "react-native-vector-icons";
-import Selector from "../Shop/Selector";
-import Action from "../Shop/Action";
+import Selector from "../Store/Selectors";
+import Action from "../Store/Actions";
 import { StyleSheet, Text, View, Modal, KeyboardAvoidingView, FlatList, TouchableOpacity, TextInput, Keyboard } from "react-native";
 
 export default function SearchComponent(props) {
