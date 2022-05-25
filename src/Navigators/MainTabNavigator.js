@@ -1,77 +1,78 @@
 import React, { useRef, useEffect } from "react";
-import Drawer from "./Drawer";
-import TabStack from "./TabStack";
-import MovieScreen from '../Screens/MovieScreen/MovieScreen'
-import CornScreen from '../Screens/CornScreen/CornScreen'
-import NewScreen from  '../Screens/NewsScreen/NewScreen'
-import NotifiScreen from  '../Screens/NotificationScreen/NotificationScreen'
-import ProfileScreen from  '../Screens/ProfileScreen/ProfileScreen'
-import { width, height } from "../Constants/DimensionsConstants";
-import { LinearGradient } from 'expo-linear-gradient';
-import { StyleSheet, Animated} from 'react-native';
+// import Drawer from "./Drawer";
+// import TabStack from "./TabStack";
+import ComicScreen from '../Screens/Comic/ComicScreen'
+import CategoryScreen from '../Screens/Category/CategoryScreen'
+import NotifyScreen from  '../Screens/Notification/NotifyScreen'
+import ForumScreen from  '../Screens/ForumScreen/ForumScreen'
+import ProfileScreen from  '../Screens/Profile/profileScreen'
+// import { width, height } from "../Constants/DimensionsConstants";
+// import { LinearGradient } from 'expo-linear-gradient';
+// import { StyleSheet, Animated} from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { ScreenName } from "../Constants/ScreenNameConstants";
-import { onOffDrawerSelector } from "../Redux/Selector/AppSelector";
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
+// import { ScreenName } from "../Constants/ScreenNameConstants";
+// import { onOffDrawerSelector } from "../Redux/Selector/AppSelector";
+// import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
+import { MaterialCommunityIcons } from 'react-native-vector-icons'
 
-const arrayScreenName = [ 
-  {screenName: ScreenName.movieScreen, label:'Movie' ,component: MovieScreen},
-  {screenName: ScreenName.newsScreen, label:'News',component: NewScreen},
-  {screenName: ScreenName.cornScreen, label:'Corn & drink', component: CornScreen},
-  {screenName: ScreenName.notifiScreen, label:'Notification', component: NotifiScreen},
-  {screenName: ScreenName.profileScreen, label:'Profile', component: ProfileScreen},
-]
+const Tab = createBottomTabNavigator();
 
-const MainTab = createBottomTabNavigator()
+// const arrayScreenName = [ 
+//   {screenName: ScreenName.comicScreen, label:'Truyện Tranh' ,component: ComicScreen},
+//   {screenName: ScreenName.novelScreen, label:'Tiểu Thuyết',component: NovelScreen},
+//   {screenName: ScreenName.libraryScreen, label:'Tủ Sách', component: LibraryScreen},
+//   {screenName: ScreenName.forumScreen, label:'Forum', component: ForumScreen},
+//   {screenName: ScreenName.profileScreen, label:'Tôi', component: ProfileScreen},
+// ]
 
-export default function MainTabNavigator(props) {
+export default function MainTabNavigator(props, accessibilityState) {
 
-  const showMenu = onOffDrawerSelector()
-  const MainTab = createBottomTabNavigator();
-  const offsetValue = useRef(new Animated.Value(0)).current;
-  const scaleValue = useRef(new Animated.Value(1)).current;
-  const closeButtonOffset = useRef(new Animated.Value(0)).current;
+  const focused = accessibilityState.selected;
 
-  const styles = StyleSheet.create({
-    container: { flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' },
-    homeView: { 
-      top: 0, left: 0, right: 0, bottom: 0, 
-      flexGrow: 1, 
-      position: 'absolute', 
-      backgroundColor: 'white',
-      borderRadius: !showMenu ? 15 : 0, 
-      transform: [{ scale: scaleValue },{ translateX: offsetValue }]
-    },
-    animationDrawer:{ 
-      flex:1, justifyContent:'flex-end',
-      borderRadius: !showMenu ? 15 : 0, 
-      transform: [{translateY: closeButtonOffset }] 
-    }
-  });
-
-  useEffect(() => {
-    Animated.timing(scaleValue, { toValue: showMenu ? 1 : 0.9, duration: 300, useNativeDriver: true}).start()
-    Animated.timing(offsetValue, { toValue: showMenu ? 0 : 330, duration: 300, useNativeDriver: true}).start()
-    Animated.timing(closeButtonOffset, { toValue: !showMenu ? -30 : 0, duration: 300,useNativeDriver: true }).start()
-  }, [showMenu])
+  const comic = 'Truyện Tranh'
+  const category = 'Phân Loại'
+  const forum = 'Forum'
+  const notification = 'Thông Báo'
+  const profile = 'Tôi'
 
   return (
-    <LinearGradient style={styles.container} colors={['#5560ff', '#aa52a1','#ff4343']} start={{x: 0,y: 1 }} end={{x: 1.5, y: 0 }}>
-      <Drawer navigation={props.navigation}/>
-      <Animated.View style={styles.homeView}>
-        <Animated.View style={styles.animationDrawer}>
-          <MainTab.Navigator screenOptions={{ headerShown: false, tabBarStyle: {height: height / 12}}} >
-            {arrayScreenName.map((item, index) => (
-              <MainTab.Screen key={index}
-                name={item.screenName}
-                component={item.component}
-                options={{ tabBarButton: props => <TabStack label={item.label} {...props}/> }}
-              />
-            ))}
-          </MainTab.Navigator>
-        </Animated.View>
-      </Animated.View>
-    </LinearGradient>
+    <Tab.Navigator
+    initialRouteName={comic}
+    screenOptions={({ route }) => ({
+      tabBarIcon: ({ focused, color, size }) => {
+        let iconName;
+        let rn = route.name;
+
+        if (rn === comic){
+          iconName = focused ? 'home' : 'home-outline';
+        }else if (rn === category){
+          iconName = focused ? 'cube' : 'cube-outline';
+        }else if (rn === forum){
+          iconName = focused ? 'pinwheel' : 'pinwheel-outline';
+        }else if (rn === notification){
+          iconName = focused ? 'bell-circle' : 'bell-circle-outline';
+        }else{
+          iconName = focused ? 'emoticon' : 'emoticon-outline';
+        }
+        return <MaterialCommunityIcons name={iconName} size={size} color={color} />
+        },
+        headerShown: true,
+    })}
+    tabBarOptions={{
+      activeTintColor: 'tomato',
+      inactiveTintColor: 'gray',
+      labelStyle: { paddingBottom: 10, fontSize: 10},
+      style: {padding: 10, height: 70}
+    }}
+    >
+      
+      <Tab.Screen name={comic} component={ComicScreen}/>
+      <Tab.Screen name={category} component={CategoryScreen}/>
+      <Tab.Screen name={forum} component={ForumScreen}/>
+      <Tab.Screen name={notification} component={NotifyScreen}/>
+      <Tab.Screen name={profile} component={ProfileScreen}/>
+        
+   </Tab.Navigator>
   );
 };
