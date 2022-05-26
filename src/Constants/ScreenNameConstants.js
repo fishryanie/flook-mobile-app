@@ -7,12 +7,13 @@ export const ScreenName = {
   mainStackNavigator: 'mainStackNavigator',
   mainTabNavigator: 'mainTabNavigator',
 
-  comicScreen: 'comicScreen',
+  homeScreen: 'homeScreen',
   categoryScreen: 'categoryScreen',
   notifyScreen: 'notifyScreen',
   forumScreen: 'forumScreen',
   profileScreen: 'profileScreen',
 
+  comicScreen: 'comicScreen',
   rankingScreen: 'rankingScreen',
   channelScreen: 'channelScreen',
   pointMeScreen: 'pointMeScreen',

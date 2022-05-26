@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Comment = () => {
+const CommentScreen = () => {
   return (
     <View style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
       <Text>Comment</Text>
@@ -9,4 +9,4 @@ const Comment = () => {
   )
 }
 
-export default Comment
+export default CommentScreen

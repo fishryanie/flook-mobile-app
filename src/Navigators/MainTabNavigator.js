@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 // import Drawer from "./Drawer";
 // import TabStack from "./TabStack";
-import ComicScreen from '../Screens/Comic/ComicScreen'
+import HomeScreen from "../Screens/Home/HomeScreen"
 import CategoryScreen from '../Screens/Category/CategoryScreen'
 import NotifyScreen from  '../Screens/Notification/NotifyScreen'
 import ForumScreen from  '../Screens/ForumScreen/ForumScreen'
@@ -30,7 +30,7 @@ export default function MainTabNavigator(props, accessibilityState) {
 
   const focused = accessibilityState.selected;
 
-  const comic = 'Truyện Tranh'
+  const home = 'Trang Chủ'
   const category = 'Phân Loại'
   const forum = 'Forum'
   const notification = 'Thông Báo'
@@ -38,13 +38,13 @@ export default function MainTabNavigator(props, accessibilityState) {
 
   return (
     <Tab.Navigator
-    initialRouteName={comic}
-    screenOptions={({ route }) => ({
+      initialRouteName={home}
+      screenOptions={({ route }) => ({
       tabBarIcon: ({ focused, color, size }) => {
         let iconName;
         let rn = route.name;
 
-        if (rn === comic){
+        if (rn === home){
           iconName = focused ? 'home' : 'home-outline';
         }else if (rn === category){
           iconName = focused ? 'cube' : 'cube-outline';
@@ -67,7 +67,7 @@ export default function MainTabNavigator(props, accessibilityState) {
     }}
     >
       
-      <Tab.Screen name={comic} component={ComicScreen}/>
+      <Tab.Screen name={home} component={HomeScreen}/>
       <Tab.Screen name={category} component={CategoryScreen}/>
       <Tab.Screen name={forum} component={ForumScreen}/>
       <Tab.Screen name={notification} component={NotifyScreen}/>
