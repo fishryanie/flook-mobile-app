@@ -9,8 +9,8 @@ import { useDispatch } from 'react-redux';
 import { useForm, Controller } from "react-hook-form";
 import { height } from '../../Constants/DimensionsConstants';
 import { ScreenName } from '../../Constants/ScreenNameConstants'
-import { SignInAction } from '../../Redux/Action/AuthAction';
-import { getDataLocalSelector } from '../../Redux/Selector/LocalSelector';
+import { SignInAction } from '../../Store/Action/AuthAction';
+import { getDataLocalSelector } from '../../Store/Selector/LocalSelector';
 
 export default function SignIn({navigation}) {
   const [ isModalVisible, setModalVisible] = useState(false);

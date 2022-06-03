@@ -2,7 +2,7 @@ import React from "react";
 import { ScreenName } from "../Constants/ScreenNameConstants";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import MainTabNavigator from "./MainTabNavigator";
+import MainTab from "./MainTab";
 
 import HomeScreen from "../Screens/Home/HomeScreen"
 import CategoryScreen from "../Screens/Category/CategoryScreen"
@@ -38,7 +38,7 @@ const MainStack = createNativeStackNavigator()
 export default function MainStackNavigator() {
   return (
     <MainStack.Navigator initialRouteName={ScreenName.mainTabNavigator} screenOptions={{ headerShown: false }}>
-      <MainStack.Screen name={ScreenName.mainTabNavigator} component={MainTabNavigator}/>
+      <MainStack.Screen name={ScreenName.mainTabNavigator} component={MainTab}/>
       
       <MainStack.Screen name={ScreenName.homeScreen} component={HomeScreen}/>
       <MainStack.Screen name={ScreenName.categoryScreen} component={CategoryScreen}/>

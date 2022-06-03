@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { height, width } from '../Constants/DimensionsConstants';
 import { View, Text, StyleSheet } from 'react-native'
 import { getPersistAuth } from '../Utils/GlobalFunc';
-import { onOffSearchAction, onOffCartAction, onOffDrawerAction, onOffNotificationAction } from '../Redux/Action/AppAction';
+import { onOffSearchAction, onOffCartAction, onOffDrawerAction, onOffNotificationAction } from '../Store/Action/AppAction';
 
 export default function HeaderComponent(props) {
   const [profile, setProfile ] = useState(null)

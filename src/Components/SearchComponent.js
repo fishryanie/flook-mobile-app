@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { onOffSearchAction } from "../Redux/Action/AppAction";
+import { onOffSearchAction } from "../Store/Action/AppAction";
 import { AntDesign, Feather } from "react-native-vector-icons";
-import { onOffSearchSelector } from "../Redux/Selector/AppSelector";
+import { onOffSearchSelector } from "../Store/Selector/AppSelector";
 import { StyleSheet, Text, View, Modal, KeyboardAvoidingView, FlatList, TouchableOpacity, TextInput, Keyboard } from "react-native";
 
 export default function SearchComponent(props){
