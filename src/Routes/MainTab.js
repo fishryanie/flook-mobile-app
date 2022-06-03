@@ -2,7 +2,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from 'react-native-vector-icons'
 import NotifyScreen from '../Screens/Notification/NotifyScreen'
-import CategoryScreen from '../Screens/Category/CategoryScreen'
+import CategoryScreen from '../Screens/Category'
 import ForumScreen from '../Screens/ForumScreen/ForumScreen'
 import ProfileScreen from '../Screens/Profile/profileScreen'
 import HomeScreen from '../Screens/Home/HomeScreen'
