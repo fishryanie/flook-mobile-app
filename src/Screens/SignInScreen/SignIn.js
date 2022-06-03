@@ -8,7 +8,7 @@ import { AntDesign} from 'react-native-vector-icons';
 import { useDispatch } from 'react-redux';
 import { useForm, Controller } from "react-hook-form";
 import { height } from '../../Constants/DimensionsConstants';
-import { ScreenName } from '../../Constants/ScreenNameConstants'
+import { ScreenName } from '../../Constants/ScreenName'
 import { SignInAction } from '../../Store/Action/AuthAction';
 import { getDataLocalSelector } from '../../Store/Selector/LocalSelector';
 

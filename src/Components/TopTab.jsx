@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import appConfigs from '../Configs/app';
 
 
-const TopTapComponent = ({ listTopTab, Icon1, Icon2 }) => {
+const TopTap = ({ arrayCategory, Icon1, Icon2 }) => {
   const [isChildren, setIsChildren] = useState()
 
   const Tab = createMaterialTopTabNavigator();
@@ -12,10 +12,10 @@ const TopTapComponent = ({ listTopTab, Icon1, Icon2 }) => {
   const tabBarItemStyleWidth = () => {
     let width = 'auto'
     if (!isChildren) {
-      width = appConfigs.DEFAULT_WIDTH * 0.33
+      width = appConfigs.FULL_WIDTH * 0.33
     }
-    if (!isChildren && listTopTab.length <= 2) {
-      width = appConfigs.DEFAULT_WIDTH * 0.5
+    if (!isChildren && arrayCategory.length <= 2) {
+      width = appConfigs.FULL_WIDTH * 0.5
     }
     return width
   }
@@ -31,8 +31,8 @@ const TopTapComponent = ({ listTopTab, Icon1, Icon2 }) => {
     tabBarIndicatorStyle: isChildren ? { width: 0 } : { backgroundColor: "red", },
     tabBarLabelStyle: { fontSize: 10, },
     tabBarStyle: {
-      width: isChildren ? appConfigs.DEFAULT_WIDTH * 0.75 : appConfigs.DEFAULT_WIDTH,
-      height: appConfigs.DEFAULT_HEIGHT * 0.05, elevation: 0,
+      width: isChildren ? appConfigs.FULL_WIDTH * 0.75 : appConfigs.FULL_WIDTH,
+      height: appConfigs.FULL_HEIGHT * 0.05, elevation: 0,
       shadowOpacity: 0,
       zIndex: 0,
     },
@@ -48,14 +48,14 @@ const TopTapComponent = ({ listTopTab, Icon1, Icon2 }) => {
 
   return (
     <View style={[styles.viewContainer,]}>
-      <Tab.Navigator initialRouteName={listTopTab[0].title} screenOptions={screenOptions}>
-        {listTopTab?.map((item, index) => (
+      <Tab.Navigator initialRouteName={arrayCategory[0].title} screenOptions={screenOptions}>
+        {arrayCategory?.map((item, index) => (
           <Tab.Screen key={index} name={item.title} children={() => <item.component id={item._id} />}/>
         ))}
       </Tab.Navigator>
       {(Icon1 && Icon2) && (
         <View style={styles.viewTouchable}>
-          <TouchableOpacity onPress={() => { console.log("click") }}>{Icon1}</TouchableOpacity>
+          <TouchableOpacity>{Icon1}</TouchableOpacity>
           <TouchableOpacity>{Icon2}</TouchableOpacity>
         </View>
       )}
@@ -82,5 +82,5 @@ const styles = StyleSheet.create({
   }
 })
 
-export default TopTapComponent
+export default TopTap
 

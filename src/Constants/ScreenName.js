@@ -1,8 +1,4 @@
-// import { useNavigation } from '@react-navigation/native';
-
-// const navigation = useNavigation();
-
-export const ScreenName = {
+const screenName = {
   authStackNavigator: 'authStackNavigator',
   mainStackNavigator: 'mainStackNavigator',
   mainTabNavigator: 'mainTabNavigator',
@@ -12,7 +8,7 @@ export const ScreenName = {
   notifyScreen: 'notifyScreen',
   forumScreen: 'forumScreen',
   profileScreen: 'profileScreen',
-
+  newsFeedScreen: 'newsFeedScreen',
   comicScreen: 'comicScreen',
   rankingScreen: 'rankingScreen',
   channelScreen: 'channelScreen',
@@ -41,23 +37,5 @@ export const ScreenName = {
   MainTab: 'MainTab',
 }
 
-// export const Navigation = {
-
-//   comicScreen: navigation.navigate(ScreenName.comicScreen),
-//   novelScreen: navigation.navigate(ScreenName.novelScreen),
-//   libraryScreen: navigation.navigate(ScreenName.libraryScreen),
-//   forumScreen: navigation.navigate(ScreenName.forumScreen),
-//   profileScreen: navigation.navigate(ScreenName.profileScreen),
-
-//   rankingScreen: navigation.navigate(ScreenName.rankingScreen),
-//   channelScreen: navigation.navigate(ScreenName.channelScreen),
-//   pointMeScreen: navigation.navigate(ScreenName.pointMeScreen),
-//   dailyScreen: navigation.navigate(ScreenName.dailyScreen),
-
-//   detailScreen: navigation.navigate(ScreenName.detailScreen),
-
-//   filterScreen: navigation.navigate(ScreenName.filterScreen),
-
-
-// }
+export default screenName
 
