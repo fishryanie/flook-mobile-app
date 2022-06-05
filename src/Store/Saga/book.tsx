@@ -9,7 +9,6 @@ function* FindGenre(){
 
   try {
     const response: responseGenerator = yield Services.book.findGenre();
-    // console.log('response', response)
     if(response?.statusCode === 200){
       yield put(Action.book.findGenreSuccess(response.data))
     }else {
@@ -18,7 +17,7 @@ function* FindGenre(){
   } catch (error) {
     console.log(error)
   } finally {
-    console.log('saga')
+    yield({type: actionTypes.closeLoading})
   }
 }
 
@@ -35,7 +34,7 @@ function* FindAuthor(){
   } catch (error) {
     console.log(error)
   } finally {
-    console.log('saga')
+    yield({type: actionTypes.closeLoading})
   }
 }
 
@@ -52,7 +51,7 @@ function* FindManga(action: any){
   } catch (error) {
     console.log(error)
   } finally {
-    console.log('saga')
+    yield({type: actionTypes.closeLoading})
   }
 }
 
@@ -69,7 +68,7 @@ function* FindMangaById(action: any){
   } catch (error) {
     console.log('Error DetailSagas', error)
   } finally {
-    console.log('DetailSagas')
+    yield({type: actionTypes.closeLoading})
   }
 }
 
@@ -86,7 +85,7 @@ function* FindChapterByMangaId(action: any){
   } catch (error) {
     console.log('Error Detail-ChapterSagas', error)
   } finally {
-    console.log('Detail-ChapterSagas')
+    yield({type: actionTypes.closeLoading})
   }
 }
 
@@ -103,7 +102,7 @@ function* FindChapterById(action: any){
   } catch (error) {
     console.log('Error ChapterSagas', error)
   } finally {
-    console.log('ChapterSagas')
+    yield({type: actionTypes.closeLoading})
   }
 }
 

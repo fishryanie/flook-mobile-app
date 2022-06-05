@@ -7,6 +7,12 @@ import { store, persistor } from './src/Store';
 import MainStack from './src/Routes/MainStack'
 import Toast from 'react-native-toast-message';
 
+const Loading = () => (
+  <View style={styles.loading}>
+    <ActivityIndicator size="large" color="#ffffff"/>
+  </View>
+)
+
 const RenderApp = () => {
   const isLoading = useSelector(state => state.AppReducer.isLoading)
 
@@ -23,13 +29,7 @@ const RenderApp = () => {
   )
 }
 
-const Loading = () => {
-  return (
-    <View style={styles.loading}>
-      <ActivityIndicator size="large" color="#ffffff"/>
-    </View>
-  )
-}
+
 
 const styles = StyleSheet.create({
   loading: {

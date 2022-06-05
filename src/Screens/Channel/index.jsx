@@ -2,12 +2,10 @@ import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-na
 import { MaterialIcons } from 'react-native-vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { FlatGrid } from 'react-native-super-grid';
+import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react'
 import screenName from '../../Constants/ScreenName';
 import TopTap from '../../Components/TopTab'
-import { handleToask } from '../../Functions/GlobleFunc';
-import { useDispatch } from 'react-redux';
-import actionTypes from '../../Store/Actions/constants';
 
 const data = [
   { name: 'TURQUOISE', code: '#1abc9c' },
@@ -57,14 +55,8 @@ const ListGirdCustom = props => {
     });
   }, [navigation]);
 
-  useEffect(() => {
-    handleToask('SHOW', 'Xin chào đây là màn hình chanel')
-    dispatch({type: actionTypes.openLoading})
-    setTimeout(() => {
-      handleToask('HIDEN')
-    }, 3000);
-  },[])
-  
+
+
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.container}>

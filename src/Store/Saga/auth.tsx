@@ -1,5 +1,5 @@
 import { all, put, delay, takeLatest } from "redux-saga/effects";
-// import { notify } from '../../Utils/GlobalFunc'
+import { handleToast } from "../../Functions/GlobleFunc";
 import { responseGenerator } from './index'
 import actionTypes from '../Actions/constants';
 // import Cookie from '../../hooks/Cookie';
@@ -7,27 +7,21 @@ import Services from '../../Services'
 import Action from '../Actions'
 
 
-
 function* Login(action: any) {
   try {
     const response: responseGenerator = yield Services.auth.Login(action.payload)
     console.log('response', response)
     if (response.statusCode === 200) {
-      // yield Cookie.removeCookie('usrin');
-      // set cookie
-      // yield Cookie.setCookie('usrin', response.data.accessToken)
-      // yield notify(response.message)
       yield put(Action.auth.LoginSuccess(response))
-      yield delay(2000)
-      yield put({ type: actionTypes.closeDialog })
+      yield handleToast(response.message, 'success')
     } else {
-      // yield notify(response.message)
       yield put(Action.auth.LoginFailure(response))
+      yield handleToast(response.message, 'error')
     }
   } catch (error) {
     console.log('Error LoginSagas', error)
   } finally {
-    console.log('LoginSagas')
+    yield({type: actionTypes.closeLoading})
   }
 }
 
@@ -40,13 +34,12 @@ function* Register(action: any) {
       yield delay(2000)
       yield put({ type: actionTypes.closeDialog })
     } else {
-      // yield notify(response.message)
       yield put(Action.auth.RegisterFailure(response))
     }
   } catch (error) {
     console.log('Error', error)
   } finally {
-    console.log('Register')
+    yield({type: actionTypes.closeLoading})
   }
 }
 
@@ -61,7 +54,7 @@ function* ForgotPass(action: any) {
   } catch (error) {
     console.log('Error', error)
   } finally {
-    console.log('ForgotPass')
+    yield({type: actionTypes.closeLoading})
   }
 }
 
@@ -81,7 +74,7 @@ function* ChangePass(action: any) {
   } catch (error) {
     console.log('Error', error)
   } finally {
-    console.log('ChangePass')
+    yield({type: actionTypes.closeLoading})
   }
 }
 
@@ -96,7 +89,7 @@ function* FindUser(action: any){
   } catch (error) {
     console.log('Error', error)
   } finally {
-    console.log('ChangePass')
+    yield({type: actionTypes.closeLoading})
   }
 }
 

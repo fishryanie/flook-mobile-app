@@ -50,17 +50,14 @@ export const removePersistAuth = async () => {
   }
 }
 
-export const handleToask = (params, string) => {
-  switch (params) {
-    case 'HIDEN': return Toast.hide();
-    case 'SHOW': {
-      return Toast.show({
-        type: 'info',
-        text1: string || ''
-      });   
-    }
-    default: break;
-  }
+export const handleToast = (string, type) => {
+  Toast.show({
+    type: type || 'info',
+    text1: string || 'toast'
+  });  
+  setTimeout(() => {
+    Toast.hide();
+  }, 3000);
 }
 
 
