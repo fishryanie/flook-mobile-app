@@ -5,7 +5,9 @@ import { FlatGrid } from 'react-native-super-grid';
 import { useState, useEffect } from 'react'
 import screenName from '../../Constants/ScreenName';
 import TopTap from '../../Components/TopTab'
-
+import { handleToask } from '../../Functions/GlobleFunc';
+import { useDispatch } from 'react-redux';
+import actionTypes from '../../Store/Actions/constants';
 
 const data = [
   { name: 'TURQUOISE', code: '#1abc9c' },
@@ -39,6 +41,7 @@ const ListGirdCustom = props => {
 
   const navigation = useNavigation()
 
+  const dispatch = useDispatch()
 
   const handleOpenGirdOrList = () => {
     setOpenGirdOrList(!openGridorList)
@@ -54,6 +57,14 @@ const ListGirdCustom = props => {
     });
   }, [navigation]);
 
+  useEffect(() => {
+    handleToask('SHOW', 'Xin chào đây là màn hình chanel')
+    dispatch({type: actionTypes.openLoading})
+    setTimeout(() => {
+      handleToask('HIDEN')
+    }, 3000);
+  },[])
+  
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.container}>
@@ -90,9 +101,9 @@ const ListGirdCustom = props => {
 
 
 const listTopTab2 = [ 
-  { _id: "1", title: screenName.comicScreen, component: () => <ListGirdCustom data={data}/>},
-  { _id: "2", title: screenName.novelScreen, component: () => <ListGirdCustom data={data}/>},
-  { _id: "3", title: screenName.chatStoryScreen, component: () => <ListGirdCustom data={data}/>}
+  { _id: "1", screenName:screenName.comicScreen, title: 'Truyện tranh', component: () => <ListGirdCustom data={data}/>},
+  { _id: "2", screenName:screenName.novelScreen, title: 'Tiểu thuyết', component: () => <ListGirdCustom data={data}/>},
+  { _id: "3", screenName:screenName.chatStoryScreen, title: 'Truyện chat', component: () => <ListGirdCustom data={data}/>}
 
 ]
 

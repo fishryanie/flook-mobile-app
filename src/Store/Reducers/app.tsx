@@ -8,6 +8,7 @@ interface initialState {
   openNotify: boolean,
   openCart: boolean,
   isSubmitting: boolean,
+  isLoading: boolean,
 }
 
 const initialState: initialState = {
@@ -17,6 +18,7 @@ const initialState: initialState = {
   openNotify: false,
   openCart: false,
   isSubmitting: false,
+  isLoading: false,
 };
 
  const AppReducer = (state = initialState, action: any) => {
@@ -32,8 +34,10 @@ const initialState: initialState = {
       return { ...state, openDrawer: !state.openDrawer }
     }
     case actionTypes.onOffSearch: {
-      console.log("AppReducer onOffSearch");
       return { ...state, openSearch: !state.openSearch }
+    }
+    case actionTypes.openLoading: {
+      return { ...state, isLoading: true }
     }
     // case actionTypes.onOffCartConstant: {
     //   return { ...state, openCart: !state.openCart }

@@ -1,6 +1,7 @@
 import axios from 'axios'
-import AppConfigs from '../Configs/app';
+import Toast from 'react-native-toast-message'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import AppConfigs from '../Configs/app';
 import { PixelRatio, Platform } from 'react-native';
 
 export const getPlatform = () => {
@@ -46,6 +47,19 @@ export const removePersistAuth = async () => {
   }
   catch (exception) {
     return false;
+  }
+}
+
+export const handleToask = (params, string) => {
+  switch (params) {
+    case 'HIDEN': return Toast.hide();
+    case 'SHOW': {
+      return Toast.show({
+        type: 'info',
+        text1: string || ''
+      });   
+    }
+    default: break;
   }
 }
 
