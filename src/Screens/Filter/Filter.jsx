@@ -8,11 +8,7 @@ import ListFilterData from '../../Constants/ListFilterData';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ListAccordion from '../../Components/ListAccordion'
 const Filter = (props) => {
-  // const {
-  //   route: {
-  //     params: { onFilterList, screen },
-  //   },
-  // } = props;
+
 
   const navigation = useNavigation();
 
@@ -167,8 +163,7 @@ const Filter = (props) => {
   return (
     <View style={{ flex: 1, marginTop: insets.top }}>
       <View style={styles.ViewHeader}>
-        {/* onPress={() => props.navigation.goBack()} */}
-        <TouchableOpacity style={styles.TouchableOpacityHeader}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.TouchableOpacityHeader}>
           <Text style={styles.TextHeader}>{"Cancle"}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.TouchableOpacityHeader}

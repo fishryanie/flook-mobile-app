@@ -1,33 +1,46 @@
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import TopFilterBar from '../../Components/TopFilterBar'
 import GirdList from '../../Components/FlatList/GirdList'
 import VerticalList from '../../Components/FlatList/VerticalList'
+import { useNavigation } from '@react-navigation/native'
+
 const Novel = (props) => {
+  console.log("id Novel", props.id)
+  const navigation = useNavigation()
+
   const [openGridorList, setOpenGirdOrList] = useState(true)
-  const [filterList, setFilterList] = useState({})
 
   const handleOpenGirdOrList = () => {
     setOpenGirdOrList(!openGridorList)
   }
-  const getFilterList = (data) => {
-    setFilterList(data)
-  }
-  console.log("id", props.id)
-
   const handleOpenFilter = () => {
-    props.navigation.navigate("filterScreen", { onFilterList: getFilterList, screen: "novel" })
+    navigation.navigate("Filter")
   }
+
 
   return (
     <View style={{ flex: 1 }}>
       <TopFilterBar
         onOpenGirdOrList={handleOpenGirdOrList}
         onOpenFilter={handleOpenFilter} />
-      {openGridorList ? <GirdList /> : <VerticalList />}
+      {openGridorList ? <GirdList viewItem={styles.viewItem}
+        Img={styles.Img} /> : <VerticalList />}
 
     </View>
   )
 }
+const styles = StyleSheet.create({
+
+  viewItem: {
+    height: 200,
+    paddingHorizontal: "2%",
+    paddingVertical: "2%",
+    // backgroundColor: "blue"
+  },
+  Img:
+    { width: "100%", height: "80%", resizeMode: "cover", borderRadius: 10 }
+
+})
 
 export default Novel

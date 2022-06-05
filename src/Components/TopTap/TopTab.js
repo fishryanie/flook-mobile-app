@@ -19,7 +19,7 @@ const TopTap = ({ listTopTab, isChildren }) => {
   }
   return (
     <Tab.Navigator
-      initialRouteName="Manga"
+      // initialRouteName="Manga"
       screenOptions={{
         tabBarScrollEnabled: isChildren,
         tabBarInactiveTintColor: "black",

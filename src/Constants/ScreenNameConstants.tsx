@@ -14,6 +14,8 @@ export const ScreenName = {
   signinScreen: 'SignInScreen',
   signupScreen: 'SignUpScreen',
   MainTab: 'MainTab',
-  filterScreen: 'filterScreen'
+  filterScreen: 'Filter',
+  
+
 }
 

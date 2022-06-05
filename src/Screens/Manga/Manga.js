@@ -3,24 +3,21 @@ import React, { useState, useEffect } from 'react'
 import TopFilterBar from '../../Components/TopFilterBar'
 import GirdList from '../../Components/FlatList/GirdList'
 import VerticalList from '../../Components/FlatList/VerticalList'
-
+import { useNavigation } from '@react-navigation/native'
 const Manga = (props) => {
+  const navigation = useNavigation()
   console.log("id Manga", props.id)
+
   const [openGridorList, setOpenGirdOrList] = useState(true)
-  const [filterList, setFilterList] = useState({})
 
   const handleOpenGirdOrList = () => {
     setOpenGirdOrList(!openGridorList)
   }
-  const getFilterList = (data) => {
-    setFilterList(data)
-  }
-  console.log("filterList", filterList)
+
   const handleOpenFilter = () => {
-    props.navigation.navigate("filterScreen", { onFilterList: getFilterList, screen: "manga" })
+    navigation.navigate("Filter")
   }
 
-  // console.log("openGridorList", openGridorList)
   return (
     <View style={{ flex: 1 }}>
       <TopFilterBar

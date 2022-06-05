@@ -3,7 +3,7 @@ import Drawer from "./Drawer";
 import TabStack from "./TabStack";
 import HomeScreen from '../Screens/Home/Home'
 import RatingScreen from '../Screens/Rating/Rating'
-import ClassifyScreen from '../Screens/Classify/Classify'
+import ClassifyScreen from '../Screens/Channel/Channel'
 import NotifiScreen from '../Screens/Notification/Notification'
 import ForumScreen from '../Screens/Forum/Forum'
 import { width, height } from "../Constants/DimensionsConstants";
