@@ -10,7 +10,7 @@ import { useForm, Controller } from "react-hook-form";
 import { height } from '../../Constants/DimensionsConstants';
 import { ScreenName } from '../../Constants/ScreenName'
 import { SignInAction } from '../../Store/Action/AuthAction';
-import { getDataLocalSelector } from '../../Store/Selector/LocalSelector';
+import { getDataLocalSelector } from '../../Store/Selectors/LocalSelector';
 
 export default function SignIn({navigation}) {
   const [ isModalVisible, setModalVisible] = useState(false);

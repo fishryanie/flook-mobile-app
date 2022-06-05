@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import appConfigs from '../Configs/app';
 
 
-const TopTap = ({ arrayCategory, Icon1, Icon2 }) => {
+const TopTap = ({ arrayCategory, Icon1, Icon2, onPressicon1, onPressicon2 }) => {
   const [isChildren, setIsChildren] = useState()
 
   const Tab = createMaterialTopTabNavigator();
@@ -46,8 +46,9 @@ const TopTap = ({ arrayCategory, Icon1, Icon2 }) => {
     checkIsChildren()
   }, [Icon1, Icon2])
 
+  console.log('49', arrayCategory)
   return (
-    <View style={[styles.viewContainer,]}>
+    <View style={[styles.viewContainer]}>
       <Tab.Navigator initialRouteName={arrayCategory[0].title} screenOptions={screenOptions}>
         {arrayCategory?.map((item, index) => (
           <Tab.Screen key={index} name={item.title} children={() => <item.component id={item._id} />}/>
@@ -55,8 +56,8 @@ const TopTap = ({ arrayCategory, Icon1, Icon2 }) => {
       </Tab.Navigator>
       {(Icon1 && Icon2) && (
         <View style={styles.viewTouchable}>
-          <TouchableOpacity>{Icon1}</TouchableOpacity>
-          <TouchableOpacity>{Icon2}</TouchableOpacity>
+          <TouchableOpacity onPress={onPressicon1}>{Icon1}</TouchableOpacity>
+          <TouchableOpacity onPress={onPressicon2}>{Icon2}</TouchableOpacity>
         </View>
       )}
     </View>

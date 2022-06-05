@@ -9,10 +9,6 @@ export default function List({
     const {
       item: { title, image, rating, genre, view, _id }
     } = value
-    // console.log(value)
-
-
-
     return (
       <View style={viewItem}>
         <Image source={{ uri: image }} style={{ width: "35%", height: "100%", resizeMode: "cover", borderRadius: 10 }} ></Image>

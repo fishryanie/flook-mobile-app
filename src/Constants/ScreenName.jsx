@@ -18,6 +18,7 @@ const screenName = {
   detailScreen: 'detailScreen',
   filterScreen: 'filterScreen',
 
+  movieScreen: 'movieScreen',
   aboutScreen: 'aboutScreen',
   chapterScreen: 'chapterScreen',
   commentScreen: 'commentScreen',
@@ -29,7 +30,7 @@ const screenName = {
   historyScreen: 'historyScreen',
   novelScreen: 'novelScreen',
   shortStoryScreen: 'shortStoryScreen',
-  storyChatScreen: 'storyChatScreen',
+  chatStoryScreen: 'chatStoryScreen',
   writeStoryScreen: 'writeStoryScreen',
 
   signinScreen: 'SignInScreen',

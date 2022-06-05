@@ -1,7 +1,6 @@
 import { View, Text, FlatList, StyleSheet, Image } from 'react-native'
 import React from 'react'
 import Manga from "../../../Data_Mobile/Manga.json"
-import { height } from '../../Constants/DimensionsConstants'
 
 export default function List({
   data = Manga, widthItem, heightItem, widthImg, heightImg, widthViewText, heightViewText, heightFlatlist

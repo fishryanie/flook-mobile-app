@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { onOffSearchAction } from "../Store/Action/AppAction";
 import { AntDesign, Feather } from "react-native-vector-icons";
-import { onOffSearchSelector } from "../Store/Selector/AppSelector";
+import { onOffSearchSelector } from "../Store/Selectors/AppSelector";
 import { StyleSheet, Text, View, Modal, KeyboardAvoidingView, FlatList, TouchableOpacity, TextInput, Keyboard } from "react-native";
 
 export default function SearchComponent(props){
