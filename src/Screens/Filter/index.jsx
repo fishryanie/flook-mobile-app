@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, ScrollView, } from "react-native";
+import { useEffect, useState } from 'react';
+import { View, ScrollView, } from "react-native";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import Action from '../../Store/Actions';
-import Selector from '../../Store/Selectors';
 import ListFilterData from '../../Constants/ListFilterData';
 import ListAccordion from '../../Components/Accordion'
 import typography from '../../Constants/Typography'
+import actionTypes from '../../Store/Actions/constants';
 
 const FilterScreen = () => {
-  // const {
-  //   route: {
-  //     params: { onFilterList, screen },
-  //   },
-  // } = props;
 
   const navigation = useNavigation();
 
@@ -23,7 +18,11 @@ const FilterScreen = () => {
   const dispatch = useDispatch()
 
   const listAuthor = useSelector(state => state.BookReducer.listAuthor)
+  console.log("🚀 ~ file: index.jsx ~ line 21 ~ FilterScreen ~ listAuthor", listAuthor)
   const listGenre = useSelector(state => state.BookReducer.listGenre)
+  console.log("🚀 ~ file: index.jsx ~ line 22 ~ FilterScreen ~ listGenre", listGenre)
+
+  
 
   const [listFiter, setListFilter] = useState({
     author: [],
@@ -36,11 +35,6 @@ const FilterScreen = () => {
   const handleSetListFilter = (value) => {
     setListFilter(value)
   }
-
-  useEffect(() => {
-    dispatch(Action.book.findAuthor())
-    dispatch(Action.book.findGenre())
-  }, [dispatch])
 
 
   useEffect(() => {
@@ -87,19 +81,15 @@ const FilterScreen = () => {
     const newAllowed = []
 
     for (let value in listFiter.chapter) {
-
       if (listFiter.chapter[value].isSelected == true && listFiter.chapter[value].name == "All") {
-        // console.log("bbbb")
         newChapter.push(...listFiter.chapter.map((item) => { return item.chapter }))
         newChapter.shift()
       }
       if (listFiter.chapter[value].isSelected == true && listFiter.chapter[value].name != "All") {
-        // console.log("aaaaaaa")
         newChapter.push(listFiter.chapter[value].chapter)
       }
     }
 
-    // console.log(newChapter.flat())
     for (let value in listFiter.author) {
       if (listFiter.author[value].isSelected == true && listFiter.author[value].name !== "All") {
         newAuthor.push(listFiter.author[value]._id)
@@ -109,7 +99,6 @@ const FilterScreen = () => {
         newAuthor.shift()
       }
     }
-    // console.log(newAuthor.flat())
     for (let value in listFiter.genre) {
       if (listFiter.genre[value].isSelected == true && listFiter.genre[value].name !== "All") {
         newGenre.push(listFiter.genre[value]._id)
@@ -118,31 +107,25 @@ const FilterScreen = () => {
         newGenre.shift()
       }
     }
-    // console.log(newGenre.flat())
     for (let value in listFiter.status) {
       if (listFiter.status[value].isSelected == true && listFiter.status[value].name == "All") {
-        // console.log("bbbb")
         newStatus.push(...listFiter.status.map((item) => { return item.status }))
         newStatus.shift()
       }
       if (listFiter.status[value].isSelected == true && listFiter.status[value].name != "All") {
-        // console.log("aaaaaaa")
         newStatus.push(listFiter.status[value].status)
       }
     }
 
     for (let value in listFiter.allowed) {
       if (listFiter.allowed[value].isSelected == true && listFiter.allowed[value].name == "All") {
-        // console.log("bbbb")
         newAllowed.push(...listFiter.allowed.map((item) => { return item.chapter }))
         newAllowed.shift()
       }
       if (listFiter.allowed[value].isSelected == true && listFiter.allowed[value].name != "All") {
-        // console.log("aaaaaaa")
         newAllowed.push(listFiter.allowed[value].allowedAge)
       }
     }
-    // console.log("value", newStatus.flat())
     let filterObj = {
       author: newAuthor,
       genre: newGenre,
@@ -150,11 +133,35 @@ const FilterScreen = () => {
       chapter: newChapter,
       allowed: newAllowed
     }
-    // console.log("filterObj", filterObj)
     return filterObj
 
 
   }
+
+  useEffect(() => {
+    dispatch(Action.book.findAuthor())
+    dispatch(Action.book.findGenre())
+  }, [dispatch])
+
+  useEffect(() => {
+    const lisFilter = getFilterObj()
+    dispatch({type: actionTypes.setListFilter, payload:lisFilter})
+  })
+
+  useEffect(() => {
+    let authorArr = listAuthor.map((item) => {
+      return { ...item, isSelected: true }
+    })
+    authorArr.splice(0, 0, { _id: "1", name: "All", isSelected: true })
+
+    console.log({ ...listFiter })
+    let genreArr = listGenre.map((item) => {
+      return { ...item, isSelected: true }
+    })
+    genreArr.splice(0, 0, { _id: "1", name: "All", isSelected: true })
+
+    handleSetListFilter({ ...listFiter, author: authorArr, genre: genreArr });
+  }, [listAuthor])
 
 
   return (
@@ -169,27 +176,5 @@ const FilterScreen = () => {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  Accordion: {
-    paddingHorizontal: 10, borderBottomWidth: 1, borderBottomColor: "#ebebeb", height: 60, justifyContent: "center"
-  },
-  TouchableOpacity: {
-    flex: 1, marginStart: -40
-  },
-  ViewInTouchableOpacity: {
-    flex: 1, borderBottomWidth: 1, borderBottomColor: "#ebebeb", flexDirection: "row", alignItems: "center"
-  },
-  ViewHeader: {
-    paddingHorizontal: "6%", width: "100%", height: 40, flexDirection: "row", alignItems: "center", justifyContent: "space-between"
-  },
-  TouchableOpacityHeader: {
-    height: "100%", width: "20%", alignItems: "center", justifyContent: "center"
-  },
-  TextHeader: {
-    fontWeight: "bold",
-    paddingHorizontal: "12%"
-  }
-})
 
 export default FilterScreen

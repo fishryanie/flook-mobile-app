@@ -39,6 +39,9 @@ const initialState: initialState = {
     case actionTypes.openLoading: {
       return { ...state, isLoading: true }
     }
+    case actionTypes.closeLoading: {
+      return { ...state, isLoading: false }
+    }
     // case actionTypes.onOffCartConstant: {
     //   return { ...state, openCart: !state.openCart }
     // }

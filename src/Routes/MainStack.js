@@ -1,5 +1,8 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
+
+
 import { Ionicons } from 'react-native-vector-icons';
 import { Text } from 'react-native';
 import screenName from '../Constants/ScreenName';
@@ -31,17 +34,25 @@ import NovelScreen from '../Screens/Novel';
 import ShortStoryScreen from '../Screens/ShortStory';
 import StoryChatScreen from '../Screens/ChatStory';
 import WriteStoryScreen from '../Screens/WriteStory/WriteStoryScreen';
+import Action from '../Store/Actions';
+
 
 export default function MainStackNavigator() {
   const MainStack = createNativeStackNavigator();
   const navigation = useNavigation();
 
+  const dispatch = useDispatch()
+
+  const listFilter = useSelector(state => state.BookReducer.listFilter)
+
   const handlePressGoback = {
     headerLeft: () => <Ionicons size={25} name="md-chevron-back" color="gray" onPress={() => navigation.goBack()} />,
   };
+
   const handlePressSearch = {
     headerRight: () => <Ionicons size={25} name="ios-search-sharp" color="gray" onPress={() => alert('Search')} />,
   };
+  
   const optionsChannel = {
     title: 'Channel',
     ...handlePressGoback,
@@ -49,15 +60,19 @@ export default function MainStackNavigator() {
     headerStyle: { backgroundColor: '#fff', elevation: 0, borderBottomWidth: 0, shadowColor: 'transparent', shadowOpacity: 0, height: 0 },
   };
 
+  const handleFilterBook = () => {
+    dispatch(Action.book.filterBook(listFilter))
+  }
+
   const optionFilter = {
-    title: 'Filter',
+    title: 'Clear',
     headerLeft: () => <Text onPress={() => navigation.goBack()}>Cancle</Text>,
-    headerRight: () => <Text onPress={() => alert('Refine')}>Refine</Text>,
+    headerRight: () => <Text onPress={handleFilterBook}>Refine</Text>,
   };
 
   return (
     <MainStack.Navigator initialRouteName={screenName.mainTabNavigator}>
-      <MainStack.Screen name={screenName.mainTabNavigator} component={MainTab} />
+      <MainStack.Screen name={screenName.mainTabNavigator} component={MainTab} options={{headerShown: false}}/>
       <MainStack.Screen name={screenName.forumScreen} component={ForumScreen} />
       <MainStack.Screen name={screenName.notifyScreen} component={NotifyScreen} />
       <MainStack.Screen name={screenName.profileScreen} component={ProfileScreen} />

@@ -18,7 +18,6 @@ export default function List({
             <Text style={{ fontSize: 12 }}>{title?.length <= 9 ? title : `${title.slice(0, 9)}...`}</Text> :
             <Text style={{ fontSize: 12 }}>{title?.length <= 25 ? title : `${title.slice(0, 25)}...`}</Text>
           }
-
           {/* {rating ? <Text>{rating}</Text> : <></>}
           {genre ? <Text>{genre}</Text> : <></>}
           {view ? <Text>{view}</Text> : <></>} */}
@@ -45,21 +44,23 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   viewFlatlist: {
-    paddingHorizontal: "2%",
+    paddingLeft: 10,
     flex: 1,
     // backgroundColor: "red"
   },
   viewItem: (width, height) => ({
     width: width,
     height: height,
-    marginHorizontal: 3,
-    // backgroundColor: "red"
+    marginRight: 10,
+    
+
   }),
   image: (width, height) => ({
     width: width,
     height: height,
     resizeMode: "cover",
-    borderRadius: 4
+    borderRadius: 5,
+    marginBottom: 5
   }),
   viewText: (width, height) => ({
     width: width,

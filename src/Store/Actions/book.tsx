@@ -12,7 +12,6 @@ const findAuthorFailure = (data:any) => ({type: actionTypes.findAuthorFailure, p
 const findAuthorSuccess = (data:any) => ({type: actionTypes.findAuthorSuccess, payload: data});
 
 
-
 //===================================|| Manga ||================================//
 const findManga = (data:any) => ({type: actionTypes.findManga, payload: data})
 const findMangaFailure = (data:any) => ({type: actionTypes.findMangaFailure, payload: data});
@@ -21,8 +20,6 @@ const findMangaSuccess = (data:any) => ({type: actionTypes.findMangaSuccess, pay
 const findMangaById = (id:any) => ({type: actionTypes.findMangaById, payload: id})
 const findMangaByIdFailure = (data:any) => ({type: actionTypes.findMangaByIdFailure, payload: data});
 const findMangaByIdSuccess = (data:any) => ({type: actionTypes.findMangaByIdSuccess, payload: data});
-
-
 
 
 //===================================|| Chapter ||================================//
@@ -34,7 +31,9 @@ const findChapterByMangaId = (data:any) => ({type: actionTypes.findChapterByMang
 const findChapterByMangaIdFailure = (data:any) => ({type: actionTypes.findChapterByMangaIdFailure, payload: data})
 const findChapterByMangaIdSuccess = (data:any) => ({type: actionTypes.findChapterByMangaIdSuccess, payload: data})
 
-
+const filterBook = (data:any) =>({type:actionTypes.filterBook, payload: data})
+const filterBookFailure = (data:any) =>({type:actionTypes.filterBookFailure, payload: data})
+const filterBookSuccess = (data:any) =>({type:actionTypes.filterBookSuccess, payload: data})
 
 
 export default {
@@ -42,6 +41,7 @@ export default {
   findAuthor, findAuthorFailure, findAuthorSuccess,
   findManga, findMangaFailure, findMangaSuccess,
   findMangaById, findMangaByIdFailure, findMangaByIdSuccess,
+  filterBook, filterBookFailure, filterBookSuccess,
   findChapterById, findChapterByIdFailure, findChapterByIdSuccess,
   findChapterByMangaId, findChapterByMangaIdFailure, findChapterByMangaIdSuccess,
  

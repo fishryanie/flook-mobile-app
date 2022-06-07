@@ -1,4 +1,4 @@
-import { put, all, takeLatest } from "redux-saga/effects";
+import { put, all, takeLatest, delay } from "redux-saga/effects";
 import { responseGenerator } from './index'
 import actionTypes from "../Actions/constants";
 import Services from "../../Services"
@@ -6,7 +6,6 @@ import Action from "../Actions"
 
 function* FindGenre(){
   console.log("find Genre");
-
   try {
     const response: responseGenerator = yield Services.book.findGenre();
     if(response?.statusCode === 200){
@@ -106,10 +105,23 @@ function* FindChapterById(action: any){
   }
 }
 
+function* FilterBook(action:any){
+  console.log("FilterBook", action);
+  // 
+  yield put({type:actionTypes.openLoading})
+
+  yield delay(5000) 
+
+  yield put({type:actionTypes.closeLoading})
+
+}
+
+
 export default function* bookSaga() {
   yield all([
     takeLatest(actionTypes.findManga, FindManga),
     takeLatest(actionTypes.findMangaById, FindMangaById),
+    takeLatest(actionTypes.filterBook, FilterBook),
     
     takeLatest(actionTypes.findGenre, FindGenre),
     takeLatest(actionTypes.findAuthor, FindAuthor),

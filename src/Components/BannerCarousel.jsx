@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import Carousel from 'react-native-banner-carousel';
 
 const BannerWidth = Dimensions.get('window').width;
-const BannerHeight = 180;
+const BannerHeight = 220;
 const images = [
   "https://ss-images.saostar.vn/w800/2020/01/03/6750639/page1.jpg",
   "https://otakugo.net/wp-content/uploads/2018/05/6-anime-tuong-tu-naruto-naruto-shippuden.jpg",

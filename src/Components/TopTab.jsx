@@ -46,7 +46,6 @@ const TopTap = ({ arrayCategory, Icon1, Icon2, onPressicon1, onPressicon2 }) => 
     checkIsChildren()
   }, [Icon1, Icon2])
 
-  console.log('49', arrayCategory)
   return (
     <View style={[styles.viewContainer]}>
       <Tab.Navigator initialRouteName={arrayCategory[0].screenName} screenOptions={screenOptions}>

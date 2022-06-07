@@ -99,8 +99,11 @@ const actionTypes = {
   findMangaByIdFailure: "FIND_MANGA_BY_ID_FAILURE",
   findMangaByIdSuccess: "FIND_MANGA_BY_ID_SUCCESS",
 
-  getFilterList: "Get_Filter_List",
-
+  setListFilter:"SET_LIST_FILTER",
+  
+  filterBook:"Filter_Book",
+  filterBookFailure:"Filter_Book_Failure",
+  filterBookSuccess:"Filter_Book_Success",
 
 
   // AUTHOR

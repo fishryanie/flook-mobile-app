@@ -1,8 +1,8 @@
 import { View, Text, StyleSheet, FlatList, Image } from 'react-native'
-import React from 'react'
+import { Avatar } from "react-native-elements";
 import DATA_MANGA from '../../../Data_Mobile/Manga.json'
 
-export default function GirdList({ data = DATA_MANGA, numColumns = 2, Img, viewItem, TextTitle }) {
+export default function GirdList({ data = DATA_MANGA, numColumns = 2, Img, viewItem, TextTitle, avatar }) {
   // console.log(Manga)
   const renderItem = (value) => {
     const {
@@ -15,7 +15,7 @@ export default function GirdList({ data = DATA_MANGA, numColumns = 2, Img, viewI
     const viewWidth1 = () => {
 
       if (numColumns === 2) {
-        return { width: "50%" }
+        return { width: "49.9%" }
       }
       if (numColumns === 3) {
         return { width: "33.333%" }
@@ -27,9 +27,12 @@ export default function GirdList({ data = DATA_MANGA, numColumns = 2, Img, viewI
     }
     return (
       <View style={[viewItem, viewWidth1()]} >
-        <Image source={{ uri: image }} style={Img} ></Image>
-        <Text style={TextTitle}>{title.length < 30 ? title : `${title.slice(0, 30)}...`}</Text>
+        { avatar 
+          ? <Avatar  containerStyle={{marginBottom: 10}} source={{ uri: image }} size="large" rounded></Avatar> 
+          : <Image source={{ uri: image }} style={Img} ></Image>
+        }
 
+        <Text style={TextTitle}>{title.length < 30 ? title : `${title.slice(0, 30)}...`}</Text>
         {/* {rating ? <Text style={{ height: "10%" }}>{rating}</Text> : <></>} */}
         {/* {genre ? <Text style={{ height: "10%" }}>{genre}</Text> : <></>} */}
         {/* {view ? <Text style={{  height: "10%" }}>{view}</Text> : <></>} */}
@@ -57,22 +60,12 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     // backgroundColor: "red",
-
   },
   viewFlatlist: {
-    paddingHorizontal: "2%",
-    flex: 0.98
+    marginLeft: 3,
+    flex: 1
   },
-  viewItem: {
-    height: 200,
-    paddingHorizontal: "2%",
-    paddingVertical: "2%",
-    // backgroundColor: "blue"
-  },
-  Img:
-    { width: "100%", height: "80%", resizeMode: "cover", borderRadius: 10 }
-
-
-
-
+  Img:{ 
+    width: "100%", height: "100%", resizeMode: "cover", borderRadius: 5
+  }
 })
