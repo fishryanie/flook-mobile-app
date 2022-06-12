@@ -1,6 +1,6 @@
 import { View, Text, Touchable, StyleSheet, FlatList, TouchableOpacity, Modal } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import Manga from "../../Data_Mobile/Manga.json"
+
 import AntDesign from "react-native-vector-icons/AntDesign"
 
 
