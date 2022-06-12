@@ -17,7 +17,7 @@ const RankingScreen = ({ navigation }) => {
 
 
 
-      {/* <DetailBook book={book} /> */}
+      <DetailBook book={book} />
 
 
       <Button

@@ -1,18 +1,18 @@
-import { StyleSheet, Text, View, Demensions, Image, ScrollView, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Demensions, Image, TouchableWithoutFeedback, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import {
   EvilIcons, Ionicons
 } from 'react-native-vector-icons'
 import ReviewCardChild from './ReviewCardChild';
 import Rating from './Rating';
-// import { TouchableFeedback } from '../'
+import { TouchableFeedback } from '../TouchableItem'
 
 const ReviewCard = ({ onOpenBottomSheet, children, disable }) => {
 
   return (
 
     <View style={styles.container}>
-      <TouchableOpacity onpress={onOpenBottomSheet} >
+      <TouchableFeedback disable={disable} onpress={onOpenBottomSheet} >
         <View style={styles.topView}>
           <View style={styles.info}>
             <Image style={styles.image} source={{ uri: "https://bepdaily.com/wp-content/uploads/2021/12/avatar-gai-xinh-41.jpg" }} />
@@ -51,7 +51,7 @@ const ReviewCard = ({ onOpenBottomSheet, children, disable }) => {
           </View>
 
         </View>
-      </TouchableOpacity>
+      </TouchableFeedback>
     </View>
 
   )

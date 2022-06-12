@@ -33,6 +33,9 @@ const screenName = {
   chatStoryScreen: 'chatStoryScreen',
   writeStoryScreen: 'writeStoryScreen',
 
+  detailScreen: 'detailScreen',
+  chapterScreen: 'chapterScreen',
+
   signinScreen: 'SignInScreen',
   signupScreen: 'SignUpScreen',
   MainTab: 'MainTab',

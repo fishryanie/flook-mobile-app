@@ -1,7 +1,7 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { useState, useEffect } from 'react'
-import appConfigs from '../Configs/app';
+import appConfigs from '../Configs/app'
 
 
 const TopTap = ({ arrayCategory, Icon1, Icon2, onPressicon1, onPressicon2 }) => {
@@ -50,7 +50,7 @@ const TopTap = ({ arrayCategory, Icon1, Icon2, onPressicon1, onPressicon2 }) => 
     <View style={[styles.viewContainer]}>
       <Tab.Navigator initialRouteName={arrayCategory[0].screenName} screenOptions={screenOptions}>
         {arrayCategory?.map((item, index) => (
-          <Tab.Screen key={index} name={item.screenName} options={{title: item.title}} children={() => <item.component id={item._id} />}/>
+          <Tab.Screen key={index} name={item.screenName} options={{ title: item.title }} children={() => <item.component id={item._id} />} />
         ))}
       </Tab.Navigator>
       {(Icon1 && Icon2) && (

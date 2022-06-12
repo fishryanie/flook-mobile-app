@@ -1,11 +1,12 @@
 import { StyleSheet, View, ScrollView, TouchableOpacity, Dimensions, SafeAreaView } from 'react-native'
 import React, { useRef } from 'react';
-
 import AnimatedHeader from 'react-native-animated-header';
 import { AntDesign, Ionicons, MaterialIcons } from 'react-native-vector-icons'
-import Detail from '../DetailBook/Detail';
-import Chapter from '../DetailBook/Chapter';
-const listTopTab2 = [{ _id: "ahdkfahkfd", title: "Chi Tiết", component: Detail }, { _id: "ahdkfahkfd", title: "Chapter", component: Chapter },]
+
+import screenName from '../../Constants/ScreenName';
+import Detail from './DetailScreen';
+import Chapter from './ChapterScreen';
+const listTopTab2 = [{ _id: "1", screenName: screenName.detailScreen, title: "Chi Tiết", component: Detail }, { _id: "2", screenName: screenName.chapterScreen, title: "Chapter", component: Chapter },]
 import TopTap from '../../Components/TopTab';
 
 const DetailBook = ({ book }) => {
@@ -51,8 +52,10 @@ const DetailBook = ({ book }) => {
       >
 
         <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
+          <View>
+            <TopTap arrayCategory={listTopTab2} />
 
-          <TopTap arrayCategory={listTopTab2} />
+          </View>
 
         </ScrollView>
 
