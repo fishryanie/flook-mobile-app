@@ -54,7 +54,7 @@ const DetailBook = ({ book }) => {
         disabled={false}
       >
 
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }} >
+        <ScrollView contentContainerStyle={{ flex: 1 }} >
 
           <View style={{ height: height ? height + 50 : 1000 + 50 }}>
             <TopTap arrayCategory={listTopTab2} />

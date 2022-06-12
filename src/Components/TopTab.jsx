@@ -35,6 +35,7 @@ const TopTap = ({ arrayCategory, Icon1, Icon2, onPressicon1, onPressicon2 }) => 
       height: appConfigs.FULL_HEIGHT * 0.05, elevation: 0,
       shadowOpacity: 0,
       zIndex: 0,
+
     },
     tabBarItemStyle: {
       width: tabBarItemStyleWidth()
