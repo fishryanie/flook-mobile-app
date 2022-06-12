@@ -38,11 +38,13 @@ const HorizontalList = () => {
 export default HorizontalList
 const styles = StyleSheet.create({
   flatStyle: {
+    width: "100%",
+
     height: "100%",
     // backgroundColor: "red",
   },
   viewFlatlist: {
-
+    width: "100%",
     height: "100%",
     // backgroundColor: "green",
   },
