@@ -18,15 +18,20 @@ const BottomSheet = forwardRef(({ children, height }, ref) => {
     <RBSheet
       ref={refRBSheet}
       height={height}
-      // closeOnDragDown={true}
-      closeOnPressMask={false}
+      animationType="slide"
+      closeOnDragDown={true}
+      closeOnPressMask={true}
+      openDuration={100}
       customStyles={{
         wrapper: {
-          backgroundColor: "transparent"
+          backgroundColor: 'rgba(0,0,0,.6)',
+
         },
         draggableIcon: {
           backgroundColor: "#000"
-        }
+        },
+        container: { borderRadius: 10 }
+
       }}
 
     >

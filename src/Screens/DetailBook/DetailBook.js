@@ -1,4 +1,4 @@
-import { StyleSheet, View, ScrollView, TouchableOpacity, Dimensions, SafeAreaView } from 'react-native'
+import { StyleSheet, View, ScrollView, TouchableOpacity, Dimensions } from 'react-native'
 import React, { useRef } from 'react';
 import AnimatedHeader from 'react-native-animated-header';
 import { AntDesign, Ionicons, MaterialIcons } from 'react-native-vector-icons'
@@ -6,8 +6,10 @@ import { AntDesign, Ionicons, MaterialIcons } from 'react-native-vector-icons'
 import screenName from '../../Constants/ScreenName';
 import Detail from './DetailScreen';
 import Chapter from './ChapterScreen';
-const listTopTab2 = [{ _id: "1", screenName: screenName.detailScreen, title: "Chi Tiết", component: Detail }, { _id: "2", screenName: screenName.chapterScreen, title: "Chapter", component: Chapter },]
 import TopTap from '../../Components/TopTab';
+import appConfigs from '../../Configs/app'
+import { useSelector } from 'react-redux';
+const listTopTab2 = [{ _id: "1", screenName: screenName.detailScreen, title: "Chi Tiết", component: Detail }, { _id: "2", screenName: screenName.chapterScreen, title: "Chapter", component: Chapter },]
 
 const DetailBook = ({ book }) => {
 
@@ -16,7 +18,8 @@ const DetailBook = ({ book }) => {
     childDetail.current.handleOpen()
   }
   console.log("DetailBook")
-  const screen = Dimensions.get("screen");
+  const height = useSelector((state) => state.AppReducer.heightDetailScreen)
+  console.log("🚀 ~ file: DetailBook.js ~ line 22 ~ DetailBook ~ height", height)
 
   return (
     <View style={{ flex: 1 }}>
@@ -51,15 +54,17 @@ const DetailBook = ({ book }) => {
         disabled={false}
       >
 
-        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
-          <View>
-            <TopTap arrayCategory={listTopTab2} />
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }} >
 
+          <View style={{ height: height ? height + 50 : 1000 + 50 }}>
+            <TopTap arrayCategory={listTopTab2} />
           </View>
+
 
         </ScrollView>
 
       </AnimatedHeader>
+
 
     </View>
   );

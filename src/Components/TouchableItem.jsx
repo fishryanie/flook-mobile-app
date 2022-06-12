@@ -20,7 +20,7 @@ const TouchableFeedback = (props) => {
 
     return (
       <TouchableNativeFeedback
-
+        delayPressIn={1000}
         {...rest}
         background={
           TouchableNativeFeedback.Ripple('rgba(0, 0, 0, .32)', borderless)

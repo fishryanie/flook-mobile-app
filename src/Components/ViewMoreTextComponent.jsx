@@ -7,7 +7,7 @@ const ViewMoreTextComponent = ({ text, style }) => {
   // console.log("style", style)
   const renderViewMore = (onPress) => {
     return (
-      <View style={{ flex: 1, alignItems: "center", }}>
+      <View style={{ alignItems: "center", }}>
         <FontAwesome onPress={onPress} name="angle-down" size={25} />
       </View>
 
@@ -15,7 +15,7 @@ const ViewMoreTextComponent = ({ text, style }) => {
   }
   const renderViewLess = (onPress) => {
     return (
-      <View style={{ flex: 1, alignItems: "center", }}>
+      <View style={{ alignItems: "center" }}>
         <FontAwesome onPress={onPress} name="angle-up" size={25} />
       </View>
     )

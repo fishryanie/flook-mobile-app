@@ -9,6 +9,7 @@ interface initialState {
   openCart: boolean,
   isSubmitting: boolean,
   isLoading: boolean,
+  heightDetailScreen:number,
 }
 
 const initialState: initialState = {
@@ -19,6 +20,7 @@ const initialState: initialState = {
   openCart: false,
   isSubmitting: false,
   isLoading: false,
+  heightDetailScreen:1000
 };
 
  const AppReducer = (state = initialState, action: any) => {
@@ -42,6 +44,12 @@ const initialState: initialState = {
     case actionTypes.closeLoading: {
       return { ...state, isLoading: false }
     }
+    case actionTypes.setHeightDetailScreen:{
+      
+      console.log("🚀 ~ file: app.tsx ~ line 49 ~ AppReducer ~ heightDetailScreen",action.payload)
+    }
+      return {...state, heightDetailScreen:action.payload}
+      
     // case actionTypes.onOffCartConstant: {
     //   return { ...state, openCart: !state.openCart }
     // }

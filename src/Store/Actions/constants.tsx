@@ -9,12 +9,15 @@ const actionTypes = {
   openLoading: "OPEN_LOADING",
   closeLoading: "CLOSE_LOADING",
   submitSearch: "SUBMIT_SEARCH",
+  setHeightDetailScreen: 'SET_HEIGHT_DETAIL_SCREEN',
 
   SET_MENU: '@customization/SET_MENU',
   MENU_TOGGLE: '@customization/MENU_TOGGLE',
   MENU_OPEN: '@customization/MENU_OPEN',
   SET_FONT_FAMILY: '@customization/SET_FONT_FAMILY',
   SET_BORDER_RADIUS: '@customization/SET_BORDER_RADIUS',
+
+
 
 
   // DATA LOCAL

@@ -131,6 +131,9 @@ const color = {
     800: '#155e75',
     900: '#164e63',
   },
+  grey: {
+    50: "#e6e6e6",
+  },
   rose: {
     50: '#ecfeff',
     100: '#cffafe',
@@ -324,7 +327,8 @@ const color = {
     800: '#155e75',
     900: '#164e63',
   },
-  
 
- 
+
+
 }
+export default color
