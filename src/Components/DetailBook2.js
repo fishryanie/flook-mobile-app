@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Animated, Image, Text } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { useCollapsibleHeader } from 'react-navigation-collapsible';
 
 

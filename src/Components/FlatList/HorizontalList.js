@@ -1,21 +1,8 @@
-import { View, Text, Touchable, StyleSheet, FlatList, TouchableOpacity, Modal } from 'react-native'
-import React, { useState, useEffect } from 'react'
-import Manga from "../../Data_Mobile/Manga.json"
-import AntDesign from "react-native-vector-icons/AntDesign"
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
+import COLORS from '../../Constants/ColorConstants'
+const filterType = [{ type: "Dị năng" }, { type: "Bàn tay vàng" }, { type: "Anh hùng cứu mỹ nhân" }]
+const HorizontalList = () => {
 
-
-const filterType = [{ type: "Genre" }, { type: "Authur" }, { type: "Allowed" }, { type: "Title" }, { type: "aaaa" }, { type: "bbbb" }]
-const HorizontalList = ({ onOpenModal }) => {
-  const [openModal, setOpenModal] = useState(0);
-
-  useEffect(() => {
-    onOpenModal(openModal)
-    // console.log("openModalHorizontal", openModal)
-  }, [openModal])
-  const handleOpenModal = (item) => {
-    setOpenModal(openModal + 1)
-    console.log("value hozri", item)
-  }
 
   const renderItem = (value) => {
     const {
@@ -26,10 +13,9 @@ const HorizontalList = ({ onOpenModal }) => {
 
     return (
       <View style={styles.viewItem}>
-        <TouchableOpacity style={styles.touchableOpacity} onPress={(item) => { handleOpenModal(item) }}>
-          <Text style={styles.text}>{type}</Text>
-          <AntDesign name="caretdown" size={15} color="#707371" style={{ marginStart: 3 }} />
-        </TouchableOpacity>
+
+        <Text style={styles.text}>{type}</Text>
+
       </View>
     )
   }
@@ -40,6 +26,7 @@ const HorizontalList = ({ onOpenModal }) => {
         data={filterType}
         renderItem={renderItem}
         numColumns={1}
+        keyExtractor={item => item.type}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
       />
@@ -51,40 +38,25 @@ const HorizontalList = ({ onOpenModal }) => {
 export default HorizontalList
 const styles = StyleSheet.create({
   flatStyle: {
-    width: "100%",
-    height: "80%",
+    height: "100%",
     // backgroundColor: "red",
   },
   viewFlatlist: {
 
-    marginTop: "10%",
-    paddingHorizontal: "3%",
-    width: "100%",
-    height: "4%",
+    height: "100%",
     // backgroundColor: "green",
   },
   viewItem: {
-    flex: 1,
+    flexDirection: "column",
     height: "100%",
-
     marginRight: 15,
-    // backgroundColor: "blue",
-  },
-  touchableOpacity: {
-    flex: 1,
-    height: "100%",
-    paddingVertical: "5%",
     paddingHorizontal: 10,
-    // backgroundColor: "blue",
-    flexDirection: "row",
-    justifyContent: "center",
     borderWidth: 1,
-    borderColor: "#707371",
+    borderColor: COLORS.GREY_02,
     borderRadius: 50,
-    alignItems: 'center',
-
-
+    paddingVertical: 5
   },
+
   text: {
     height: "100%",
     flex: 1,

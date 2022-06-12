@@ -38,12 +38,10 @@ const RatingScreen = () => {
       {/* /// end review screen */}
 
 
-      {/* <HeaderComponent/>
-      <ListSystemCinema /> */}
-      {/* <DetailsBook book={book}/> */}
-      {/* <DetailBook book={book}/> */}
-      {/* <DetailBook1 book={book}/> */}
-      {/* <DetailBook2 /> */}
+
+      {/* <DetailBook book={book} /> */}
+
+
       {/* <Test2/> */}
       {/* {<Test3/>} */}
       {/* <User/> */}

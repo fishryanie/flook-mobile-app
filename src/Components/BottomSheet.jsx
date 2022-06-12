@@ -38,5 +38,3 @@ const BottomSheet = forwardRef(({ children, height }, ref) => {
 })
 
 export default BottomSheet
-
-const styles = StyleSheet.create({})

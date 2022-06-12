@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'
 import TopTap from './TopTab'
 import React, { useState, useEffect } from 'react'
 const index = ({ listTopTab, ChildrenIcon1, ChildrenIcon2 }) => {
@@ -10,7 +10,6 @@ const index = ({ listTopTab, ChildrenIcon1, ChildrenIcon2 }) => {
   const checkIsChildren = () => {
     ChildrenIcon1 && ChildrenIcon1 ? setIsChildren(true) : setIsChildren(false)
   }
-  // console.log("isChildren", isChildren)
   return (
     <View style={[styles.viewContainer,]}>
       <TopTap listTopTab={listTopTab} isChildren={isChildren} />

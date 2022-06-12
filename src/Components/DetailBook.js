@@ -1,27 +1,32 @@
-import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity, Dimensions, Animated, useWindowDimensions, SafeAreaView } from 'react-native'
-import React, { useState } from 'react';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Dimensions, SafeAreaView } from 'react-native'
+import React, { useState, useRef } from 'react';
+import { PageScrollView } from 'pagescrollview'
 import AnimatedHeader from 'react-native-animated-header';
 import { AntDesign, Ionicons, MaterialIcons } from 'react-native-vector-icons'
 import TopTab from './TopTap'
 import Detail from '../Screens/DetailBook/Detail';
 import Chapter from '../Screens/DetailBook/Chapter';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-// import { SafeAreaView } from 'react-native-safe-area-context';
 
-const Tab = createMaterialTopTabNavigator();
 const listTopTab2 = [{ _id: "ahdkfahkfd", title: "Chi Tiết", component: Detail }, { _id: "ahdkfahkfd", title: "Chapter", component: Chapter },]
 
-
+import ReviewCard from '../Components/Review/ReviewCard'
+import ReviewDetail from '../Components/Review/ReviewDetail'
+import ReviewCardChild from '../Components/Review/ReviewCardChild'
 
 const DetailBook = ({ book }) => {
+
+  const childDetail = useRef()
+  const handleOpen = () => {
+    childDetail.current.handleOpen()
+  }
   console.log("DetailBook")
   const screen = Dimensions.get("screen");
 
   return (
     <View style={{ flex: 1 }}>
       <AnimatedHeader
-        style={{ flex: 1, backgroundColor: "red" }}
-        // backText='Back'
+        style={{ flex: 1 }}
+        backText='Back'
         onBackPress={() => console.log("on back1")}
         title={book.title}
         renderLeft={() => (
@@ -45,21 +50,18 @@ const DetailBook = ({ book }) => {
         backTextStyle={{ fontSize: 14, color: '#000' }}
         titleStyle={{ fontSize: 22, left: 20, bottom: 20, color: '#000' }}
         headerMaxHeight={200}
-        // imageSource={() => <Image source={{ uri: book.url }} style={{ height: MAX_HEIGHT, width: Dimensions.get('window').width }} />}
         imageSource={{ uri: `${book.url}` }}
         toolbarColor='#FFF'
-
         disabled={false}
       >
 
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
+          <View style={{ flex: 1, Width: screen.width, minHeight: 2000, marginTop: 50 }}>
 
-        <ScrollView style={{ flex: 1 }}>
-          <SafeAreaView style={{ height: screen.height, width: screen.width }}>
-            <TopTab listTopTab={listTopTab2}
-              ChildrenIcon1={null}
-              ChildrenIcon2={null}
-            />
-          </SafeAreaView>
+            <TopTab listTopTab={listTopTab2} />
+          </View>
+
+
         </ScrollView>
 
       </AnimatedHeader>
@@ -71,4 +73,18 @@ const DetailBook = ({ book }) => {
 
 export default DetailBook
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  viewStyle: {
+    flex: 1, backgroundColor: 'red'
+  },
+  itemView: {
+    width: '100%',
+    margin: 5,
+    padding: 40,
+  },
+  itemText: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold'
+  }
+});

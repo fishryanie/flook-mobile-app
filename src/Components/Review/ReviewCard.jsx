@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Demensions, Image, TouchableWithoutFeedback } from 'react-native'
+import { StyleSheet, Text, View, Demensions, Image, TouchableWithoutFeedback, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import {
   EvilIcons, Ionicons
@@ -12,7 +12,6 @@ const ReviewCard = ({ onOpenBottomSheet, children, disable }) => {
   return (
 
     <View style={styles.container}>
-
       <TouchableFeedback disable={disable} onpress={onOpenBottomSheet} >
         <View style={styles.topView}>
           <View style={styles.info}>
@@ -38,6 +37,7 @@ const ReviewCard = ({ onOpenBottomSheet, children, disable }) => {
           <View style={styles.item1_In_Bottom}>
             <Text>04/06</Text>
           </View>
+
           <View style={styles.item2_In_Bottom}>
             <Ionicons style={{ flex: 1 }} name="ellipsis-vertical-sharp" size={20} />
             <View style={styles.likeOrCommentView}>
@@ -53,6 +53,7 @@ const ReviewCard = ({ onOpenBottomSheet, children, disable }) => {
         </View>
       </TouchableFeedback>
     </View>
+
   )
 }
 
@@ -60,18 +61,15 @@ export default ReviewCard
 
 const styles = StyleSheet.create({
   container: {
-
     flex: 1,
-    paddingHorizontal: "2%",
-    // height: "auto"
-    // backgroundColor: "blue"
+    // backgroundColor: "red"
   },
   topView: {
     flexDirection: "row",
     marginTop: 10,
     width: "100%",
     height: 60,
-    // backgroundColor: "red"
+
   },
   info: {
     flex: 1,
@@ -134,7 +132,6 @@ const styles = StyleSheet.create({
   item2_In_Bottom: {
     flex: 1,
     flexDirection: "row",
-    // backgroundColor: "green"
   },
   likeOrCommentView: {
 
