@@ -18,9 +18,7 @@ const FilterScreen = () => {
   const dispatch = useDispatch()
 
   const listAuthor = useSelector(state => state.BookReducer.listAuthor)
-  console.log("🚀 ~ file: index.jsx ~ line 21 ~ FilterScreen ~ listAuthor", listAuthor)
   const listGenre = useSelector(state => state.BookReducer.listGenre)
-  console.log("🚀 ~ file: index.jsx ~ line 22 ~ FilterScreen ~ listGenre", listGenre)
 
   
 
@@ -74,43 +72,34 @@ const FilterScreen = () => {
   }
 
   const getFilterObj = () => {
-    const newChapter = []
-    const newAuthor = []
-    const newGenre = []
-    const newStatus = []
-    const newAllowed = []
-
-    for (let value in listFiter.chapter) {
-      if (listFiter.chapter[value].isSelected == true && listFiter.chapter[value].name == "All") {
-        newChapter.push(...listFiter.chapter.map((item) => { return item.chapter }))
-        newChapter.shift()
-      }
-      if (listFiter.chapter[value].isSelected == true && listFiter.chapter[value].name != "All") {
-        newChapter.push(listFiter.chapter[value].chapter)
-      }
-    }
+    const newChapter = [], newAuthor = [], newGenre = [], newStatus = [], newAllowed = []
 
     for (let value in listFiter.author) {
       if (listFiter.author[value].isSelected == true && listFiter.author[value].name !== "All") {
         newAuthor.push(listFiter.author[value]._id)
       }
       else if (listFiter.author[value].isSelected == true && listFiter.author[value].name == "All") {
-        newAuthor.push(...listFiter.author.map((item) => { return item._id }))
-        newAuthor.shift()
+        newAuthor.push('All')
       }
     }
     for (let value in listFiter.genre) {
       if (listFiter.genre[value].isSelected == true && listFiter.genre[value].name !== "All") {
         newGenre.push(listFiter.genre[value]._id)
       } else if (listFiter.genre[value].isSelected == true && listFiter.genre[value].name == "All") {
-        newGenre.push(...listFiter.genre.map((item) => { return item._id }))
-        newGenre.shift()
+        newGenre.push('All')
+      }
+    }
+    for (let value in listFiter.chapter) {
+      if (listFiter.chapter[value].isSelected == true && listFiter.chapter[value].name == "All") {
+        newChapter.push('All')
+      }
+      if (listFiter.chapter[value].isSelected == true && listFiter.chapter[value].name != "All") {
+        newChapter.push(listFiter.chapter[value].chapter)
       }
     }
     for (let value in listFiter.status) {
       if (listFiter.status[value].isSelected == true && listFiter.status[value].name == "All") {
-        newStatus.push(...listFiter.status.map((item) => { return item.status }))
-        newStatus.shift()
+        newStatus.push('All')
       }
       if (listFiter.status[value].isSelected == true && listFiter.status[value].name != "All") {
         newStatus.push(listFiter.status[value].status)
@@ -119,23 +108,20 @@ const FilterScreen = () => {
 
     for (let value in listFiter.allowed) {
       if (listFiter.allowed[value].isSelected == true && listFiter.allowed[value].name == "All") {
-        newAllowed.push(...listFiter.allowed.map((item) => { return item.chapter }))
-        newAllowed.shift()
+        newAllowed.push('All')
       }
       if (listFiter.allowed[value].isSelected == true && listFiter.allowed[value].name != "All") {
         newAllowed.push(listFiter.allowed[value].allowedAge)
       }
     }
-    let filterObj = {
+
+    return {
       author: newAuthor,
       genre: newGenre,
-      status: newStatus.flat().slice(0),
+      status: newStatus,
       chapter: newChapter,
       allowed: newAllowed
     }
-    return filterObj
-
-
   }
 
   useEffect(() => {
@@ -150,13 +136,12 @@ const FilterScreen = () => {
 
   useEffect(() => {
     let authorArr = listAuthor.map((item) => {
-      return { ...item, isSelected: true }
+      return { ...item, isSelected: false }
     })
     authorArr.splice(0, 0, { _id: "1", name: "All", isSelected: true })
 
-    console.log({ ...listFiter })
     let genreArr = listGenre.map((item) => {
-      return { ...item, isSelected: true }
+      return { ...item, isSelected: false }
     })
     genreArr.splice(0, 0, { _id: "1", name: "All", isSelected: true })
 

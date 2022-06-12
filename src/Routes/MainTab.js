@@ -1,9 +1,9 @@
 // import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { MaterialCommunityIcons } from 'react-native-vector-icons';
+import { MaterialCommunityIcons, Ionicons, FontAwesome } from 'react-native-vector-icons';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
-import { View, Text } from 'react-native'
+import { View, Text, SafeAreaView } from 'react-native'
 import screenName from "../Constants/ScreenName";
 import TopTab from '../Components/TopTab'
 import NotifyScreen from '../Screens/Notification/NotifyScreen'
@@ -43,7 +43,7 @@ export default function MainTab(props, accessibilityState) {
   const focused = accessibilityState.selected;
 
   const tabBarOptions = {
-    activeTintColor: 'tomato', 
+    activeTintColor: '#673AB7', 
     inactiveTintColor: 'gray'
   }
 
@@ -57,11 +57,11 @@ export default function MainTab(props, accessibilityState) {
       case screenName.categoryScreen:
         iconName = focused ? 'cube' : 'cube-outline'; break;
       case screenName.rankingScreen:
-        iconName = focused ? 'pinwheel' : 'pinwheel-outline'; break;
+        iconName = 'chart-bar-stacked'; break;
       case screenName.notifyScreen:
-        iconName = focused ? 'bell-circle' : 'bell-circle-outline'; break;
+        iconName = focused ? 'bell-circle' : 'bell-ring-outline'; break;
       case screenName.profileScreen:
-        iconName = focused ? 'emoticon' : 'emoticon-outline'; break;
+        iconName = focused ? 'account-circle' : 'account-circle-outline'; break;
       default: break;
     }
     return <MaterialCommunityIcons name={iconName} size={size} color={color} />
@@ -83,16 +83,16 @@ export default function MainTab(props, accessibilityState) {
         </View>
       )}/>
       <BottomTab.Screen name={screenName.categoryScreen} options={{title: 'Danh mục', headerShown: false}} children={() => (
-        <View style={{flex: 1, marginTop: SafeAreaInsets.top}}>
-          <TopTab arrayCategory={arrayCategoryTab} onPressicon2={handlePress}
-            Icon1={<MaterialCommunityIcons name={'home'} size={20} color={'red'} />}
-            Icon2={<MaterialCommunityIcons name={'home'} size={20} color={'red'} />}
+        <SafeAreaView style={{flex: 1, backgroundColor: "#ffffff"}}>
+          <TopTab arrayCategory={arrayCategoryTab} onPressicon1={() => navigation.navigate('model')} onPressicon2={handlePress}
+            Icon1={<FontAwesome name='edit' size={20} color={'#673AB7'} />}
+            Icon2={<Ionicons name='ios-options-outline' size={20} color={'#673AB7'} />}
           />
-        </View>
+        </SafeAreaView>
       )}/>
       <BottomTab.Screen name={screenName.rankingScreen} options={{title:'Xếp hạng'}} component={RankingScreen}/>
       <BottomTab.Screen name={screenName.notifyScreen} options={{title:'Thông báo'}} component={NotifyScreen}/>
-      <BottomTab.Screen name={screenName.profileScreen} options={{title:'Cá nhân'}} component={ProfileScreen}/>
+      <BottomTab.Screen name={screenName.profileScreen} options={{title:'Cá nhân', headerShown: false}} component={ProfileScreen}/>
    </BottomTab.Navigator>
   );
 };

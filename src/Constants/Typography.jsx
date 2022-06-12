@@ -1,5 +1,6 @@
 const typography = {
   fontSizes: {
+    xxxs: 8,
     xxs: 10,
     xs: 12,
     sm: 14,

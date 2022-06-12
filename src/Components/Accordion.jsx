@@ -6,6 +6,7 @@ import typography from '../Constants/Typography'
 const ListAccor = (props) => {
 
   const { title, array, listFilterObj, onSetListFilter } = props
+
   const [expanded, setExpanded] = useState();
 
   const handlePress = title => () => {
@@ -21,13 +22,20 @@ const ListAccor = (props) => {
     })
     if (id !== "1") {
       newArr[0].isSelected = false
+    }else {
+      newArr[0].isSelected = true
+      for (let index = 1; index < newArr.length; index++) {
+        newArr[index].isSelected = false
+      }
     }
+  
     if (type === title) {
       let propsName = type.toLowerCase()
       onSetListFilter({ ...listFilterObj, [propsName]: newArr })
 
     }
   }
+
   return (
     <List.Accordion
       title={title}

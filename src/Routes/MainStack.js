@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-import { Ionicons } from 'react-native-vector-icons';
+import { Ionicons, EvilIcons } from 'react-native-vector-icons';
 import { Text } from 'react-native';
 import screenName from '../Constants/ScreenName';
 import MainTab from './MainTab';
@@ -71,11 +71,11 @@ export default function MainStackNavigator() {
   };
 
   return (
-    <MainStack.Navigator initialRouteName={screenName.mainTabNavigator}>
+    <MainStack.Navigator initialRouteName={screenName.mainTabNavigator} >
       <MainStack.Screen name={screenName.mainTabNavigator} component={MainTab} options={{headerShown: false}}/>
       <MainStack.Screen name={screenName.forumScreen} component={ForumScreen} />
       <MainStack.Screen name={screenName.notifyScreen} component={NotifyScreen} />
-      <MainStack.Screen name={screenName.profileScreen} component={ProfileScreen} />
+      <MainStack.Screen name={screenName.profileScreen} component={ProfileScreen} options={{headerShown: false}}/>
       <MainStack.Screen name={screenName.comicScreen} component={ComicScreen} />
       <MainStack.Screen name={screenName.rankingScreen} component={RankingScreen} />
       <MainStack.Screen name={screenName.channelScreen} component={ChannelScreen} options={optionsChannel} />

@@ -18,8 +18,8 @@ const RenderApp = () => {
 
   return (
     <PersistGate loading={<Loading/>} persistor={persistor}>
-      <NavigationContainer>
-        <SafeAreaProvider>
+      <NavigationContainer styles={{backgroundColor: 'white'}}>
+        <SafeAreaProvider styles={{backgroundColor: 'white'}}>
           <MainStack/>
           <Toast position='top' topOffset={100}/>
           {isLoading && <Loading/>}
@@ -46,6 +46,6 @@ const styles = StyleSheet.create({
   }
 })
 
-export default App = () => <Provider store={store}><RenderApp/></Provider>
+export default App = () => <Provider styles={{backgroundColor: 'white'}} store={store}><RenderApp/></Provider>
 
 

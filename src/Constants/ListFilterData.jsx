@@ -1,5 +1,5 @@
 const listAllowed = [
-  { _id: '1', name: 'All', allowedAge: [0, 31], isSelected: true },
+  { _id: '1', name: 'All', allowedAge: ['All'], isSelected: true },
   { _id: '2', name: 'Lower 12 age', allowedAge: [0, 11], isSelected: false },
   { _id: '3', name: '12 - 18 age', allowedAge: [12, 18], isSelected: false },
   { _id: '4', name: '18 - 30 age', allowedAge: [18, 30], isSelected: false },
@@ -7,7 +7,7 @@ const listAllowed = [
 ];
 
 const listChapter = [
-  { _id: '1', name: 'All', chapter: 1000, isSelected: true },
+  { _id: '1', name: 'All', chapter: ['All'], isSelected: true },
   { _id: '2', name: 'Lower 50 chapter', chapter: 49, isSelected: false },
   { _id: '3', name: '50 - 150 chapter', chapter: 150, isSelected: false },
   { _id: '4', name: '250 - 500 chapter', chapter: 500, isSelected: false },
@@ -17,7 +17,7 @@ const listChapter = [
 ];
 
 const listStatus = [
-  { _id: '1', name: 'All', status: ['Đang tiến hành', 'Đã update'], isSelected: true },
+  { _id: '1', name: 'All', status: ['All'], isSelected: true },
   { _id: '2', name: 'Is updating', status: ['Đang tiến hành'], isSelected: false },
   { _id: '3', name: 'Completed', status: ['Đã update'], isSelected: false },
 ];
