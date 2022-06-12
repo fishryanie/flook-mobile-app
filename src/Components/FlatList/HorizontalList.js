@@ -37,18 +37,21 @@ const HorizontalList = () => {
 
 export default HorizontalList
 const styles = StyleSheet.create({
-  flatStyle: {
-    height: "100%",
-    // backgroundColor: "red",
-  },
-  viewFlatlist: {
 
-    height: "100%",
-    // backgroundColor: "green",
+  viewFlatlist: {
+    flex: 1,
+    flexGrow: 1,
+    maxHeight: 35,
+    backgroundColor: "green",
+  },
+  flatStyle: {
+    flex: 1,
+    maxHeight: 35,
+    // backgroundColor: "red",
   },
   viewItem: {
     flexDirection: "column",
-    height: "100%",
+    maxHeight: 35,
     marginRight: 15,
     paddingHorizontal: 10,
     borderWidth: 1,

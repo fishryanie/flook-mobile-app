@@ -9,7 +9,7 @@ const actionTypes = {
   openLoading: "OPEN_LOADING",
   closeLoading: "CLOSE_LOADING",
   submitSearch: "SUBMIT_SEARCH",
-  setHeightDetailScreen: 'SET_HEIGHT_DETAIL_SCREEN',
+ 
 
   SET_MENU: '@customization/SET_MENU',
   MENU_TOGGLE: '@customization/MENU_TOGGLE',

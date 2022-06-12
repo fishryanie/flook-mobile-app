@@ -18,7 +18,7 @@ import PointMeScreen from '../Screens/PointMe/PointMeScreen';
 import DailyScreen from '../Screens/Daily/DailyScreen';
 
 import ComicScreen from '../Screens/Comic';
-import DetailScreen from '../Screens/Detail/DetailScreen';
+import DetailScreen from '../Screens/Detail';
 import FilterScreen from '../Screens/Filter';
 
 import AboutScreen from '../Screens/About/AboutScreen';
@@ -52,7 +52,7 @@ export default function MainStackNavigator() {
   const handlePressSearch = {
     headerRight: () => <Ionicons size={25} name="ios-search-sharp" color="gray" onPress={() => alert('Search')} />,
   };
-  
+
   const optionsChannel = {
     title: 'Channel',
     ...handlePressGoback,
@@ -72,7 +72,7 @@ export default function MainStackNavigator() {
 
   return (
     <MainStack.Navigator initialRouteName={screenName.mainTabNavigator}>
-      <MainStack.Screen name={screenName.mainTabNavigator} component={MainTab} options={{headerShown: false}}/>
+      <MainStack.Screen name={screenName.mainTabNavigator} component={MainTab} options={{ headerShown: false }} />
       <MainStack.Screen name={screenName.forumScreen} component={ForumScreen} />
       <MainStack.Screen name={screenName.notifyScreen} component={NotifyScreen} />
       <MainStack.Screen name={screenName.profileScreen} component={ProfileScreen} />

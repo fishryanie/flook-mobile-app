@@ -2,6 +2,7 @@ import { View, Text, Button } from 'react-native'
 import React from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import DetailBook from '../../Screens/DetailBook/DetailBook'
+import Detail from '../Detail'
 import appConfigs from '../../Configs/app'
 const book = {
   title: "One piece",
@@ -14,7 +15,8 @@ const RankingScreen = ({ navigation }) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <DetailBook book={book} />
+      <Detail />
+      {/* <DetailBook book={book} /> */}
       {/* <Button
         title='Back'
         onPress={() => navigation.goBack()}
