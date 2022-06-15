@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
 import color from '../../Constants/Color'
-const filterType = [{ type: "Dị năng" }, { type: "Bàn tay vàng" }, { type: "Anh hùng cứu mỹ nhân" }]
+const filterType = [{ type: "Dị năng" }, { type: "Bàn tay vàng" }, { type: "Anh hùng cứu mỹ nhân" }, { type: "Hài" }]
 const HorizontalList = () => {
 
 
@@ -40,18 +40,16 @@ const styles = StyleSheet.create({
 
   viewFlatlist: {
     flex: 1,
-    flexGrow: 1,
-    maxHeight: 35,
-    backgroundColor: "green",
+
+    // backgroundColor: "green",
   },
   flatStyle: {
     flex: 1,
-    maxHeight: 35,
+    flexDirection: 'row',
     // backgroundColor: "red",
   },
   viewItem: {
-    flexDirection: "column",
-    maxHeight: 35,
+    height: 30,
     marginRight: 15,
     paddingHorizontal: 10,
     borderWidth: 1,
@@ -63,6 +61,7 @@ const styles = StyleSheet.create({
   text: {
     height: "100%",
     flex: 1,
+    fontSize: 12
     // backgroundColor: "red"
   }
 }

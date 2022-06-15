@@ -16,10 +16,8 @@ const Header = () => {
     if (offset.y <= 0) return true
     return false
   }
-  return <View style={styles.header}
-  >
-
-    <TouchableOpacity style={getOffset(offset) ? styles.goBack : styles.goBack1}>
+  return <View style={styles.header}>
+    <TouchableOpacity style={styles.goBack1}>
       <AntDesign name='left' size={25} color={getOffset(offset) ? 'black' : 'white'} />
     </TouchableOpacity>
     <View style={getOffset(offset) ? styles.up_dow : styles.up_dow1}>
@@ -36,15 +34,14 @@ const Header = () => {
         if (!view) return;
         view.measureInWindow((x, y) => {
           setOffset({ x, y });
-          console.log("🚀 ~ file: index.js ~ line 25 ~ view.measureInWindow ~ y", y)
-
+          // console.log("🚀 ~ file: index.js ~ line 25 ~ view.measureInWindow ~ y", y)
         })
       }}
     />
   </View>
 }
 
-const index = () => {
+const Index = () => {
   const renderItem = React.useCallback(({ index }) => {
     return (
       <View style={[styles.box, index % 2 === 0 ? styles.boxB : styles.boxA]} />
@@ -59,18 +56,17 @@ const index = () => {
       TabBarComponent={props => <MaterialTabBar {...props} indicatorStyle={{ backgroundColor: 'red' }} />}
     >
       <Tabs.Tab name="B">
-        <Tabs.ScrollView style={{ flex: 1 }} >
+        <Tabs.ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }} >
           <DetailScreen />
         </Tabs.ScrollView>
       </Tabs.Tab>
       <Tabs.Tab name="A">
-        <Tabs.Tab name="B">
-          <Tabs.ScrollView>
-            <View style={[styles.box, styles.boxA]} />
-            <View style={[styles.box, styles.boxB]} />
-          </Tabs.ScrollView>
-        </Tabs.Tab>
+        <Tabs.ScrollView>
+          <View style={[styles.box, styles.boxA]} />
+          <View style={[styles.box, styles.boxB]} />
+        </Tabs.ScrollView>
       </Tabs.Tab>
+
 
     </Tabs.Container>
   )
@@ -101,7 +97,7 @@ const styles = StyleSheet.create({
   goBack: {
     zIndex: 10,
     position: 'absolute',
-    bottom: 40,
+    bottom: 40 + 0,
     left: 20,
   },
   goBack1: {
@@ -147,4 +143,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default index
+export default Index

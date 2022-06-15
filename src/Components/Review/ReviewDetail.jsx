@@ -9,21 +9,17 @@ import { ScrollView } from 'react-native-gesture-handler'
 import BookCard from './BookCard'
 const ReviewDetail = forwardRef((props, ref) => {
   const screenHeight = Dimensions.get('screen').height;
-  // review Screen
   const childRef = useRef()
   useImperativeHandle(ref, () => ({
-
     handleOpen() {
       childRef.current.handleOpenBottomSheet()
     },
-
-
   }));
 
 
   return (
 
-    <BottomSheet ref={childRef} height={screenHeight * 0.8}>
+    <BottomSheet ref={childRef} height={screenHeight * 0.9}>
       <ScrollView>
         <View style={styles.containerView}>
           <View style={styles.topView}>

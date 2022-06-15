@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView, Dimensions, ColorPropType } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, } from 'react-native'
 import React, { useRef, useEffect, useState } from 'react'
 import { FontAwesome, Feather, MaterialCommunityIcons } from 'react-native-vector-icons'
 import { Avatar } from 'react-native-elements'
@@ -11,35 +11,45 @@ import HorizontalList from '../../Components/FlatList/HorizontalList'
 import ReviewCard from '../../Components/Review/ReviewCard'
 import ReviewDetail from '../../Components/Review/ReviewDetail'
 import ReviewCardChild from '../../Components/Review/ReviewCardChild'
+import SendReview from '../../Components/SendReview'
 
 const widthScreen = Dimensions.get("window").width
 const text = "Lorem ipsum dolor sit amet, in quo dolorum ponderum, nam veri molestie constituto eu. Eum enim tantas sadipscing ne, ut omnes malorum nostrum cum. Errem populo qui ne, ea ipsum antiopam definitionem eos."
+
+const filterType = [{ type: "Dị năng" }, { type: "Bàn tay vàng" }, { type: "Anh hùng cứu mỹ nhân" }, { type: "Kinh dị" }]
 const Detail = () => {
-  const childDetail = useRef()
-  const handleOpen = () => {
-    childDetail.current.handleOpen()
+  const refReviewDetail = useRef()
+  const handleOpenReviewDetail = () => {
+    refReviewDetail.current.handleOpen()
   }
+  const refSendReview = useRef()
+  const handleOpenSendReview = () => {
+    refSendReview.current.handleOpen()
+  }
+
+
+
+
 
   return (
 
-    <View
-      style={{ backgroundColor: "white" }}>
-      <View style={{ flexWrap: 'wrap', marginTop: 20, paddingHorizontal: 15 }}>
-        <View style={styles.rating} >
-          <View style={styles.itemRating}>
+    <View style={{ backgroundColor: "white", flex: 1, width: "100%" }}>
+      <View style={{ marginTop: 20, paddingHorizontal: 15 }}>
+        <View style={styles.rating}>
+          <TouchableOpacity style={styles.itemRating} onPress={handleOpenSendReview}>
             <View style={styles.textRatingView}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Text style={{ fontSize: 16 }}>4</Text>
-                <FontAwesome name="star" size={20} color="yellow" style={{ marginLeft: 5 }} />
+                <Text style={{ fontSize: 16 }}>4.5</Text>
+                <FontAwesome name="star" size={20} color="#f5e02a" style={{ marginLeft: 5 }} />
               </View>
               <Text style={{ fontSize: 10 }}>Đánh giá</Text>
             </View>
-          </View>
+          </TouchableOpacity>
           <View style={styles.verticleLine}></View>
           <View style={styles.itemRating}>
             <View style={styles.textRatingView}>
               <Text style={{ fontSize: 16 }}>1,34M</Text>
-              <Text style={{ fontSize: 10 }}>Độ hot</Text>
+              <Text style={{ fontSize: 10 }}>Lượt xem</Text>
             </View>
           </View>
           <View style={styles.verticleLine}></View>
@@ -65,7 +75,9 @@ const Detail = () => {
         <ViewMoreTextComponent text={text} />
       </View>
 
-      <HorizontalList />
+      <View style={{ paddingHorizontal: 15, marginTop: 20 }} >
+        <HorizontalList />
+      </View>
 
       <View style={styles.avatarView}>
         <Avatar size="medium" rounded source={{ uri: "https://i.pinimg.com/736x/e9/d6/aa/e9d6aad1ac43fdea81afe2f40caae49a.jpg" }} />
@@ -90,10 +102,25 @@ const Detail = () => {
         </View>
       </View>
 
+      <View style={{ height: 10, backgroundColor: color.grey[50], marginTop: 20, marginBottom: 20 }} />
+
+      <View style={styles.comment_outstanding}>
+        <Text style={{ fontSize: 20, fontWeight: '500' }}>Bình luận nổi bật</Text>
+        <Text style={{ fontSize: 10 }}>{"Tổng số 1390 câu trả lời >"}</Text>
+      </View>
+
       <View style={{ flex: 1, paddingHorizontal: 15 }}>
-        <ReviewCard onOpenBottomSheet={handleOpen} children={<ReviewCardChild />} disable={false} />
+        <ReviewCard onOpenBottomSheet={handleOpenReviewDetail} children={<ReviewCardChild />} disable={false} />
         <ReviewCard />
-        <ReviewDetail ref={childDetail} />
+        <ReviewDetail ref={refReviewDetail} />
+      </View>
+
+      <SendReview ref={refSendReview} />
+
+      <View style={{ height: 2, backgroundColor: color.grey[50] }}></View>
+
+      <View style={{ paddingVertical: 10, alignItems: 'center' }}>
+        <Text style={{ color: "red" }}>{"Tất cả bình luận(198)"}</Text>
       </View>
 
     </View>
@@ -104,6 +131,7 @@ const Detail = () => {
 export default Detail
 
 const styles = StyleSheet.create({
+
   rating: {
     flexDirection: "row",
     width: widthScreen * 0.93,
@@ -151,6 +179,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
     fontSize: 12
+  },
+  comment_outstanding: {
+    flexDirection: "row",
+    paddingHorizontal: 15,
+    justifyContent: "space-between",
+    marginBottom: 5,
+    alignItems: 'center'
   }
 
 })

@@ -22,7 +22,7 @@ const ReviewCard = ({ onOpenBottomSheet, children, disable }) => {
             </View>
           </View>
           <View style={styles.rating}>
-            {!disable ? <Rating /> : null}
+            {!disable ? <Rating onClick={false} /> : null}
           </View>
         </View>
         <View style={styles.centerView}>

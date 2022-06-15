@@ -11,8 +11,8 @@ const BottomSheet = forwardRef(({ children, height }, ref) => {
     handleCloseBottomSheet() {
       refRBSheet.current.close()
     },
-
   }));
+
   return (
 
     <RBSheet
@@ -30,7 +30,10 @@ const BottomSheet = forwardRef(({ children, height }, ref) => {
         draggableIcon: {
           backgroundColor: "#000"
         },
-        container: { borderRadius: 10 }
+        container: {
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20
+        }
 
       }}
 

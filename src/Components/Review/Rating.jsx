@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import StarRating from 'react-native-star-rating';
 
-const Rating = () => {
+const Rating = ({ onClick, starSize = 20 }) => {
   const [rating, setRating] = useState(0);
   const onStarRatingPress = (rating) => {
     setRating(rating)
@@ -10,12 +10,13 @@ const Rating = () => {
   return (
     <View>
       <StarRating
-        starSize={20}
+        starSize={starSize}
         fullStarColor="#fad902"
-        disabled={false}
+        disabled={onClick ? false : true}
         maxStars={5}
         rating={rating}
-        selectedStar={(rating) => onStarRatingPress(rating)}
+        halfStarEnabled={true}
+        selectedStar={onClick ? (rating) => onStarRatingPress(rating) : () => { }}
       />
     </View>
   )
