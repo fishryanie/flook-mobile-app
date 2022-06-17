@@ -16,7 +16,9 @@ export default function FlatGird(props) {
     setOpenGirdOrList(!openGridorList)
   }
   const handleOpenFilter = () => {
-    navigation.navigate(screenName.filterScreen)
+    navigation.navigate(screenName.filterScreen, {
+      screenNameBefore: "Channel"
+    })
   }
 
   return (
@@ -48,7 +50,7 @@ export default function FlatGird(props) {
             <Text style={styles.itemCode}>{item.code}</Text>
           </View>
         )}
-      />    
+      />
     </View>
   )
 }
@@ -59,11 +61,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: "2%",
     paddingVertical: "2%",
   },
-  Img:{
-    width: "100%", 
-    height: "80%", 
-    resizeMode: "cover", 
-    borderRadius: 10 
+  Img: {
+    width: "100%",
+    height: "80%",
+    resizeMode: "cover",
+    borderRadius: 10
   },
 
   container: {

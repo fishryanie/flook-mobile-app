@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { View, ScrollView, } from "react-native";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
@@ -9,25 +9,28 @@ import ListAccordion from '../../Components/Accordion'
 import typography from '../../Constants/Typography'
 import actionTypes from '../../Store/Actions/constants';
 
-const FilterScreen = () => {
+const FilterScreen = ({ route }) => {
 
   const navigation = useNavigation();
+  const { screenNameBefore } = route.params;
 
-  const insets = useSafeAreaInsets()
-  
+
+  // const refSort = useRef()
+
   const dispatch = useDispatch()
 
   const listAuthor = useSelector(state => state.BookReducer.listAuthor)
   const listGenre = useSelector(state => state.BookReducer.listGenre)
+  const sortObj = useSelector(state => state.BookReducer.sortObj)
 
-  
 
   const [listFiter, setListFilter] = useState({
     author: [],
     genre: [],
-    allowed: ListFilterData.listAllowed,
+    allowedage: ListFilterData.listAllowed,
     chapter: ListFilterData.listChapter,
     status: ListFilterData.listStatus,
+    sort: ListFilterData.listSort
   })
 
   const handleSetListFilter = (value) => {
@@ -52,6 +55,7 @@ const FilterScreen = () => {
 
 
   const clearFilter = () => {
+    console.log("clear")
     const clearAuthor = listFiter.author.map((value) => {
       return { ...value, isSelected: false }
     })
@@ -68,11 +72,11 @@ const FilterScreen = () => {
       return { ...value, isSelected: false }
     })
 
-    handleSetListFilter({ ...listFiter, genre: clearGenre, author: clearAuthor, chapter: clearChapter, allowed: clearAllowed, status: clearStatus })
+    handleSetListFilter({ ...listFiter, genre: clearGenre, author: clearAuthor, chapter: clearChapter, allowedage: clearAllowed, status: clearStatus })
   }
 
   const getFilterObj = () => {
-    const newChapter = [], newAuthor = [], newGenre = [], newStatus = [], newAllowed = []
+    const newChapter = [], newAuthor = [], newGenre = [], newStatus = [], newAllowedAge = []
 
     for (let value in listFiter.author) {
       if (listFiter.author[value].isSelected == true && listFiter.author[value].name !== "All") {
@@ -82,6 +86,7 @@ const FilterScreen = () => {
         newAuthor.push('All')
       }
     }
+
     for (let value in listFiter.genre) {
       if (listFiter.genre[value].isSelected == true && listFiter.genre[value].name !== "All") {
         newGenre.push(listFiter.genre[value]._id)
@@ -89,6 +94,7 @@ const FilterScreen = () => {
         newGenre.push('All')
       }
     }
+
     for (let value in listFiter.chapter) {
       if (listFiter.chapter[value].isSelected == true && listFiter.chapter[value].name == "All") {
         newChapter.push('All')
@@ -97,6 +103,7 @@ const FilterScreen = () => {
         newChapter.push(listFiter.chapter[value].chapter)
       }
     }
+
     for (let value in listFiter.status) {
       if (listFiter.status[value].isSelected == true && listFiter.status[value].name == "All") {
         newStatus.push('All')
@@ -106,12 +113,12 @@ const FilterScreen = () => {
       }
     }
 
-    for (let value in listFiter.allowed) {
-      if (listFiter.allowed[value].isSelected == true && listFiter.allowed[value].name == "All") {
-        newAllowed.push('All')
+    for (let value in listFiter.allowedage) {
+      if (listFiter.allowedage[value].isSelected == true && listFiter.allowedage[value].name == "All") {
+        newAllowedAge.push('All')
       }
-      if (listFiter.allowed[value].isSelected == true && listFiter.allowed[value].name != "All") {
-        newAllowed.push(listFiter.allowed[value].allowedAge)
+      if (listFiter.allowedage[value].isSelected == true && listFiter.allowedage[value].name != "All") {
+        newAllowedAge.push(listFiter.allowedage[value].allowed)
       }
     }
 
@@ -120,9 +127,15 @@ const FilterScreen = () => {
       genre: newGenre,
       status: newStatus,
       chapter: newChapter,
-      allowed: newAllowed
+      allowedAge: newAllowedAge,
+      sortByName: sortObj.sortByName,
+      sortByDate: sortObj.sortByDate,
+      sortByView: sortObj.sortByView,
+      sortByReview: sortObj.sortByReview
     }
   }
+
+
 
   useEffect(() => {
     dispatch(Action.book.findAuthor())
@@ -131,7 +144,7 @@ const FilterScreen = () => {
 
   useEffect(() => {
     const lisFilter = getFilterObj()
-    dispatch({type: actionTypes.setListFilter, payload:lisFilter})
+    dispatch({ type: actionTypes.setListFilter, payload: lisFilter })
   })
 
   useEffect(() => {
@@ -146,17 +159,27 @@ const FilterScreen = () => {
     genreArr.splice(0, 0, { _id: "1", name: "All", isSelected: true })
 
     handleSetListFilter({ ...listFiter, author: authorArr, genre: genreArr });
-  }, [listAuthor])
+  }, [listAuthor, listGenre])
+
+
 
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <ScrollView>
-        <ListAccordion title='Author' array={listFiter.author} onSetListFilter={handleSetListFilter} listFilterObj={listFiter} />
-        <ListAccordion title='Genre' array={listFiter.genre} onSetListFilter={handleSetListFilter} listFilterObj={listFiter} />
-        <ListAccordion title='Status' array={listFiter.status} onSetListFilter={handleSetListFilter} listFilterObj={listFiter} />
-        <ListAccordion title='Allowed' array={listFiter.allowed} onSetListFilter={handleSetListFilter} listFilterObj={listFiter} />
-        <ListAccordion title='Chapter' array={listFiter.chapter} onSetListFilter={handleSetListFilter} listFilterObj={listFiter} />
+        {screenNameBefore === "Channel" && (
+          <>
+            <ListAccordion title='Author' array={listFiter.author} onSetListFilter={handleSetListFilter} listFilterObj={listFiter} />
+            <ListAccordion title='Genre' array={listFiter.genre} onSetListFilter={handleSetListFilter} listFilterObj={listFiter} />
+            <ListAccordion title='Status' array={listFiter.status} onSetListFilter={handleSetListFilter} listFilterObj={listFiter} />
+            <ListAccordion title='Allowed Age' array={listFiter.allowedage} onSetListFilter={handleSetListFilter} listFilterObj={listFiter} />
+            <ListAccordion title='Chapter' array={listFiter.chapter} onSetListFilter={handleSetListFilter} listFilterObj={listFiter} />
+            <ListAccordion title='Sort' array={listFiter.sort} sort={true} onSetListFilter={handleSetListFilter} listFilterObj={listFiter} onGetFilterObj={getFilterObj} />
+          </>
+        )
+        }
+
+
       </ScrollView>
     </View>
   )

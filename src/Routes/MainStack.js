@@ -52,11 +52,12 @@ export default function MainStackNavigator() {
   const handlePressSearch = {
     headerRight: () => <Ionicons size={25} name="ios-search-sharp" color="gray" onPress={() => alert('Search')} />,
   };
-  
+
   const optionsChannel = {
     title: 'Channel',
     ...handlePressGoback,
     ...handlePressSearch,
+    headerTitleAlign: 'center',
     headerStyle: { backgroundColor: '#fff', elevation: 0, borderBottomWidth: 0, shadowColor: 'transparent', shadowOpacity: 0, height: 0 },
   };
 
@@ -65,17 +66,20 @@ export default function MainStackNavigator() {
   }
 
   const optionFilter = {
-    title: 'Clear',
+    headerBackVisible: false,
+    title: "Clear",
+    headerTitleAlign: 'center',
     headerLeft: () => <Text onPress={() => navigation.goBack()}>Cancle</Text>,
+
     headerRight: () => <Text onPress={handleFilterBook}>Refine</Text>,
   };
 
   return (
     <MainStack.Navigator initialRouteName={screenName.mainTabNavigator} >
-      <MainStack.Screen name={screenName.mainTabNavigator} component={MainTab} options={{headerShown: false}}/>
+      <MainStack.Screen name={screenName.mainTabNavigator} component={MainTab} options={{ headerShown: false }} />
       <MainStack.Screen name={screenName.forumScreen} component={ForumScreen} />
       <MainStack.Screen name={screenName.notifyScreen} component={NotifyScreen} />
-      <MainStack.Screen name={screenName.profileScreen} component={ProfileScreen} options={{headerShown: false}}/>
+      <MainStack.Screen name={screenName.profileScreen} component={ProfileScreen} options={{ headerShown: false }} />
       <MainStack.Screen name={screenName.comicScreen} component={ComicScreen} />
       <MainStack.Screen name={screenName.rankingScreen} component={RankingScreen} />
       <MainStack.Screen name={screenName.channelScreen} component={ChannelScreen} options={optionsChannel} />

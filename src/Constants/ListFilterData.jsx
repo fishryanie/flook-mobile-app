@@ -1,9 +1,9 @@
 const listAllowed = [
-  { _id: '1', name: 'All', allowedAge: ['All'], isSelected: true },
-  { _id: '2', name: 'Lower 12 age', allowedAge: [0, 11], isSelected: false },
-  { _id: '3', name: '12 - 18 age', allowedAge: [12, 18], isSelected: false },
-  { _id: '4', name: '18 - 30 age', allowedAge: [18, 30], isSelected: false },
-  { _id: '5', name: 'More than 30 age', allowedAge: [31], isSelected: false },
+  { _id: '1', name: 'All', allowed: ['All'], isSelected: true },
+  { _id: '2', name: 'Lower 12 age', allowed: [0, 11], isSelected: false },
+  { _id: '3', name: '12 - 18 age', allowed: [12, 18], isSelected: false },
+  { _id: '4', name: '18 - 30 age', allowed: [18, 30], isSelected: false },
+  { _id: '5', name: 'More than 30 age', allowed: [31], isSelected: false },
 ];
 
 const listChapter = [
@@ -21,10 +21,31 @@ const listStatus = [
   { _id: '2', name: 'Is updating', status: ['Đang tiến hành'], isSelected: false },
   { _id: '3', name: 'Completed', status: ['Đã update'], isSelected: false },
 ];
+const listSort = [
+  { _id: '1', name: 'Sort by name', value: "ASC", isSelected: false },
+  { _id: '2', name: 'Sort by date', value: "ASC", isSelected: false },
+  { _id: '3', name: 'Sort by view', value: "ASC", isSelected: false },
+  { _id: '4', name: 'Sort by review', value: "ASC", isSelected: false },
+];
+
+const listFilterByDate = [
+  { _id: '1', name: 'All', value: ['All'], isSelected: true },
+  { _id: '2', name: 'This Week', value: ["This Week"], isSelected: false },
+  { _id: '3', name: 'This Month', value: ['This Month'], isSelected: false },
+];
+
+const lisFilterByCategory = [
+  { _id: '1', name: 'All', value: ['All'], isSelected: true },
+  { _id: '2', name: 'Hot', value: ["Hot"], isSelected: false },
+  { _id: '3', name: 'New', value: ['New'], isSelected: false },
+  { _id: '4', name: 'Favourite', value: ['Favourite'], isSelected: false },
+];
 
 const ListFilterData = {
   listAllowed,
   listChapter,
   listStatus,
+  listSort,
+  listFilterByDate
 };
 export default ListFilterData;

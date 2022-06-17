@@ -28,18 +28,17 @@ const data = [
 ]
 
 
-const listTopTab2 = [ 
-  { _id: "1", screenName:screenName.comicScreen, title: 'Truyện tranh', component: () => <FlatGird data={data}/>},
-  { _id: "2", screenName:screenName.novelScreen, title: 'Tiểu thuyết', component: () => <FlatGird data={data}/>},
-  { _id: "3", screenName:screenName.chatStoryScreen, title: 'Truyện chat', component: () => <FlatGird data={data}/>}
+const listTopTab2 = [
+  { _id: "1", screenName: screenName.comicScreen, title: 'Truyện tranh', component: () => <FlatGird data={data} /> },
+  { _id: "2", screenName: screenName.novelScreen, title: 'Tiểu thuyết', component: () => <FlatGird data={data} /> },
+  { _id: "3", screenName: screenName.chatStoryScreen, title: 'Truyện chat', component: () => <FlatGird data={data} /> }
 
 ]
 
-const RankingScreen = ({navigation}) => {
+const RankingScreen = ({ navigation }) => {
   return (
-    <View style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
-      <TopTap arrayCategory={listTopTab2}/>
-      
+    <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+      <TopTap arrayCategory={listTopTab2} />
     </View>
   )
 }

@@ -6,6 +6,7 @@ import GirdList from '../../Components/FlatList/GirdList';
 import DeXuatManga from '../../../Data_Mobile/DeXuatManga.json';
 import DataTruyenChat from '../../../Data_Mobile/DataTruyenChat.json';
 import { Avatar } from "react-native-elements";
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const StoryGenreData = [
   { _id: "1", title: "Huyền Huyễn", image: "https://i.pinimg.com/736x/78/54/57/7854578882c0f62cb740757ea80d6407.jpg" },
@@ -19,6 +20,7 @@ const StoryGenreData = [
 ]
 
 export default function ComicScreen({ navigation }) {
+
   const screenWidth = Dimensions.get('screen').width;
   const screenHeight = Dimensions.get('screen').height;
   return (
@@ -65,7 +67,7 @@ export default function ComicScreen({ navigation }) {
           <Text style={{ color: 'black', fontSize: 10 }}>{'Thêm >'}</Text>
         </View>
         <View style={{ paddingHorizontal: 2, }}>
-          <GirdList data={StoryGenreData} numColumns={4} viewItem={{display: 'flex', justifyContent: 'center', alignItems:'center', paddingVertical: 12}} avatar={true} Img={styles.ImgGenre} TextTitle={styles.textTitle} />
+          <GirdList data={StoryGenreData} numColumns={4} viewItem={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingVertical: 12 }} avatar={true} Img={styles.ImgGenre} TextTitle={styles.textTitle} />
         </View>
 
         <View style={styles.viewText}>
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
     // backgroundColor: "blue"
   },
-  Img: { width: '100%', height: '80%', resizeMode: 'cover', borderRadius: 5, marginBottom:5 },
+  Img: { width: '100%', height: '80%', resizeMode: 'cover', borderRadius: 5, marginBottom: 5 },
 
   viewItemGenre: {
     height: 110,
