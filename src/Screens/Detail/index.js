@@ -1,12 +1,55 @@
-import React from 'react'
-import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native'
-import { Tabs, MaterialTabBar } from 'react-native-collapsible-tab-view'
+import React, { useEffect, useRef } from 'react'
+import { View, StyleSheet, Text, Image, TouchableOpacity, ScrollView } from 'react-native'
+import { Tabs, MaterialTabBar, Tab } from 'react-native-collapsible-tab-view'
 import { AntDesign, Ionicons, MaterialIcons } from 'react-native-vector-icons'
+import ChapterScreen from './ChapterScreen'
 import DetailScreen from './DetailScreen'
-const HEADER_HEIGHT = 200
+import BottomSheet from '../../Components/BottomSheet'
+import typography from '../../Constants/Typography'
+import appConfigs from '../../Configs/app'
 
-const DATA = [0, 1, 2, 3, 4]
-const identity = (v) => v + ''
+
+const createTotalPages = (totalPages = 879) => {
+  const newTotalPages = Math.floor(totalPages / 50)
+
+  let page = []
+
+  let from = 50
+  let to = 1
+  for (let i = 1; i <= newTotalPages; i++) {
+
+    page.push({
+      to,
+      from
+    })
+
+    if (i === 1) {
+      to += 49
+      from += 50
+    } else if (i === (newTotalPages - 1)) {
+      to += 50
+      from = totalPages
+    } else {
+      to += 50
+      from += 50
+    }
+  }
+  return page
+}
+
+
+const listChoosePages = () => {
+  const list = createTotalPages()
+  return list.map((item) => {
+    return (<View style={styles.itemPage}>
+      <TouchableOpacity style={styles.choosePageTouchable}>
+        <Text style={{ fontSize: typography.fontSizes.md }}>{`${item.to} - ${item.from}`}</Text>
+      </TouchableOpacity>
+
+    </View>)
+  })
+}
+const HEADER_HEIGHT = 200
 
 const Header = () => {
 
@@ -17,7 +60,7 @@ const Header = () => {
     return false
   }
   return <View style={styles.header}>
-    <TouchableOpacity style={styles.goBack1}>
+    {/* <TouchableOpacity style={styles.goBack1}>
       <AntDesign name='left' size={25} color={getOffset(offset) ? 'black' : 'white'} />
     </TouchableOpacity>
     <View style={getOffset(offset) ? styles.up_dow : styles.up_dow1}>
@@ -27,52 +70,91 @@ const Header = () => {
       <TouchableOpacity style={{ marginRight: 5 }}>
         <Ionicons name='ellipsis-horizontal-outline' size={25} color={getOffset(offset) ? 'black' : 'white'} />
       </TouchableOpacity>
-    </View>
+    </View> */}
     <Text style={getOffset(offset) ? styles.textName : styles.textName1}>One piece</Text>
     <Image source={{ uri: "https://photo-cms-nghenhinvietnam.zadn.vn/w700/Uploaded/2022/cadwpqrnd/2020_04_25/tac_gia_one_piece_ca_ngoi_thanh_cong_cua_kimetsu_no_yaiba_va_khong_muon_thua_cuoc_fvvh_rfza.jpg" }} style={[styles.image, getOffset(offset) ? { opacity: 0.5 } : null]}
       ref={(view) => {
         if (!view) return;
         view.measureInWindow((x, y) => {
           setOffset({ x, y });
-          // console.log("🚀 ~ file: index.js ~ line 25 ~ view.measureInWindow ~ y", y)
         })
       }}
     />
+
   </View>
 }
 
 const Index = () => {
-  const renderItem = React.useCallback(({ index }) => {
-    return (
-      <View style={[styles.box, index % 2 === 0 ? styles.boxB : styles.boxA]} />
-    )
-  }, [])
+  const [tabName, setTabName] = React.useState();
+  const refBtSheet = useRef()
 
   return (
     <Tabs.Container
       renderHeader={Header}
       headerHeight={HEADER_HEIGHT}
       minHeaderHeight={70}
-      TabBarComponent={props => <MaterialTabBar {...props} indicatorStyle={{ backgroundColor: 'red' }} />}
+      onIndexChange={(tab) => setTabName(tab)}
+      TabBarComponent={props => {
+        return (
+          <View>
+            <MaterialTabBar {...props} indicatorStyle={{ backgroundColor: 'red' }} >
+
+            </MaterialTabBar>
+            {
+              tabName === 1 ?
+                <View style={styles.topbar}>
+                  <View style={{ justifyContent: "center", flex: 1.5 }}>
+                    <Text>{`Cập nhật đến chương 345`}</Text>
+                  </View>
+                  <View style={{ flex: 1, alignItems: "center", flexDirection: "row", justifyContent: 'flex-end' }}>
+                    <AntDesign name='appstore-o' size={20} style={{ marginRight: 15, zIndex: 3, }} onPress={() => refBtSheet.current.handleOpenBottomSheet()} />
+                    <Ionicons name='swap-vertical' size={25} />
+                  </View>
+                </View> : null
+            }
+          </View>
+        )
+      }
+      }
     >
-      <Tabs.Tab name="B">
-        <Tabs.ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }} >
+      <Tabs.Tab name="Chi tiết">
+        <Tabs.ScrollView style={{ flex: 1 }}  >
           <DetailScreen />
         </Tabs.ScrollView>
       </Tabs.Tab>
-      <Tabs.Tab name="A">
-        <Tabs.ScrollView>
-          <View style={[styles.box, styles.boxA]} />
-          <View style={[styles.box, styles.boxB]} />
+
+      <Tabs.Tab name="Chapter" >
+        <Tabs.ScrollView >
+          <ChapterScreen />
+
+          <BottomSheet height={300} ref={refBtSheet}>
+            <View style={{ paddingHorizontal: 20, height: "85%", width: '100%', alignItems: 'center', }}>
+              <View style={styles.topViewBtSheeet}>
+                <Text >Chương</Text>
+                <MaterialIcons name='close' size={25} onPress={() => { refBtSheet.current.handleCloseBottomSheet() }} />
+              </View>
+              <ScrollView style={{ marginTop: 20 }}>
+                <View style={{ flexWrap: 'wrap', flexDirection: 'row' }}>
+                  {listChoosePages()}
+                </View>
+              </ScrollView>
+            </View>
+          </BottomSheet>
+
         </Tabs.ScrollView>
       </Tabs.Tab>
-
-
     </Tabs.Container>
   )
 }
 
 const styles = StyleSheet.create({
+  topbar: {
+    paddingHorizontal: 10,
+    marginTop: 1,
+    flexDirection: "row",
+    height: 60,
+    backgroundColor: '#f0f0f0'
+  },
   box: {
     height: 250,
     width: '100%',
@@ -139,6 +221,31 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     color: 'white'
+  },
+  topViewBtSheeet: {
+    flexDirection: "row",
+    alignItems: 'center',
+    width: '100%',
+
+    justifyContent: "space-between"
+  },
+  itemPage: {
+    flexDirection: "row",
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 5,
+    width: appConfigs.FULL_WIDTH / 3.35,
+
+    // backgroundColor: "red"
+  },
+  choosePageTouchable: {
+    borderWidth: 1,
+    borderColor: "#e8e8e8",
+    borderRadius: 5,
+    paddingVertical: 5,
+    width: 100,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 
 })

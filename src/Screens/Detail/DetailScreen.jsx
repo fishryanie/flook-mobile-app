@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions, } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, ScrollView } from 'react-native'
 import React, { useRef, useEffect, useState } from 'react'
 import { FontAwesome, Feather, MaterialCommunityIcons } from 'react-native-vector-icons'
 import { Avatar } from 'react-native-elements'
@@ -33,7 +33,7 @@ const Detail = () => {
 
   return (
 
-    <View style={{ backgroundColor: "white", flex: 1, width: "100%" }}>
+    <ScrollView style={{ backgroundColor: "white", flex: 1, width: "100%" }}>
       <View style={{ marginTop: 20, paddingHorizontal: 15 }}>
         <View style={styles.rating}>
           <TouchableOpacity style={styles.itemRating} onPress={handleOpenSendReview}>
@@ -123,7 +123,7 @@ const Detail = () => {
         <Text style={{ color: "red" }}>{"Tất cả bình luận(198)"}</Text>
       </View>
 
-    </View>
+    </ScrollView>
 
   )
 }
