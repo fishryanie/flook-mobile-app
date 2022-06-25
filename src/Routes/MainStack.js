@@ -19,6 +19,7 @@ import DailyScreen from '../Screens/Daily/DailyScreen';
 
 import ComicScreen from '../Screens/Comic';
 import DetailScreen from '../Screens/Detail/DetailScreen';
+import DetailUserScreen from '../Screens/DetailUser';
 import FilterScreen from '../Screens/Filter';
 
 import AboutScreen from '../Screens/About/AboutScreen';
@@ -52,7 +53,7 @@ export default function MainStackNavigator() {
   const handlePressSearch = {
     headerRight: () => <Ionicons size={25} name="ios-search-sharp" color="gray" onPress={() => alert('Search')} />,
   };
-  
+
   const optionsChannel = {
     title: 'Channel',
     ...handlePressGoback,
@@ -72,16 +73,17 @@ export default function MainStackNavigator() {
 
   return (
     <MainStack.Navigator initialRouteName={screenName.mainTabNavigator} >
-      <MainStack.Screen name={screenName.mainTabNavigator} component={MainTab} options={{headerShown: false}}/>
+      <MainStack.Screen name={screenName.mainTabNavigator} component={MainTab} options={{ headerShown: false }} />
       <MainStack.Screen name={screenName.forumScreen} component={ForumScreen} />
       <MainStack.Screen name={screenName.notifyScreen} component={NotifyScreen} />
-      <MainStack.Screen name={screenName.profileScreen} component={ProfileScreen} options={{headerShown: false}}/>
+      <MainStack.Screen name={screenName.profileScreen} component={ProfileScreen} options={{ headerShown: false }} />
       <MainStack.Screen name={screenName.comicScreen} component={ComicScreen} />
       <MainStack.Screen name={screenName.rankingScreen} component={RankingScreen} />
       <MainStack.Screen name={screenName.channelScreen} component={ChannelScreen} options={optionsChannel} />
       <MainStack.Screen name={screenName.pointMeScreen} component={PointMeScreen} />
       <MainStack.Screen name={screenName.dailyScreen} component={DailyScreen} />
       <MainStack.Screen name={screenName.detailScreen} component={DetailScreen} />
+      <MainStack.Screen name={screenName.detailUserScreen} component={DetailUserScreen} />
       <MainStack.Screen name={screenName.filterScreen} component={FilterScreen} options={optionFilter} />
       <MainStack.Screen name={screenName.aboutScreen} component={AboutScreen} />
       <MainStack.Screen name={screenName.chapterScreen} component={ChapterScreen} />

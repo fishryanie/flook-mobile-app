@@ -11,7 +11,6 @@
     "@babel/core": "^7.12.9",
     "@expo-google-fonts/dev": "^0.2.2",
     "@freakycoder/react-native-bounceable": "^0.2.5",
-    "@freakycoder/react-native-header-view": "^1.2.0",
     "@freakycoder/react-native-text-area": "^0.1.5",
     "@muhzi/react-native-user-avatar": "^1.0.7",
     "@react-native-async-storage/async-storage": "~1.15.0",
@@ -69,7 +68,7 @@
     "react-native-raw-bottom-sheet": "^2.2.0",
     "react-native-reanimated": "~2.3.1",
     "react-native-responsive-screen": "^1.4.2",
-    "react-native-review-modal": "^0.0.1",
+  
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
     "react-native-scroll-bottom-sheet": "^0.7.0",

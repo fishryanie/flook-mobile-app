@@ -17,7 +17,7 @@ const screenName = {
 
   detailScreen: 'detailScreen',
   filterScreen: 'filterScreen',
-
+  detailUserScreen: 'detailUserScreen',
   movieScreen: 'movieScreen',
   aboutScreen: 'aboutScreen',
   chapterScreen: 'chapterScreen',

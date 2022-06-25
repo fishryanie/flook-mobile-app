@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity, Image, } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity, Image } from 'react-native'
+import { useNavigation } from '@react-navigation/native';
 import { FontAwesome, Ionicons, MaterialCommunityIcons, EvilIcons } from 'react-native-vector-icons'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { LinearGradient } from 'expo-linear-gradient';
@@ -19,11 +20,12 @@ import ImageVip from '../../Assets/Images/vipProfile.png'
 import ActionButton from 'react-native-action-button';
 import BottomSheet from '../../Components/BottomSheet';
 import typography from '../../Constants/Typography';
+import screenName from '../../Constants/ScreenName';
 const listItemBanThao = [
-  { title: "Xin Việc", iconName: "md-reader-outline" }, 
-  { title: "Ghi âm", iconName: "mic-outline" }, 
-  { title: "Dịch truyện", iconName: "md-language-outline" }, 
-  { title: "Lồng tiếng", iconName: "mic-circle-outline" }, 
+  { title: "Xin Việc", iconName: "md-reader-outline" },
+  { title: "Ghi âm", iconName: "mic-outline" },
+  { title: "Dịch truyện", iconName: "md-language-outline" },
+  { title: "Lồng tiếng", iconName: "mic-circle-outline" },
 ]
 
 const listItem1 = [
@@ -39,21 +41,22 @@ const listItem2 = [
 ]
 
 const ProfileScreen = () => {
+  const navigation = useNavigation()
   const [isLogin, setIsLogIn] = useState(true)
   const insets = useSafeAreaInsets()
   const childRef = useRef();
   const [fontsLoaded] = useFonts({
     OpenSans_400Regular,
     OpenSans_300Light,
-    OpenSans_500Medium, 
+    OpenSans_500Medium,
     OpenSans_600SemiBold
   });
 
- if (!fontsLoaded) {
+  if (!fontsLoaded) {
     return null;
- }
+  }
 
- 
+
   const renderItem = (item) => {
     return (item.map((data, index) => {
       return (
@@ -61,7 +64,7 @@ const ProfileScreen = () => {
           // console.log("click touch1")
         }} style={styles.listItem}>
           <data.iconType name={data.name} size={20} color={'gray'} />
-          <Text style={{ marginLeft: "5%", fontWeight: "bold", width: "auto", fontSize:typography.fontSizes.sm, fontFamily: 'OpenSans_600SemiBold' }}>{data.title}</Text>
+          <Text style={{ marginLeft: "5%", fontWeight: "bold", width: "auto", fontSize: typography.fontSizes.sm, fontFamily: 'OpenSans_600SemiBold' }}>{data.title}</Text>
         </TouchableOpacity>
       )
     }))
@@ -72,6 +75,10 @@ const ProfileScreen = () => {
   }
   const handleClose = () => {
     childRef.current.handleCloseBottomSheet()
+  }
+
+  const handleOpenScreenDetailAcount = () => {
+    navigation.navigate(screenName.detailUserScreen)
   }
 
   return (
@@ -94,8 +101,10 @@ const ProfileScreen = () => {
 
           <View style={styles.infoContainer}>
             <View style={styles.info}>
-              <TouchableOpacity onPress={handleOpen}>
-                <Image style={styles.image} source={{ uri: "https://i.pinimg.com/736x/e9/d6/aa/e9d6aad1ac43fdea81afe2f40caae49a.jpg" }}/>
+              <TouchableOpacity onPress={!isLogin ? handleOpen : handleOpenScreenDetailAcount}>
+                {
+                  isLogin ? <Image style={styles.image} source={{ uri: "https://i.pinimg.com/736x/e9/d6/aa/e9d6aad1ac43fdea81afe2f40caae49a.jpg" }} /> : <Image style={styles.image} source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ4TKmLL_Yab3zrnGsM-6FzOgBGSm3lcXkndb1E5xQagw5YlZ9ClcBcC46v3Eq9vfBSIQ&usqp=CAU" }} />
+                }
               </TouchableOpacity>
               <TouchableOpacity onPress={handleOpen} style={styles.viewTextInfo}>
                 {isLogin ?
@@ -137,7 +146,7 @@ const ProfileScreen = () => {
           </View>
 
           <View style={styles.topupVip} >
-            <Image source={ImageVip} style={{ height: '100%', width: '100%' }} resizeMode='contain'/>
+            <Image source={ImageVip} style={{ height: '100%', width: '100%' }} resizeMode='contain' />
           </View>
           <Text style={{ fontWeight: "bold" }}>Gửi bản thảo</Text>
           <View style={styles.banthaoContainer}>
@@ -145,7 +154,7 @@ const ProfileScreen = () => {
               listItemBanThao.map((item, index) => {
                 return <View key={index} style={styles.ItemBanThao}>
                   <Ionicons color="#673AB7" name={item.iconName} size={25} />
-                  <Text style={{ fontSize: typography.fontSizes.xs, fontFamily:'OpenSans_500Medium',  marginTop: "10%" }}>{item.title}</Text>
+                  <Text style={{ fontSize: typography.fontSizes.xs, fontFamily: 'OpenSans_500Medium', marginTop: "10%" }}>{item.title}</Text>
                 </View>
               })
             }
@@ -320,7 +329,7 @@ const styles = StyleSheet.create({
   banthaoContainer: {
     width: "100%",
     // paddingHorizontal: "3%",
-    paddingVertical:5,
+    paddingVertical: 5,
     flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: 'space-between',
