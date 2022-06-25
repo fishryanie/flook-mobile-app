@@ -57,6 +57,7 @@ const initialState: initialState = {
   countChapter: 0
 };
 
+
 const BookReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case actionTypes.findMangaSuccess: {
