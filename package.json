@@ -50,6 +50,7 @@
     "react-native-animated-header": "^1.0.7",
     "react-native-apple-header": "^0.1.1",
     "react-native-banner-carousel": "^1.0.3",
+    "react-native-collapsible-tab-view": "^4.5.2",
     "react-native-elements": "^3.4.2",
     "react-native-gesture-handler": "~2.1.0",
     "react-native-gradient-icon": "^0.1.2",
@@ -68,7 +69,6 @@
     "react-native-raw-bottom-sheet": "^2.2.0",
     "react-native-reanimated": "~2.3.1",
     "react-native-responsive-screen": "^1.4.2",
-  
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
     "react-native-scroll-bottom-sheet": "^0.7.0",

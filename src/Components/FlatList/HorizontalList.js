@@ -1,35 +1,21 @@
-import { View, Text, Touchable, StyleSheet, FlatList, TouchableOpacity, Modal } from 'react-native'
-import React, { useState, useEffect } from 'react'
-import Manga from "../../Data_Mobile/Manga.json"
-import AntDesign from "react-native-vector-icons/AntDesign"
-
-
-const filterType = [{ type: "Genre" }, { type: "Authur" }, { type: "Allowed" }, { type: "Title" }, { type: "aaaa" }, { type: "bbbb" }]
-const HorizontalList = ({ onOpenModal }) => {
-  const [openModal, setOpenModal] = useState(0);
-
-  useEffect(() => {
-    onOpenModal(openModal)
-    // console.log("openModalHorizontal", openModal)
-  }, [openModal])
-  const handleOpenModal = (item) => {
-    setOpenModal(openModal + 1)
-    console.log("value hozri", item)
-  }
+import { useState } from 'react'
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
+import color from '../../Constants/Color'
+const filterType = [{ id: "1", type: "Dị năng" }, { id: "2", type: "Bàn tay vàng" }, { id: "3", type: "Anh hùng cứu mỹ nhân" }, { id: "4", type: "Hài" }]
+const HorizontalList = ({ data = filterType }) => {
+  const [isClickItem, setIsClickItem] = useState("1")
 
   const renderItem = (value) => {
     const {
-      item: { type, id = Math.random(10, 100000) }
+      item: { type, id }
     } = value
     // console.log(value)
-
-
     return (
-      <View style={styles.viewItem}>
-        <TouchableOpacity style={styles.touchableOpacity} onPress={(item) => { handleOpenModal(item) }}>
+      <View style={[styles.viewItem, isClickItem === id ? { backgroundColor: "#dedede" } : null]} >
+        <TouchableOpacity style={{ width: "100%", height: '100%' }} onPress={() => setIsClickItem(id)}>
           <Text style={styles.text}>{type}</Text>
-          <AntDesign name="caretdown" size={15} color="#707371" style={{ marginStart: 3 }} />
         </TouchableOpacity>
+
       </View>
     )
   }
@@ -37,9 +23,10 @@ const HorizontalList = ({ onOpenModal }) => {
     <View style={styles.viewFlatlist}>
       <FlatList
         style={styles.flatStyle}
-        data={filterType}
+        data={data}
         renderItem={renderItem}
         numColumns={1}
+        keyExtractor={item => item.type}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
       />
@@ -50,44 +37,31 @@ const HorizontalList = ({ onOpenModal }) => {
 
 export default HorizontalList
 const styles = StyleSheet.create({
-  flatStyle: {
-    width: "100%",
-    height: "80%",
-    // backgroundColor: "red",
-  },
-  viewFlatlist: {
 
-    marginTop: "10%",
-    paddingHorizontal: "3%",
-    width: "100%",
-    height: "4%",
+  viewFlatlist: {
+    flex: 1,
+
     // backgroundColor: "green",
   },
+  flatStyle: {
+    flex: 1,
+    flexDirection: 'row',
+    // backgroundColor: "red",
+  },
   viewItem: {
-    flex: 1,
-    height: "100%",
-
+    height: 30,
     marginRight: 15,
-    // backgroundColor: "blue",
-  },
-  touchableOpacity: {
-    flex: 1,
-    height: "100%",
-    paddingVertical: "5%",
     paddingHorizontal: 10,
-    // backgroundColor: "blue",
-    flexDirection: "row",
-    justifyContent: "center",
     borderWidth: 1,
-    borderColor: "#707371",
+    borderColor: color.grey[50],
     borderRadius: 50,
-    alignItems: 'center',
-
-
+    paddingVertical: 3
   },
+
   text: {
     height: "100%",
     flex: 1,
+    fontSize: 12
     // backgroundColor: "red"
   }
 }
