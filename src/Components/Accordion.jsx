@@ -5,61 +5,67 @@ import typography from '../Constants/Typography'
 import { MaterialCommunityIcons } from 'react-native-vector-icons'
 import { useDispatch } from 'react-redux';
 import actionTypes from '../Store/Actions/constants';
+
+
 const ListAccor = (props) => {
 
-  const { title, array, listFilterObj, onSetListFilter, onGetFilterObj, sort } = props
+  const { title, array, listFilterObj, onSetListFilter, sort } = props
   const dispatch = useDispatch()
   const [expanded, setExpanded] = useState();
   const [isClickSortByDateASC, setisClickSortByDateASC] = useState(true);
   const [isClickSortByNameASC, setisClickSortNameASC] = useState(true);
   const [isClickSortByViewASC, setisClickSortByViewASC] = useState(true);
   const [isClickSortByReviewASC, setisClickSortByReviewASC] = useState(true);
-  const [objSort, setObjSort] = useState({
-    sortByName: "ASC",
-    sortByDate: "ASC",
-    sortByView: "ASC",
-    sortByReview: "ASC"
-  })
+  const [objSort, setObjSort] = useState()
 
   useEffect(() => {
 
     if (sort) {
       dispatch({ type: actionTypes.setSortObj, payload: objSort })
     }
-    // console.log("🚀 ~ file: Accordion.jsx ~ line 23 ~ ListAccor ~ objSort", newObjSort)
 
   }, [objSort])
 
 
 
   const handClickSortItem = (item) => {
+    console.log("item name", item.name)
     if (item.name === 'Sort by name') {
-
+      // console.log('Sort by name')
       setisClickSortNameASC(!isClickSortByNameASC)
       if (isClickSortByNameASC) {
-        setObjSort({ ...objSort, sortByName: "DESC" })
-      }
-      else setObjSort({ ...objSort, sortByName: "ASC" })
+        setObjSort({ name: "Sort by name", type: "DESC" })
 
-    } if (item.name === 'Sort by date') {
+      }
+      else setObjSort({ name: "Sort by name", type: "ASC" })
+    }
+    if (item.name === 'Sort by date') {
+      // console.log('Sort by date')
 
       setisClickSortByDateASC(!isClickSortByDateASC)
       if (isClickSortByDateASC) {
-        setObjSort({ ...objSort, sortByDate: "DESC" })
+        setObjSort({ name: "Sort by date", type: "DESC" })
       }
-      else setObjSort({ ...objSort, sortByDate: "ASC" })
-    } if (item.name === 'Sort by view') {
+      else setObjSort({ name: "Sort by date", type: "ASC" })
+    }
+    if (item.name === 'Sort by view') {
+      // console.log('Sort by view')
+
       setisClickSortByViewASC(!isClickSortByViewASC)
       if (isClickSortByViewASC) {
-        setObjSort({ ...objSort, sortByView: "DESC" })
+        setObjSort({ name: "Sort by view", type: "DESC" })
       }
-      else setObjSort({ ...objSort, sortByView: "ASC" })
-    } if (item.name === 'Sort by review') {
+      else setObjSort({ name: "Sort by view", type: "ASC" })
+
+    }
+    if (item.name === 'Sort by review') {
+      // console.log('Sort by review')
+
       setisClickSortByReviewASC(!isClickSortByReviewASC)
       if (isClickSortByReviewASC) {
-        setObjSort({ ...objSort, sortByReview: "DESC" })
+        setObjSort({ name: "Sort by review", type: "DESC" })
       }
-      else setObjSort({ ...objSort, sortByReview: "ASC" })
+      else setObjSort({ name: "Sort by review", type: "ASC" })
     }
   }
 
@@ -102,27 +108,49 @@ const ListAccor = (props) => {
       )
     }
   }
+
   const handlePress = title => () => {
     setExpanded(title === expanded ? null : title);
   }
 
   const handelClickItem = (id, isClicked, arr, type) => {
-    let newArr = arr.map((value) => {
-      if (id == value._id) {
-        return { ...value, isSelected: isClicked }
-      }
-      return value
-    })
-    if (!props.sort) {
-      if (id !== "1") {
-        newArr[0].isSelected = false
-      } else {
-        newArr[0].isSelected = true
-        for (let index = 1; index < newArr.length; index++) {
-          newArr[index].isSelected = false
+    let newArr = []
+    if (title === "Author" || title === "Genre") {
+      newArr = arr.map((value) => {
+        if (id == value._id) {
+          return { ...value, isSelected: isClicked }
+        }
+        return value
+      })
+
+      if (!props.sort) {
+        if (id !== "1") {
+          newArr[0].isSelected = false
+        } else {
+          newArr[0].isSelected = true
+          for (let index = 1; index < newArr.length; index++) {
+            newArr[index].isSelected = false
+          }
         }
       }
+    } else {
+      setObjSort(null)
+      let arrFilter, arrTam = []
+      arrFilter = arr.map((value) => {
+        if (id == value._id) {
+          return { ...value, isSelected: isClicked }
+        }
+        return value
+      })
+      arrTam = arrFilter.map((value) => {
+        if (id !== value._id) {
+          return { ...value, isSelected: false }
+        }
+        return value
+      })
+      newArr = arrTam
     }
+
 
     if (type === title) {
       let propsName = type.toLowerCase()
@@ -130,23 +158,7 @@ const ListAccor = (props) => {
       onSetListFilter({ ...listFilterObj, [newProps]: newArr })
     }
 
-    if (sort) {
-      newArr.forEach((element) => {
-        if (!element.isSelected) {
-          if (element.name == "Sort by name") {
-            setObjSort({ ...objSort, sortByName: "ASC" })
-          }
-          else if (element.name == "Sort by date") {
-            setObjSort({ ...objSort, sortByDate: "ASC" })
-          }
-          else if (element.name == "Sort by view") {
-            setObjSort({ ...objSort, sortByView: "ASC" })
-          } else {
-            setObjSort({ ...objSort, sortByReview: "ASC" })
-          }
-        }
-      })
-    }
+
 
   }
 

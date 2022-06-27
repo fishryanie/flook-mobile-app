@@ -9,7 +9,8 @@ const actionTypes = {
   openLoading: "OPEN_LOADING",
   closeLoading: "CLOSE_LOADING",
   submitSearch: "SUBMIT_SEARCH",
-
+  clearFilter: 'CLEAR_FILTER',
+  setObjectClearFilter: "SET_OBJECT_CLEAR_FILTER",
   SET_MENU: '@customization/SET_MENU',
   MENU_TOGGLE: '@customization/MENU_TOGGLE',
   MENU_OPEN: '@customization/MENU_OPEN',

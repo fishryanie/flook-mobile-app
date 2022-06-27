@@ -35,8 +35,8 @@ import ShortStoryScreen from '../Screens/ShortStory';
 import StoryChatScreen from '../Screens/ChatStory';
 import WriteStoryScreen from '../Screens/WriteStory/WriteStoryScreen';
 import Action from '../Store/Actions';
-
-
+import actionTypes from '../Store/Actions/constants';
+import { clearFilter } from '../Screens/Filter'
 export default function MainStackNavigator() {
   const MainStack = createNativeStackNavigator();
   const navigation = useNavigation();
@@ -61,18 +61,20 @@ export default function MainStackNavigator() {
     headerStyle: { backgroundColor: '#fff', elevation: 0, borderBottomWidth: 0, shadowColor: 'transparent', shadowOpacity: 0, height: 0 },
   };
 
-  const handleFilterBook = () => {
-    dispatch(Action.book.filterBook(listFilter))
-  }
+  // const handleFilterBook = () => {
+  //   console.log("🚀 ~ file: MainStack.js ~ line 67 ~ handleFilterBook ~ listFilter", listFilter)
+  //   dispatch(Action.book.filterBook(listFilter))
 
-  const optionFilter = {
-    headerBackVisible: false,
-    title: "Clear",
-    headerTitleAlign: 'center',
-    headerLeft: () => <Text onPress={() => navigation.goBack()}>Cancle</Text>,
+  // }
 
-    headerRight: () => <Text onPress={handleFilterBook}>Refine</Text>,
-  };
+  // const optionFilter = {
+  //   headerBackVisible: false,
+  //   headerTitle: () => <Text onPress={() => clearFilter()}>Clear</Text>,
+  //   headerTitleAlign: 'center',
+  //   headerLeft: () => <Text onPress={() => navigation.goBack()}>Cancle</Text>,
+
+  //   headerRight: () => <Text onPress={handleFilterBook}>Refine</Text>,
+  // };
 
   return (
     <MainStack.Navigator initialRouteName={screenName.mainTabNavigator} >
@@ -86,7 +88,7 @@ export default function MainStackNavigator() {
       <MainStack.Screen name={screenName.pointMeScreen} component={PointMeScreen} />
       <MainStack.Screen name={screenName.dailyScreen} component={DailyScreen} />
       <MainStack.Screen name={screenName.detailScreen} component={DetailScreen} />
-      <MainStack.Screen name={screenName.filterScreen} component={FilterScreen} options={optionFilter} />
+      <MainStack.Screen name={screenName.filterScreen} component={FilterScreen} options={{ headerShown: false }} />
       <MainStack.Screen name={screenName.aboutScreen} component={AboutScreen} />
       <MainStack.Screen name={screenName.chapterScreen} component={ChapterScreen} />
       <MainStack.Screen name={screenName.commentScreen} component={CommentScreen} />
