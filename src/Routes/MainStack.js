@@ -35,6 +35,7 @@ import NovelScreen from '../Screens/Novel';
 import ShortStoryScreen from '../Screens/ShortStory';
 import StoryChatScreen from '../Screens/ChatStory';
 import WriteStoryScreen from '../Screens/WriteStory/WriteStoryScreen';
+import SignIn from '../Screens/SignInScreen/SignIn';
 import Action from '../Store/Actions';
 
 
@@ -98,6 +99,8 @@ export default function MainStackNavigator() {
       <MainStack.Screen name={screenName.shortStoryScreen} component={ShortStoryScreen} />
       <MainStack.Screen name={screenName.chatStoryScreen} component={StoryChatScreen} />
       <MainStack.Screen name={screenName.writeStoryScreen} component={WriteStoryScreen} />
+      {/* <MainStack.Screen name={screenName.signinScreen} component={SignIn} /> */}
+
     </MainStack.Navigator>
   );
 }

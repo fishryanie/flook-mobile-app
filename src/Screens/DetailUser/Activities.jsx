@@ -1,23 +1,34 @@
-import { FlatList, StyleSheet, Text, View,Image } from 'react-native'
+import { FlatList, StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import HorizontalList from '../../Components/FlatList/HorizontalList'
 import { Avatar } from 'react-native-paper'
 const data = [{ id: "1", type: "Tất cả" }, { id: '2', type: "Bình luận" }, { id: '3', type: "Bài đăng" }]
-const dataUser = [{ _id: "1", name: 'Sanh', comment: "Hay quá", dateComment: "02/20/2022 12:23", comicImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJb8GNxnF1eOJ5Cegkkt2NbfECtO39hN8-TWEJvQ9SoiutgZp04mWkh1u5FPmSwyG837A&usqp=CAU", comicName: "One piece" },
-{ _id: "2", name: 'Quân', comment: "Hay quá", dateComment: "02/20/2022 12:23", comicImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJb8GNxnF1eOJ5Cegkkt2NbfECtO39hN8-TWEJvQ9SoiutgZp04mWkh1u5FPmSwyG837A&usqp=CAU", comicName: "One piece" }]
+const dataUser = [{ _id: "1", name: 'Sanh', avatar:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJb8GNxnF1eOJ5Cegkkt2NbfECtO39hN8-TWEJvQ9SoiutgZp04mWkh1u5FPmSwyG837A&usqp=CAU",
+comment: "Hay quá", dateComment: "02/20/2022 12:23", comicImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJb8GNxnF1eOJ5Cegkkt2NbfECtO39hN8-TWEJvQ9SoiutgZp04mWkh1u5FPmSwyG837A&usqp=CAU", comicName: "One piece" },
+{ _id: "2", name: 'Quân', 
+avatar:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJb8GNxnF1eOJ5Cegkkt2NbfECtO39hN8-TWEJvQ9SoiutgZp04mWkh1u5FPmSwyG837A&usqp=CAU",
+comment: "Hay quá", dateComment: "02/20/2022 12:23", comicImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJb8GNxnF1eOJ5Cegkkt2NbfECtO39hN8-TWEJvQ9SoiutgZp04mWkh1u5FPmSwyG837A&usqp=CAU", comicName: "One piece" }]
 
 const Activities = () => {
 
   const renderItem = (value) => {
     const {
-      item: { name, _id, comment, comicImg, comicName, dateComment }
+      item: { name, _id,avatar, comment, comicImg, comicName, dateComment }
     } = value
 
     return (
-      <View>
+      <View style={{marginBottom:20}}>
         <View style={styles.viewInfo}>
-          <Image style={{width:40, height:40}} source={{ uri: comicImg }} />
-          <Text>{name}</Text>
+          <Image style={{ width: 40, height: 40 , borderRadius:50}} source={{ uri: avatar }} />
+          <Text style={{marginLeft:10}}>{name}</Text>
+        </View>
+        <Text style={{marginLeft:65}}>{comment}</Text>
+        <View style={styles.viewEbook}>
+            <Image style={{width:40, height:50,borderRadius:5}} source={{uri:comicImg}}/>       
+            <Text style={{marginLeft:10}}>{comicName}</Text>
+        </View>
+        <View style={{marginTop:5, marginLeft:65}}>
+          <Text style={{fontSize:10}}>{dateComment}</Text>
         </View>
       </View>
     )
@@ -50,7 +61,19 @@ const styles = StyleSheet.create({
     flexWrap: "nowrap"
   },
   viewInfo: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems:'center',
+    marginLeft:15,
+    
+  },
+  viewEbook:{
+    marginLeft:65,
+    marginTop:10, 
+    flexDirection:'row',
+    alignItems:'center', 
+    backgroundColor:"#e6e3e3",
+    borderRadius:5,
+    width:"80%"
   }
 
 })

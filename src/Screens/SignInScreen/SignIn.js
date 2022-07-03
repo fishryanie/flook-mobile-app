@@ -7,10 +7,10 @@ import { StyleSheet, View , Text, Button, TextInput, Alert,KeyboardAvoidingView}
 import { AntDesign} from 'react-native-vector-icons';
 import { useDispatch } from 'react-redux';
 import { useForm, Controller } from "react-hook-form";
-import { height } from '../../Constants/DimensionsConstants';
+import { FULL_HEIGHT } from '../../Configs/app'
 import { ScreenName } from '../../Constants/ScreenName'
-import { SignInAction } from '../../Store/Action/AuthAction';
-import { getDataLocalSelector } from '../../Store/Selectors/LocalSelector';
+import { Login } from '../../Store/Actions/auth';
+// import { getDataLocalSelector } from '../../Store/Selectors/LocalSelector';
 
 export default function SignIn({navigation}) {
   const [ isModalVisible, setModalVisible] = useState(false);
@@ -24,7 +24,7 @@ export default function SignIn({navigation}) {
   const dispatch = useDispatch()
   const onSubmit = data => {
     console.log(data)
-    dispatch(SignInAction(data))
+    dispatch(Login(data))
   }
 
   useEffect(() => {
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   },
   title1:{
     fontSize:20,
-    marginBottom: height/100, 
+    marginBottom: FULL_HEIGHT/100, 
     textAlign:'center',
     fontWeight:'bold',
     color:'purple'
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   title:{
     fontSize:30,
     lineHeight:35,
-    marginBottom: height/30, 
+    marginBottom: FULL_HEIGHT/30, 
     textAlign:'center',
     fontWeight:'bold'
   },

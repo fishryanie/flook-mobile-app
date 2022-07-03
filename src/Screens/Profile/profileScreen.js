@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity, Image } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
-import { FontAwesome, Ionicons, MaterialCommunityIcons, EvilIcons } from 'react-native-vector-icons'
+import { FontAwesome, Ionicons, MaterialCommunityIcons, EvilIcons,Feather } from 'react-native-vector-icons'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState, useRef } from 'react'
@@ -42,7 +42,7 @@ const listItem2 = [
 
 const ProfileScreen = () => {
   const navigation = useNavigation()
-  const [isLogin, setIsLogIn] = useState(true)
+  const [isLogin, setIsLogIn] = useState(false)
   const insets = useSafeAreaInsets()
   const childRef = useRef();
   const [fontsLoaded] = useFonts({
@@ -117,10 +117,21 @@ const ProfileScreen = () => {
                 }
 
               </TouchableOpacity>
-              <View style={styles.benifit}>
-                <Ionicons name="md-calendar-outline" size={15} color="white" />
-                <Text style={{ fontSize: 10, color: "white" }}>Điểm danh</Text>
-              </View>
+
+              <TouchableOpacity 
+                style={styles.benifit}
+                onPress={isLogin ? ()=>{console.log("Điểm danh")} : ()=>{console.log("đăng kí")}}
+              >
+                {
+                  isLogin &&  <Ionicons name="md-calendar-outline" size={15} color="white" />
+                }
+                <Text style={{ fontSize: 10, color: "white" }}>
+                  {
+                    isLogin ? "Điểm danh" : "Đăng kí"
+                  }
+                </Text>
+              </TouchableOpacity>
+             
             </View>
 
             <View style={styles.point}>
@@ -178,7 +189,7 @@ const ProfileScreen = () => {
         renderIcon={() => <MaterialCommunityIcons name="feather" size={25} color="white" />
         }
       />
-      <BottomSheet ref={childRef} height={350}>
+      <BottomSheet ref={childRef} height={400}>
         <View style={styles.viewBottomSheet}>
           <View style={styles.closeBottomSheet}>
             <TouchableOpacity onPress={handleClose}>
@@ -188,13 +199,26 @@ const ProfileScreen = () => {
 
 
           <View style={{ width: "auto", height: 80, justifyContent: "center" }}>
-            <Image style={styles.imageBottomSheet} source={{ uri: "https://i.pinimg.com/736x/e9/d6/aa/e9d6aad1ac43fdea81afe2f40caae49a.jpg" }} />
+            {isLogin ? 
+            <Image style={styles.imageBottomSheet} source={{ uri: "https://i.pinimg.com/736x/e9/d6/aa/e9d6aad1ac43fdea81afe2f40caae49a.jpg" }} /> :
+            <Image style={styles.imageBottomSheet} source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ4TKmLL_Yab3zrnGsM-6FzOgBGSm3lcXkndb1E5xQagw5YlZ9ClcBcC46v3Eq9vfBSIQ&usqp=CAU" }} />
+            }
+            
           </View>
+
 
           <TouchableOpacity style={styles.touchBottom}>
             <View style={styles.viewTouch}>
-              <Image style={{ height: 30, width: 30, resizeMode: "contain" }} source={require('../../Assets/Images/logoface.png')} />
-              <Text> Đăng nhập bằng Facebook</Text>
+              <MaterialCommunityIcons name="account-circle-outline" size={30} color="#64076b"/>
+              <Text> Đăng nhập bằng tài khoản</Text>
+            </View>
+
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.touchBottom}>
+            <View style={styles.viewTouch}>
+             <Feather name="phone" size={25} color="#64076b"/>
+              <Text style={{marginLeft:3}}> Đăng nhập bằng SDT</Text>
             </View>
 
           </TouchableOpacity>
@@ -209,7 +233,7 @@ const ProfileScreen = () => {
           <TouchableOpacity style={styles.touchBottom}>
             <View style={styles.viewTouch}>
               <Image style={{ height: 30, width: 30, resizeMode: "contain" }} source={require('../../Assets/Images/logoface.png')} />
-              <Text> Đăng nhập bằng</Text>
+              <Text> Đăng nhập bằng Facebook</Text>
             </View>
           </TouchableOpacity>
 
@@ -368,13 +392,12 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 100,
-    paddingVertical: 20,
-    backgroundColor: "red"
+   
   },
   touchBottom: {
     justifyContent: "center",
     height: 55,
-    width: "65%",
+    width: "85%",
 
     // backgroundColor: "green",
   },
@@ -383,8 +406,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     backgroundColor: "white",
-    paddingLeft: "2%",
-    borderRadius: 20
+    paddingLeft: "5%",
+    borderRadius: 20, 
+    
   },
   closeBottomSheet: {
     width: "100%",
