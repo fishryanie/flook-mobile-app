@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, Text, View,Image } from 'react-native'
 import React from 'react'
 import HorizontalList from '../../Components/FlatList/HorizontalList'
 import { Avatar } from 'react-native-paper'
@@ -16,7 +16,7 @@ const Activities = () => {
     return (
       <View>
         <View style={styles.viewInfo}>
-          <Avatar size="medium" rounded source={{ uri: comicImg }} />
+          <Image style={{width:40, height:40}} source={{ uri: comicImg }} />
           <Text>{name}</Text>
         </View>
       </View>
