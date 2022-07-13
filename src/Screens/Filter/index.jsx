@@ -74,17 +74,18 @@ const FilterScreen = ({ route }) => {
       if (listFilter.author[value].isSelected == true && listFilter.author[value].name !== "All") {
         newAuthor.push(listFilter.author[value]._id)
       }
-      else if (listFilter.author[value].isSelected == true && listFilter.author[value].name == "All") {
-        newAuthor.push('All')
-      }
+      // else if (listFilter.author[value].isSelected == true && listFilter.author[value].name == "All") {
+      //   newAuthor = []
+      // }
     }
 
     for (let value in listFilter.genre) {
       if (listFilter.genre[value].isSelected == true && listFilter.genre[value].name !== "All") {
         newGenre.push(listFilter.genre[value]._id)
-      } else if (listFilter.genre[value].isSelected == true && listFilter.genre[value].name == "All") {
-        newGenre.push('All')
-      }
+       }
+        // else if (listFilter.genre[value].isSelected == true && listFilter.genre[value].name == "All") {
+      //   newGenre = []
+      // }
     }
 
     for (let value in listFilter.chapter) {
@@ -114,7 +115,14 @@ const FilterScreen = ({ route }) => {
         sortObj ? newSort.push(sortObj) : newSort.push(listFilter.sort[value])
       }
     }
-
+    console.log("obj filter screen filter", {
+      author: newAuthor,
+      genre: newGenre,
+      status: newStatus,
+      chapter: newChapter,
+      allowedAge: newAllowedAge,
+      sort: newSort
+    });
     return {
       author: newAuthor,
       genre: newGenre,

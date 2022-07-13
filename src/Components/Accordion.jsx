@@ -15,7 +15,6 @@ const ListAccor = (props) => {
   const [isClickSortByDateASC, setisClickSortByDateASC] = useState(true);
   const [isClickSortByNameASC, setisClickSortNameASC] = useState(true);
   const [isClickSortByViewASC, setisClickSortByViewASC] = useState(true);
-  const [isClickSortByReviewASC, setisClickSortByReviewASC] = useState(true);
   const [objSort, setObjSort] = useState()
 
   useEffect(() => {
@@ -58,15 +57,7 @@ const ListAccor = (props) => {
       else setObjSort({ name: "Sort by view", type: "ASC" })
 
     }
-    if (item.name === 'Sort by review') {
-      // console.log('Sort by review')
-
-      setisClickSortByReviewASC(!isClickSortByReviewASC)
-      if (isClickSortByReviewASC) {
-        setObjSort({ name: "Sort by review", type: "DESC" })
-      }
-      else setObjSort({ name: "Sort by review", type: "ASC" })
-    }
+   
   }
 
 
@@ -92,15 +83,6 @@ const ListAccor = (props) => {
       return (<>{
         item.isSelected ?
           isClickSortByViewASC ? <MaterialCommunityIcons onPress={() => item.isSelected && handClickSortItem(item)} name="sort-ascending" size={25} /> : <MaterialCommunityIcons onPress={() => item.isSelected && handClickSortItem(item)} name="sort-descending" size={25} />
-          : <MaterialCommunityIcons name="sort-ascending" size={25} />
-
-      }
-      </>
-      )
-    } else {
-      return (<>{
-        item.isSelected ?
-          isClickSortByReviewASC ? <MaterialCommunityIcons onPress={() => item.isSelected && handClickSortItem(item)} name="sort-ascending" size={25} /> : <MaterialCommunityIcons onPress={() => item.isSelected && handClickSortItem(item)} name="sort-descending" size={25} />
           : <MaterialCommunityIcons name="sort-ascending" size={25} />
 
       }
