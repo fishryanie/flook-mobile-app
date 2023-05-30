@@ -1,0 +1,27 @@
+[{ "_id":"1",
+  "title":"Naruto Naruto Naruto Naruto Naruto Naruto",
+  "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVsPHlr7_ZmXu4hecdyrISPLMnId8LVU83C4QGHr0GgR1c7uaU55vdy9PO4WBw6avaAPQ&usqp=CAU",
+  "rating":4,
+  "genre":"Tokuda"
+},
+{
+  "_id":"2",
+  "title":"One Piece one pie one pie One Piece one pie one pie",
+  "image":"https://kenh14cdn.com/thumb_w/660/203336854389633024/2022/4/3/photo-1-164898078911925735845.jpg",
+  "rating":4,
+  "genre":"Oda"
+},
+{
+  "_id":"3",
+  "title":"One Puch Man One Puch Man One Puch Man",
+  "image":"https://sfractus-images.cleo.media/unsafe/303x0:794x491/641x0/images/One-Punch-Man-Road-To-Hero_899.jpg",
+  "rating":5,
+  "genre":"Hateka"
+},
+{"_id":"4",
+  
+  "title":"Doreamon",
+  "image":"https://photo-cms-tpo.zadn.vn/w890/Uploaded/2022/pcgycivo/2020_09_03/tit_TZJP.png",
+  "rating":3,
+  "genre":"Itachi"
+}]

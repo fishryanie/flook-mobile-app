@@ -1,14 +1,21 @@
-import React, { Component, useEffect, useState, useMemo } from 'react';
-import { View, FlatList, StyleSheet, Text, TouchableOpacity, ScrollView, SafeAreaView } from "react-native";
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, Text, TouchableOpacity, ScrollView, } from "react-native";
 import { Checkbox, List } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 import Action from '../../Shop/Action';
 import Selector from '../../Shop/Selector';
 import ListFilterData from '../../Constants/ListFilterData';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const ListAccordion = () => {
+const ListAccordion = (props) => {
+  const {
+    route: {
+      params: { onFilterList, screen },
+    },
+  } = props;
+  const insets = useSafeAreaInsets()
   const dispatch = useDispatch()
-  let filterObj
+  // console.log("screen", screen)
   const listAuthor = Selector.book.DataAllAuthor()
   const listGenre = Selector.book.DataAllGenre()
   const [author, setAuthor] = useState([])
@@ -16,12 +23,14 @@ const ListAccordion = () => {
   const [allowed, setAllowed] = useState(ListFilterData.listAllowed)
   const [chapter, setChapter] = useState(ListFilterData.listChapter)
   const [status, setStatus] = useState(ListFilterData.listStatus)
-  const [expanded, setExpanded] = React.useState(true);
+
+
 
   useEffect(() => {
+
     dispatch(Action.book.findAuthor())
     dispatch(Action.book.findGenre())
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     let authorArr = listAuthor.map((item) => {
@@ -36,55 +45,97 @@ const ListAccordion = () => {
     setGenre(genreArr);
   }, [listAuthor, listGenre])
 
-  const handlePress = (e) => {
-    console.log("eeeeeeee", e)
-    setExpanded(!expanded)
-  };
 
-  let getFilterObj = () => {
+  const clearFilter = () => {
+    const clearAuthor = author.map((value) => {
+      return { ...value, isSelected: false }
+    })
+    setAuthor(clearAuthor)
+    const clearGenre = genre.map((value) => {
+      return { ...value, isSelected: false }
+    })
+    setGenre(clearGenre)
+    const clearStatus = status.map((value) => {
+      return { ...value, isSelected: false }
+    })
+    setStatus(clearStatus)
+    const clearAllowed = allowed.map((value) => {
+      return { ...value, isSelected: false }
+    })
+    setAllowed(clearAllowed)
+    const clearChapter = chapter.map((value) => {
+      return { ...value, isSelected: false }
+    })
+    setChapter(clearChapter)
+  }
+
+  const getFilterObj = () => {
     const newChapter = []
     const newAuthor = []
     const newGenre = []
     const newStatus = []
+    const newAllowed = []
     for (let value in chapter) {
       // console.log("value", chapter[value])
-      if (chapter[value].isSelected == true && chapter[value].name == "All") {
-        console.log("bbb")
-        newChapter.push(chapter[value].chapter)
-      }
+
       if (chapter[value].isSelected == true && chapter[value].name != "All") {
-        console.log("aa")
+
         newChapter.push(chapter[value].chapter)
       }
+      // else if (chapter[value].isSelected == true && chapter[value].name == "All") {
+      //   newChapter.push(...chapter.map((item) => { return item.chapter }))
+      //   newChapter.shift()
+      // }
+
+
+
+
+
     }
     // console.log(newChapter.flat())
     for (let value in author) {
       if (author[value].isSelected == true && author[value].name !== "All") {
-        console.log("bbb")
         newAuthor.push(author[value]._id)
+      }
+      else if (author[value].isSelected == true && author[value].name == "All") {
+        newAuthor.push(...author.map((item) => { return item._id }))
+        newAuthor.shift()
       }
     }
     // console.log(newAuthor.flat())
     for (let value in genre) {
       if (genre[value].isSelected == true && genre[value].name !== "All") {
-        console.log("bbb")
         newGenre.push(genre[value]._id)
+      } else if (genre[value].isSelected == true && genre[value].name == "All") {
+        newGenre.push(...genre.map((item) => { return item._id }))
+        newGenre.shift()
       }
     }
     // console.log(newGenre.flat())
     for (let value in status) {
       if (status[value].isSelected == true && status[value].name != "All") {
-        console.log("aa")
         newStatus.push(status[value].status)
       }
+
+
     }
-    console.log("value", newStatus.flat())
-    filterObj = {
+
+    for (let value in allowed) {
+      if (allowed[value].isSelected == true && allowed[value].name != "All") {
+        console.log("aa")
+        newAllowed.push(allowed[value].status)
+      }
+    }
+    // console.log("value", newStatus.flat())
+    let filterObj = {
       author: newAuthor,
       genre: newGenre,
-      status: newStatus.flat()
+      status: newStatus.flat().slice(0),
+      chapter: newChapter,
+      allowed: newAllowed
     }
-    console.log("filterObj", filterObj)
+    return filterObj
+    // console.log("filterObj", filterObj)
   }
   const handelClickItem = (id, isClicked, arr, type) => {
     console.log("id isselected", id, isClicked)
@@ -97,42 +148,42 @@ const ListAccordion = () => {
     if (id !== "1") {
       newArr[0].isSelected = false
     }
-    if (newArr[0].isSelected === true && id == "1") {
-      // console.log("Click alll")
-      let newArr1 = arr.map((value) => {
-        return { ...value, isSelected: true }
-      })
-      if (type === "author") {
-        setAuthor(newArr1)
-      } else if (type === "genre") {
-        setGenre(newArr1)
-      } else if (type === "allowed") {
-        setAllowed(newArr1)
-      } else if (type === "chapter") {
-        setChapter(newArr1)
-      } else if (type === "status") {
-        setStatus(newArr1)
-      }
-      return
-    }
-    if (newArr[0].isSelected === false && id == "1") {
-      // console.log("Click alll")
-      let newArr1 = arr.map((value) => {
-        return { ...value, isSelected: false }
-      })
-      if (type === "author") {
-        setAuthor(newArr1)
-      } else if (type === "genre") {
-        setGenre(newArr1)
-      } else if (type === "allowed") {
-        setAllowed(newArr1)
-      } else if (type === "chapter") {
-        setChapter(newArr1)
-      } else if (type === "status") {
-        setStatus(newArr1)
-      }
-      return
-    }
+    // if (newArr[0].isSelected === true && id == "1") {
+    //   console.log("Click alll")
+    //   let newArr1 = arr.map((value) => {
+    //     return { ...value, isSelected: false }
+    //   })
+    //   if (type === "author") {
+    //     setAuthor(newArr1)
+    //   } else if (type === "genre") {
+    //     setGenre(newArr1)
+    //   } else if (type === "allowed") {
+    //     setAllowed(newArr1)
+    //   } else if (type === "chapter") {
+    //     setChapter(newArr1)
+    //   } else if (type === "status") {
+    //     setStatus(newArr1)
+    //   }
+    //   return
+    // }
+    // if (newArr[0].isSelected === false && id == "1") {
+    // console.log("Click alll")
+    // let newArr1 = arr.map((value) => {
+    //   return { ...value, isSelected: false }
+    // })
+    // if (type === "author") {
+    //   setAuthor(newArr1)
+    // } else if (type === "genre") {
+    //   setGenre(newArr1)
+    // } else if (type === "allowed") {
+    //   setAllowed(newArr1)
+    // } else if (type === "chapter") {
+    //   setChapter(newArr1)
+    // } else if (type === "status") {
+    //   setStatus(newArr1)
+    // }
+    // return
+    // }
 
     if (type === "author") {
       setAuthor(newArr)
@@ -147,15 +198,15 @@ const ListAccordion = () => {
     }
   }
   return (
-    <View style={{ flex: 1 }} >
+    <View style={{ flex: 1, marginTop: insets.top }}>
       <View style={styles.ViewHeader}>
-        <TouchableOpacity onPress={getFilterObj} style={styles.TouchableOpacityHeader}>
+        <TouchableOpacity onPress={() => props.navigation.goBack()} style={styles.TouchableOpacityHeader}>
           <Text style={styles.TextHeader}>{"Cancle"}</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.TouchableOpacityHeader}>
+        <TouchableOpacity style={styles.TouchableOpacityHeader} onPress={clearFilter}>
           <Text style={styles.TextHeader}>{"Clear"}</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.TouchableOpacityHeader}>
+        <TouchableOpacity style={styles.TouchableOpacityHeader} onPress={() => { props.navigation.goBack(); onFilterList(getFilterObj()) }} >
           <Text style={styles.TextHeader}>{"Refine"}</Text>
         </TouchableOpacity>
       </View>
@@ -268,7 +319,7 @@ const ListAccordion = () => {
         </List.Accordion>
       </ScrollView>
 
-    </View>
+    </View >
   )
 }
 export default ListAccordion
@@ -283,7 +334,6 @@ const styles = StyleSheet.create({
     flex: 1, borderBottomWidth: 1, borderBottomColor: "#ebebeb", flexDirection: "row", alignItems: "center"
   },
   ViewHeader: {
-    marginTop: "10%",
     paddingHorizontal: "6%", width: "100%", height: 40, flexDirection: "row", alignItems: "center", justifyContent: "space-between"
   },
   TouchableOpacityHeader: {
